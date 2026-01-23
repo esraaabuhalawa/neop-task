@@ -5,7 +5,7 @@
             <div class="row">
                 <!-- Images Section -->
                 <section class="col-12 col-lg-7 ">
-                    <div class="row me-md-5">
+                    <div class="row margin-space">
                         <!-- Thumbnails -->
                         <div class="col-md-2 mt-3 mt-md-0 d-flex flex-md-column gap-2 order-2 order-lg-1">
                             <div class="thumbnail" v-for="(item, index) in product.subImages" :key="index"
@@ -123,7 +123,7 @@ const decrease = () => {
 
     span {
         position: absolute;
-        left: 40px;
+        left: 50px;
         top: 30px;
         background: #004876;
         color: #fff;
@@ -153,7 +153,16 @@ const decrease = () => {
         font-size: 3rem;
     }
 }
-
+@media (min-width: 992px) {
+    .margin-space{
+        &:lang(en){
+            margin-right: 2.5rem;
+        }
+         &:lang(ar){
+            margin-left: 2.5rem;
+        }
+    }
+}
 .product-details .price {
     display: -webkit-box;
     display: -ms-flexbox;
