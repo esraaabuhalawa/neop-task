@@ -5,7 +5,7 @@
             <div class="row">
                 <!-- Images Section -->
                 <section class="col-12 col-lg-7 ">
-                    <div class="row me-5">
+                    <div class="row me-md-5">
                         <!-- Thumbnails -->
                         <div class="col-md-2 mt-3 mt-md-0 d-flex flex-md-column gap-2 order-2 order-lg-1">
                             <div class="thumbnail" v-for="(item, index) in product.subImages" :key="index"
@@ -48,7 +48,7 @@
                             <div class="plus" @click="increase">
                                 +
                             </div>
-                            <div>
+                            <div class="flex-fill">
                                 <input type="number" v-model.number="quantity" min="1" class="text-center" />
                             </div>
                             <div class="plus" @click="decrease">
@@ -113,7 +113,9 @@ const decrease = () => {
         border: 1px solid #004876
     }
 }
-
+.flex-fill{
+    flex:1
+}
 .main-image {
     border-radius: 20px;
     padding: 22px 18px;
@@ -242,7 +244,6 @@ const decrease = () => {
 
     border: 1px solid #c6ddeb;
     border-radius: 5px;
-    font-size: 1.1rem;
     color: #333;
     overflow: hidden;
 
