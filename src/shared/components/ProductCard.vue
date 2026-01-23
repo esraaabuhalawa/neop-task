@@ -10,8 +10,8 @@
                         </div>
                     </div>
                 </div>
-               <span class="discount" v-if="product.price < product.originalPrice">
-                -{{ Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) }}%
+                <span class="discount" v-if="product.price < product.originalPrice">
+                    -{{ Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) }}%
                 </span>
             </div>
 
@@ -95,7 +95,8 @@ defineProps({
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        -o-object-fit: cover;
+           object-fit: cover;
     }
 }
 

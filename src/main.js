@@ -18,6 +18,9 @@ import EN from "./locale/en.json";
 import AR from "./locale/ar.json";
 import { createI18n } from "vue-i18n";
 
+import Vue3Toastify from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
 const storedLanguage = localStorage.getItem("language") || "ar";
 const initialLocale = storedLanguage;
 const i18n = createI18n({
@@ -43,6 +46,11 @@ document.body.dir = localStorage.getItem("direction");
 const app = createApp(App)
 const pinia = createPinia()
 
-app.use(pinia).use(router).use(i18n).mount('#app')
+app.use(
+  Vue3Toastify,
+  {
+     autoClose: 3000,
+    position: "top-right"
+  },
+).use(pinia).use(router).use(i18n).mount('#app')
 
-//createApp(App).mount('#app')

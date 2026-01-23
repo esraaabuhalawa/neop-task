@@ -7,7 +7,7 @@
                 <section class="col-12 col-lg-7 ">
                     <div class="row me-5">
                         <!-- Thumbnails -->
-                        <div class="col-2 d-flex flex-column gap-2 order-2 order-lg-1">
+                        <div class="col-md-2 mt-3 mt-md-0 d-flex flex-md-column gap-2 order-2 order-lg-1">
                             <div class="thumbnail" v-for="(item, index) in product.subImages" :key="index"
                                 :class="{ selected: item === selectedImage }">
                                 <img :alt="'subimage ' + index" class="img-fluid" :src="item"
@@ -16,7 +16,7 @@
                         </div>
 
                         <!-- Main Image -->
-                        <div class="col-10 order-1 order-lg-2 position-relative">
+                        <div class="col-md-10 order-1 order-lg-2 position-relative">
                             <div class="main-image">
                                 <img :src="selectedImage || product.mainImage" :alt="product.title"
                                     class="img-fluid " />
@@ -32,9 +32,9 @@
                         <div class="overflow-hidden">
                             <rating-component :rating="4.3"></rating-component>
                         </div>
-                        <div class="reviews">(128 customer reviews)</div>
+                        <div class="reviews">(128 {{ $t('reviews.count') }})</div>
                     </div>
-                    <h1 class="product-title">{{ product.title }}</h1>
+                    <h1 class="product-title">{{ $t('breadcrumb.product') }}</h1>
 
                     <div class="price">
                         <span class="current-price"> ${{ product.price.toFixed(2) }}</span>
@@ -43,53 +43,30 @@
 
                     <p class="description mb-4">{{ product.description }}</p>
 
-                    <div class="d-flex align-items-center gap-3 ">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex gap-3 justify-content-between align-items-center amount">
-                            <div class="plus">
+                            <div class="plus" @click="increase">
                                 +
                             </div>
                             <div>
                                 <input type="number" v-model.number="quantity" min="1" class="text-center" />
                             </div>
-                            <div class="plus">
+                            <div class="plus" @click="decrease">
                                 -
                             </div>
                         </div>
 
-                        <button class="btn cart" @click="addToCart">Add to Cart</button>
+                        <button class="btn cart" @click="addToCart">{{ $t('addToCart') }}</button>
                     </div>
                 </section>
             </div>
-
-            <!-- Tabs: Description & Reviews -->
-            <section class="mt-5">
-                <nav class="mb-3">
-                    <button :class="{ active: descriptionTab }" @click="setTab('description')">
-                        Description
-                    </button>
-                    <button :class="{ active: reviewTab }" @click="setTab('review')">
-                        Reviews
-                    </button>
-                </nav>
-
-                <div v-if="descriptionTab">
-                    <h4>Description</h4>
-                    <p>{{ product.description }}</p>
-                </div>
-
-                <div v-if="reviewTab" class="reviews p-3 border">
-                    <h4>Be the first to review "{{ product.title }}"</h4>
-                  
-                </div>
-            </section>
         </div>
-
     </section>
     <!--End Of Product Details-->
 </template>
 <script setup>
 import ratingComponent from '../../../shared/components/RatingComponent.vue'
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, } from "vue";
 // Reactive state
 const selectedImage = ref(null);
 const quantity = ref(1);
@@ -116,21 +93,10 @@ const discountedPrice = computed(() => {
     }
     return null;
 });
-
-// Methods
-// const addToCart = () => {
-//     store.addToCart({
-//         product: product.value,
-//         quantity: quantity.value,
-//     });
-// };
-
-// const setTab = (tab) => {
-//     descriptionTab.value = tab === "description";
-//     reviewTab.value = tab === "review";
-// };
-
-
+const increase = () => quantity.value++;
+const decrease = () => {
+  if (quantity.value > 1) quantity.value--;
+};
 </script>
 <style lang="scss" scoped>
 .thumbnail {
@@ -187,8 +153,12 @@ const discountedPrice = computed(() => {
 }
 
 .product-details .price {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: baseline;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -228,9 +198,17 @@ const discountedPrice = computed(() => {
 .plus {
     color: #fff;
     background: #004876;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 
     &:hover {
@@ -241,9 +219,13 @@ const discountedPrice = computed(() => {
 
 .cart {
     padding: 8px 20px;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     &:hover{
-        transform: translateY(2px);
+        -webkit-transform: translateY(2px);
+            -ms-transform: translateY(2px);
+                transform: translateY(2px);
     }
 }
 

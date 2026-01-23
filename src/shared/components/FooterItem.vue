@@ -11,19 +11,19 @@
           <h6 class="mb-4 text-uppercase">Menu</h6>
           <ul>
             <li>
-              <router-link to="/" class="text-capitalize">{{ $t('footer.about') }}</router-link>
+              <router-link to="/" class="text-capitalize">{{ $t('nav.about') }}</router-link>
             </li>
             <li>
               <router-link to="/" class="text-capitalize">{{ $t('menu.blogs') }}</router-link>
             </li>
             <li>
-              <router-link to="/" class="text-capitalize">{{ $t('footer.reviews') }}</router-link>
+              <router-link to="/" class="text-capitalize">{{ $t('nav.reviews') }}</router-link>
             </li>
             <li>
               <router-link to="/" class="text-capitalize">{{ $t('nav.contact') }}</router-link>
             </li>
             <li>
-              <router-link to="/" class="text-capitalize">{{ $t('footer.faq') }}</router-link>
+              <router-link to="/" class="text-capitalize">{{ $t('nav.community') }}</router-link>
             </li>
           </ul>
         </div>
@@ -32,16 +32,16 @@
         <!-- Grid column -->
         <div class="col-md-6 col-lg-2 mb-4">
           <!-- Links -->
-          <h6 class="mb-4 text-uppercase"> Cafe Locatotion </h6>
+          <h6 class="mb-4 text-uppercase"> Cafe Location </h6>
           <ul>
             <li>
-              <router-link to="" class="text-capitalize">Sell</router-link>
+              <router-link to="/" class="text-capitalize">{{ $t('nav.community') }}</router-link>
             </li>
             <li>
-              <router-link to="" class="text-capitalize">Rent</router-link>
+              <router-link to="/" class="text-capitalize">{{ $t('nav.community') }}</router-link>
             </li>
             <li>
-              <router-link to="" class="text-capitalize">Investment</router-link>
+              <router-link to="/" class="text-capitalize">{{ $t('nav.community') }}</router-link>
             </li>
           </ul>
         </div>
@@ -50,7 +50,7 @@
         <!-- Grid column -->
         <div class="col-lg-3 mb-4">
           <!-- Links -->
-          <h6 class="mb-4 text-uppercase">Contact</h6>
+          <h6 class="mb-4 text-uppercase">{{ $t('nav.contact') }}</h6>
           <p>
             Do you have a <br /> question? Send it to<br />us!
           </p>
@@ -62,7 +62,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-7">
           <section
-            class="d-flex flex-column flex-lg-row gap-3 align-items-center justify-content-lg-between border-top pt-4 pb-5 copyright">
+            class="d-flex  gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
             <!--Social Links-->
             <div class="follow-us">
               <div class="mt-2 d-flex gap-3">
@@ -80,7 +80,7 @@
             <!------>
             <!-- Left -->
             <div>
-              <router-link to="/" class="letter-2"> Privacy policy</router-link>
+              <router-link to="/" class="letter-2">{{ $t('privacy_policy') }}</router-link>
             </div>
             <!-- Left -->
           </section>
@@ -96,11 +96,8 @@
   <!-- Footer -->
 </template>
 
-<script setup>
-
-</script>
-
 <style lang="scss" scoped>
+
 .first-col {
   gap: 23px;
 }
@@ -108,14 +105,19 @@
 .letter-2 {
   letter-spacing: 2.42px;
 }
-.footer-img{
+
+.footer-img {
   position: absolute;
   bottom: 0px;
-  &:lang(en){
-     right: 0;
+
+  &:lang(en) {
+    right: 0;
   }
-  &:lang(ar){
-    transform: scaleX(-1);
+
+  &:lang(ar) {
+    -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+            transform: scaleX(-1);
     left: 0;
   }
 }
@@ -123,6 +125,8 @@
 footer {
   margin-top: 6rem;
   padding-top: 57px;
+  background: -webkit-gradient(linear, left top, left bottom, from((45deg)), color-stop(50%, #004876), to(#1e71a6));
+  background: -o-linear-gradient((45deg), #004876 50%, #1e71a6);
   background: linear-gradient((45deg), #004876 50%, #1e71a6);
 
   a {
@@ -187,9 +191,15 @@ h6 {
 
 .follow-us {
   a {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 32px;
     height: 32px;
     padding-top: 3px;
@@ -221,8 +231,8 @@ h6 {
   }
 }
 
-@media screen and (max-width: 1220px){
-  .footer-img{
+@media screen and (max-width: 1220px) {
+  .footer-img {
     display: none;
   }
 }

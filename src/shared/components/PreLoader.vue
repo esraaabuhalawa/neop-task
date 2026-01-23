@@ -27,9 +27,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/*----------------------------------------*/
-/*  2.5 Preloader
-/*----------------------------------------*/
 #loading {
   background-color: #004876;
   height: 100%;
@@ -46,7 +43,9 @@ export default {
   height: 100%;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .preloader {
@@ -61,7 +60,9 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .preloader::after {
@@ -69,23 +70,39 @@ export default {
   content: "";
   top: 0px;
   left: 0;
-  transform: translateX(-50px);
+  -webkit-transform: translateX(-50px);
+      -ms-transform: translateX(-50px);
+          transform: translateX(-50px);
   border: 2px solid #004876;
   border-top: 2px solid #fff;
   border-radius: 50%;
   width: 150px;
   height: 150px;
-  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+          animation: spin 1s ease-in-out infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
 
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
-
 </style>

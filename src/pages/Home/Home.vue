@@ -7,7 +7,7 @@
     <div class="bg-1">
       <Navbar></Navbar>
       <main class="main-content">
-        <Hero  :slides="slides"/>
+        <Hero :language="currentLanguage"  :slides="slides"/>
         <Brands :brands="brands" />
         <PopularCategories :categories="categories" :products="allProducts" :lang="currentLanguage" />
         <Featured :shop="featured"/>
@@ -31,19 +31,12 @@ import api from '../../Services/apiclient';
 
 const allProducts = ref([]);
 const categories = ref([]);
-
 const brands=ref([]);
 const featuredData = ref({});
-
 const loading = ref(true)
-
 const langStore = useMainStore();
-
 const currentLanguage = computed(() => langStore.currentLanguage);
-
 const slidesData = ref({});
-
-
 
 const getData = async () => {
   loading.value = true
@@ -98,12 +91,15 @@ onMounted(async () => {
   }
 
   &:lang(ar) {
-    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+            transform: scaleX(-1);
   }
 }
 
 .navbar {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .bg-1 {
@@ -129,6 +125,8 @@ onMounted(async () => {
 
 .bg-1:lang(ar):before {
   left: 0;
-  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
 }
 </style>

@@ -3,6 +3,21 @@
         "label": "Products",
         "title": "Special to Try"
     },
+    "breadcrumb": {
+        "home": "Home",
+        "category": "Coffee Beans",
+        "product": "Brazilian Roasted Coffee"
+    },
+    "reviews": {
+        "title": "Reviews",
+        "count": "customer reviews",
+        "addReview": "Add A Review",
+        "name": "Name",
+        "email": "Email",
+        "yourReview": "Your Review",
+        "required": "*",
+        "submit": "Submit"
+    },
     "terms_of_use": "Terms of Use",
     "privacy_policy": "Privacy Policy",
     "studentReviews": "Student Reviews",
@@ -36,10 +51,7 @@
         "community": "Our Community",
         "blogs": "Articles",
         "about": "About Us",
-        "contact": "Contact Us",
-        "signIn": "Sign In",
-        "signUp": "Create Account",
-        "logout": "Logout"
+        "contact": "Contact Us"
     },
     "menu": {
         "home": "Home",

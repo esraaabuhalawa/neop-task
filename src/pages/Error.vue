@@ -9,7 +9,6 @@
     <button class="btn btn-primary  px-4 main-button" @click="goHome">
       {{ $t('backToHome') }}
     </button>
-
   </div>
 </template>
 
@@ -36,6 +35,8 @@ p {
 
 button {
   border-radius: 40px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   padding: 20px;
   border: 0px solid #979797;

@@ -49,6 +49,7 @@
 defineProps({ shop: Object }, { shopHeading: Object })
 </script>
 <style lang="scss" scoped>
+
 .shop-section::after {
   content: "";
   display: block;
@@ -66,17 +67,26 @@ defineProps({ shop: Object }, { shopHeading: Object })
 
 .shop-section:lang(ar)::after {
   left: 0;
-  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
 }
 
 .img-container img {
   position: relative;
   z-index: -1;
   &:lang(ar) {
-    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+            transform: scaleX(-1);
   }
 }
 
+@media screen and (min-width:992px ) and (max-width:1300px) {
+    .img-container img {
+      width: 625px;
+    }
+}
 .shop-content {
   &:lang(en) {
     padding-left: 20px;
@@ -123,19 +133,30 @@ defineProps({ shop: Object }, { shopHeading: Object })
 }
 
 .feature-icon {
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   width: 81px;
   height: 81px;
   background: #6f4336;
   border-radius: 50%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 .feature-icon:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .gif-container {

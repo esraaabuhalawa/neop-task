@@ -4,7 +4,7 @@
     <Swiper :loop="true" :key="direction" :modules="[Autoplay, Navigation]" :spaceBetween="20"
       :autoplay="{ delay: 3000, disableOnInteraction: false }" @slideChange="onSlideChange" :breakpoints="breakpoints"
       :dir="direction" navigation>
-      <SwiperSlide v-for="slide in slides" :key="slide.id">
+      <SwiperSlide v-for="slide , index in slides" :key="slide.id">
         <div class="container pt-5">
           <div class="row align-items-center min-vh-50">
 
@@ -12,7 +12,7 @@
             <div class="col-lg-6">
               <div class="col-container mb-4 mb-lg-0">
                 <h1 class="mb-4 capitalize">
-                  <span class="first-letter">{{ slide.title.charAt(0) }}</span>{{ slide.title.slice(1) }}<br />
+                  <span :class="{'first-letter': language === 'en' && index === 0 }">{{ slide.title.charAt(0) }}</span>{{ slide.title.slice(1) }}<br />
                   {{ slide.subtitle }}
                 </h1>
 
@@ -72,7 +72,10 @@ import "swiper/css/navigation";
 defineProps({
   slides: {
     type: Array,
-  }
+  },
+    language:{
+      type:String
+    }
 })
 
 const breakpoints = {
@@ -153,7 +156,9 @@ h1 {
 
 
 .hero-section:lang(ar)::after {
-  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
 }
 
 .circle:lang(ar)::before {
@@ -164,7 +169,9 @@ h1 {
   position: relative;
 
   &:lang(ar) {
-    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+            transform: scaleX(-1);
   }
 }
 
@@ -185,9 +192,15 @@ h1 {
   width: 48px;
   height: 48px;
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 
   svg {
     color: white;
@@ -216,6 +229,8 @@ h1 {
   border: 1px solid #6f4336;
   color: #6f4336;
   border-radius: 16px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 
   span {
@@ -226,7 +241,9 @@ h1 {
 
   svg {
     &:lang(ar) {
-      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+              transform: rotate(180deg);
     }
   }
 
@@ -258,9 +275,12 @@ h1 {
 .hero-circle {
   width: 29rem;
   height: 29rem;
+  background: -webkit-gradient(linear, left top, right top, from(#004876), color-stop(80%, #1e71a6));
+  background: -o-linear-gradient(left, #004876, #1e71a6 80%);
   background: linear-gradient(to right, #004876, #1e71a6 80%);
   border-radius: 50%;
-  animation: float 3s ease-in-out infinite;
+  -webkit-animation: float 3s ease-in-out infinite;
+          animation: float 3s ease-in-out infinite;
 
   img {
     position: relative;
@@ -270,15 +290,29 @@ h1 {
   }
 }
 
-@keyframes float {
-
+@-webkit-keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
   }
 
   50% {
-    transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+
+  50% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
   }
 }
 
@@ -297,7 +331,9 @@ h1 {
 :deep(.swiper-button-prev.active::after) {
   background: #004876;
   color: #fff;
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 /* Prev arrow */
@@ -329,9 +365,15 @@ h1 {
   padding: 8px;
   top: 20%;
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #004876;
   background: #fff;
 }
@@ -357,24 +399,20 @@ h1 {
   background: #004876;
   color: #fff;
   opacity: 1;
-  /* override swiper default */
 }
 
 /*****************************/
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
+ :deep(.swiper-button-prev) ,:deep(.swiper-button-next),:deep(.swiper-rtl .swiper-button-prev) ,
+ :deep(.swiper-rtl .swiper-button-next) {
+    display: none;
+  }
+}
+@media (max-width: 992px) {
   .hero-circle {
     width: 300px;
     height: 300px;
   }
-
-  :deep(.swiper-rtl .swiper-button-prev) {
-    display: none;
-  }
-
-  :deep(.swiper-rtl .swiper-button-next) {
-    display: none;
-  }
-
   .col-container,
   .hero-circle-container {
     margin-top: 50px;
@@ -383,7 +421,8 @@ h1 {
   }
 
   .hero-section {
-    padding-top: 40px;
+     margin-top: 50px;
+    padding-top: 80px;
     padding-bottom: 120px;
   }
 }
