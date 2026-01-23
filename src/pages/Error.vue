@@ -1,12 +1,12 @@
 <template>
   <div class="container d-flex flex-column align-items-center justify-content-center text-center min-vh-100">
-    <h1 class="display-4 fw-bold font-family">
+    <h1 class="display-4 fw-bold ">
       {{ $t('oopsTitle') }}
     </h1>
-    <p class="lead mb-4 font-family">
+    <p class="lead mb-4 ">
       {{ $t('oopsDescription') }}
     </p>
-    <button class="btn btn-primary font-family px-4 main-button" @click="goHome">
+    <button class="btn btn-primary  px-4 main-button" @click="goHome">
       {{ $t('backToHome') }}
     </button>
 

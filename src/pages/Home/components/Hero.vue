@@ -1,135 +1,60 @@
 <template>
-  <section
-    class="hero-section d-flex justify-content-center align-items-center position-relative py-lg-5"
-  >
+  <section class="hero-section d-flex justify-content-center align-items-center position-relative py-lg-5">
     <!-- <div class="container pt-5"> -->
-    <Swiper
-      :loop="true"
-      :key="direction"
-      :modules="[Autoplay, Navigation]"
-      :spaceBetween="20"
-      :autoplay="{ delay: 3000, disableOnInteraction: false }"
-      @slideChange="onSlideChange"
-      :breakpoints="breakpoints"
-      :dir="direction"
-      navigation
-    >
-      <!-- <SwiperSlide v-for="slide in 3" :key="slide">
+    <Swiper :loop="true" :key="direction" :modules="[Autoplay, Navigation]" :spaceBetween="20"
+      :autoplay="{ delay: 3000, disableOnInteraction: false }" @slideChange="onSlideChange" :breakpoints="breakpoints"
+      :dir="direction" navigation>
+      <SwiperSlide v-for="slide in slides" :key="slide.id">
         <div class="container pt-5">
           <div class="row align-items-center min-vh-50">
+
+            <!-- TEXT -->
             <div class="col-lg-6">
               <div class="col-container mb-4 mb-lg-0">
                 <h1 class="mb-4 capitalize">
-                  <span class="first-letter">C</span>offee<br />&Shop
+                  <span class="first-letter">{{ slide.title.charAt(0) }}</span>{{ slide.title.slice(1) }}<br />
+                  {{ slide.subtitle }}
                 </h1>
+
                 <p class="description mb-4 mx-4">
-                  Get your ordered (better) coffee <br />
-                  delivered to you if you want.
+                  {{ slide.description }}
                 </p>
+
                 <div class="d-flex align-items-center">
                   <button class="shop-btn">
-                    <span> SHOP 20% OFF </span>
-                    <svg
-                      class="w-6 h-6 text-gray-800 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 12H5m14 0-4 4m4-4-4-4"
-                      />
+                    <span>{{ slide.discountText }}</span>
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 12H5m14 0-4 4m4-4-4-4" />
                     </svg>
                   </button>
 
-                  <router-link to="/" class="cart">
-                    <svg
-                      class="w-6 h-6"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.2"
-                        d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"
-                      />
+                  <router-link :to="slide.link" class="cart">
+                    <!-- cart svg -->
+                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
+                        d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z" />
                     </svg>
                   </router-link>
                 </div>
               </div>
             </div>
 
+            <!-- IMAGE -->
             <div class="col-lg-6">
               <div class="position-relative d-flex justify-content-end">
-                <div
-                  class="hero-circle d-flex position-relative justify-content-center align-items-center"
-                >
-                  <img src="/images/CoffeeBeans.png" />
+                <div class="hero-circle d-flex position-relative justify-content-center align-items-center">
+                  <img :src="slide.image" alt="coffee" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </SwiperSlide> -->
-    <SwiperSlide v-for="slide in slides" :key="slide.id">
-  <div class="container pt-5">
-    <div class="row align-items-center min-vh-50">
-
-      <!-- TEXT -->
-      <div class="col-lg-6">
-        <div class="col-container mb-4 mb-lg-0">
-          <h1 class="mb-4 capitalize">
-            <span class="first-letter">{{ slide.title.charAt(0) }}</span
-            >{{ slide.title.slice(1) }}<br />
-            {{ slide.subtitle }}
-          </h1>
-
-          <p class="description mb-4 mx-4">
-            {{ slide.description }}
-          </p>
-
-          <div class="d-flex align-items-center">
-            <button class="shop-btn">
-              <span>{{ slide.discountText }}</span>
-              <!-- arrow svg -->
-            </button>
-
-            <router-link :to="slide.link" class="cart">
-              <!-- cart svg -->
-            </router-link>
-          </div>
-        </div>
-      </div>
-
-      <!-- IMAGE -->
-      <div class="col-lg-6">
-        <div class="position-relative d-flex justify-content-end">
-          <div
-            class="hero-circle d-flex position-relative justify-content-center align-items-center"
-          >
-            <img :src="slide.image" alt="coffee" />
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</SwiperSlide>
+      </SwiperSlide>
 
     </Swiper>
-    <!-- </div> -->
 
     <!---circle div-->
     <div class="circle">
@@ -144,6 +69,11 @@ import { ref, onMounted, watch } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
+defineProps({
+  slides: {
+    type: Array,
+  }
+})
 
 const breakpoints = {
   // when window width is >= 465px
@@ -161,29 +91,12 @@ const onSlideChange = (swiper) => {
 };
 
 
-
-const slides = ref([])
-const loading = ref(true)
-const getData = async() => {
-   try {
-    const res = await fetch('/data/Data.json')
-    const data = await res.json()
-    slides.value = data.slides
-  } catch (err) {
-    console.error('Error loading hero data', err)
-  } finally {
-    loading.value = false
-  }
-}
-
-
 onMounted(async () => {
-  getData();
-
   window.addEventListener("direction-localstorage-changed", (event) => {
     direction.value = event.detail.storage;
   });
 });
+
 watch(activeNav, () => {
   document
     .querySelector(".swiper-button-next")
@@ -358,6 +271,7 @@ h1 {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
@@ -467,7 +381,8 @@ h1 {
     margin-bottom: 20px;
     padding-bottom: 40px;
   }
-  .hero-section{
+
+  .hero-section {
     padding-top: 40px;
     padding-bottom: 120px;
   }

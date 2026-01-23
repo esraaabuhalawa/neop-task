@@ -88,10 +88,10 @@
 
         <ul class="call-info list-unstyled">
           <li>
-            <h4 class="font-family text-capitalize-en">call Us</h4>
+            <h4 class="text-capitalize-en">call Us</h4>
             <p>+258747645345</p>
           </li>
-          <li class="font-family text-capitalize-en"> cairo - Egypt </li>
+          <li class="text-capitalize-en"> cairo - Egypt </li>
           <li> test@gmail.com </li>
           <li class="d-flex gap-2 mt-3 mb-3">
             <a href="#"><i class="fa-brands fa-square-facebook"></i></a>

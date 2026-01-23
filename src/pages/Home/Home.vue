@@ -1,15 +1,16 @@
 <template>
-  <div class="d-flex justify-content-between flex-column w-100 min-vh-100 position-relative">
+  <div v-if="loading" class="loader-container">
+    <PreLoader />
+  </div>
+  <div v-else class="d-flex justify-content-between flex-column w-100 min-vh-100 position-relative">
     <div class="home-class"></div>
     <div class="bg-1">
       <Navbar></Navbar>
       <main class="main-content">
-        <Hero />
-        <Brands/>
-        <PopularCategories />
-        <!-- <PopularLocations /> -->
-        <Featured></Featured>
-        <!-- <Clients /> -->
+        <Hero  :slides="slides"/>
+        <Brands :brands="brands" />
+        <PopularCategories :categories="categories" :products="allProducts" :lang="currentLanguage" />
+        <Featured :shop="featured"/>
       </main>
     </div>
     <FooterItem />
@@ -22,24 +23,84 @@ import Brands from "./components/Brands.vue";
 import PopularCategories from "./components/PopularCategories.vue";
 import FooterItem from "../../shared/components/FooterItem.vue";
 import Featured from "./components/Featured.vue";
-</script>
-<style lang="scss" scoped>
-  .home-class{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 90px;
-    background-image: url("/images/bg-2.png");
-    background-repeat: no-repeat;
-    display: block;
-    z-index: -1;
-    &:lang(en){
-      left: 0;
-    }
-        &:lang(ar){
-        transform: scaleX(-1);
-    }
+
+import PreLoader from "../../shared/components/PreLoader.vue";
+import { ref, onMounted, watch , computed} from "vue";
+import { useMainStore } from "../../store/language";
+import api from '../../Services/apiclient';
+
+const allProducts = ref([]);
+const categories = ref([]);
+
+const brands=ref([]);
+const featuredData = ref({});
+
+const loading = ref(true)
+
+const langStore = useMainStore();
+
+const currentLanguage = computed(() => langStore.currentLanguage);
+
+const slidesData = ref({});
+
+
+
+const getData = async () => {
+  loading.value = true
+  try {
+    const res = await api.get('/data/Data.json');
+    slidesData.value = res.data.slides;
+    brands.value = res.data.brands;
+    categories.value = res.data.categories;
+    allProducts.value = res.data.products;
+    featuredData.value = res.data.feature;
+
+    console.log(featuredData.value)
+    console.log(slides.value)
+  } catch (err) {
+    console.error('Error loading hero data', err);
+  } finally {
+   loading.value = false
   }
+};
+
+// Get slides based on current language
+const slides = computed(() => {
+  return slidesData.value[currentLanguage.value] || [];
+});
+
+const featured = computed(() => {
+  return featuredData.value[currentLanguage.value] || [];
+});
+
+watch(currentLanguage, () => {
+  getData()
+})
+
+onMounted(async () => {
+  await getData();
+});
+</script>
+
+<style lang="scss" scoped>
+.home-class {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 90px;
+  background-image: url("/images/bg-2.png");
+  background-repeat: no-repeat;
+  display: block;
+  z-index: -1;
+
+  &:lang(en) {
+    left: 0;
+  }
+
+  &:lang(ar) {
+    transform: scaleX(-1);
+  }
+}
 
 .navbar {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

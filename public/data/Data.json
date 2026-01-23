@@ -1,31 +1,671 @@
 {
-  "slides": [
+  "slides": {
+    "en": [
+      {
+        "id": 1,
+        "title": "Coffee",
+        "subtitle": "&Shop",
+        "description": "Get your ordered (better) coffee delivered to you if you want.",
+        "discountText": "SHOP 20% OFF",
+        "image": "/images/CoffeeBeans.png",
+        "link": "/"
+      },
+      {
+        "id": 2,
+        "title": "Fresh",
+        "subtitle": "Beans",
+        "description": "Premium roasted beans delivered fresh every day.",
+        "discountText": "SHOP 15% OFF",
+        "image": "/images/CoffeeBeans.png",
+        "link": "/"
+      },
+      {
+        "id": 3,
+        "title": "Best",
+        "subtitle": "Coffee",
+        "description": "Taste the real coffee experience at home.",
+        "discountText": "SHOP NOW",
+        "image": "/images/CoffeeBeans.png",
+        "link": "/"
+      }
+    ],
+    "ar": [
+      {
+        "id": 1,
+        "title": "القهوة",
+        "subtitle": "والمتجر",
+        "description": "احصل على قهوتك المطلوبة (الأفضل) مع التوصيل إلى باب منزلك إذا أردت.",
+        "discountText": "خصم 20٪ على المتجر",
+        "image": "/images/CoffeeBeans.png",
+        "link": "/"
+      },
+      {
+        "id": 2,
+        "title": "حبوب",
+        "subtitle": "طازجة",
+        "description": "حبوب محمصة فاخرة يتم توصيلها طازجة كل يوم.",
+        "discountText": "خصم 15٪ على المتجر",
+        "image": "/images/CoffeeBeans.png",
+        "link": "/"
+      },
+      {
+        "id": 3,
+        "title": "أفضل",
+        "subtitle": "قهوة",
+        "description": "تذوق تجربة القهوة الحقيقية في منزلك.",
+        "discountText": "تسوق الآن",
+        "image": "/images/CoffeeBeans.png",
+        "link": "/"
+      }
+    ]
+  },
+  "brands": [
     {
       "id": 1,
-      "title": "Coffee",
-      "subtitle": "&Shop",
-      "description": "Get your ordered (better) coffee delivered to you if you want.",
-      "discountText": "SHOP 20% OFF",
-      "image": "/images/CoffeeBeans.png",
-      "link": "/"
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
     },
     {
       "id": 2,
-      "title": "Fresh",
-      "subtitle": "Beans",
-      "description": "Premium roasted beans delivered fresh every day.",
-      "discountText": "SHOP 15% OFF",
-      "image": "/images/CoffeeBeans.png",
-      "link": "/"
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
     },
     {
       "id": 3,
-      "title": "Best",
-      "subtitle": "Coffee",
-      "description": "Taste the real coffee experience at home.",
-      "discountText": "SHOP NOW",
-      "image": "/images/CoffeeBeans.png",
-      "link": "/"
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
+    },
+    {
+      "id": 4,
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
+    },
+    {
+      "id": 5,
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
+    },
+    {
+      "id": 6,
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
+    },
+    {
+      "id": 7,
+      "images": [
+        "/images/coffee.svg",
+        "/images/bean.svg"
+      ]
     }
-  ]
+  ],
+  "categories": {
+    "en": [
+      {
+        "id": 1,
+        "name": "All categories"
+      },
+      {
+        "id": 2,
+        "name": "Best coffee"
+      },
+      {
+        "id": 3,
+        "name": "New coffee"
+      },
+      {
+        "id": 4,
+        "name": "Packing"
+      },
+      {
+        "id": 5,
+        "name": "Coffee"
+      },
+      {
+        "id": 6,
+        "name": "Coffee equipment"
+      }
+    ],
+    "ar": [
+      {
+        "id": 1,
+        "name": "جميع الفئات"
+      },
+      {
+        "id": 2,
+        "name": "أفضل قهوة"
+      },
+      {
+        "id": 3,
+        "name": "قهوة جديدة"
+      },
+      {
+        "id": 4,
+        "name": "التعبئة والتغليف"
+      },
+      {
+        "id": 5,
+        "name": "القهوة"
+      },
+      {
+        "id": 6,
+        "name": "معدات القهوة"
+      }
+    ]
+  },
+  "products": {
+    "en": [
+      {
+        "id": 1,
+        "name": "Booster Roasted Coffee",
+        "brand": "Amir Samantha",
+        "price": 29.99,
+        "originalPrice": 29.99,
+        "rating": 4.5,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Premium Arabica Beans",
+        "brand": "Coffee Master",
+        "price": 34.99,
+        "originalPrice": 34.99,
+        "rating": 4.8,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Espresso Blend Dark Roast",
+        "brand": "Bean Paradise",
+        "price": 27.99,
+        "originalPrice": 39.99,
+        "rating": 4.3,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Medium Roast Colombia",
+        "brand": "Mountain Coffee",
+        "price": 31.99,
+        "originalPrice": 45.99,
+        "rating": 4.6,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Single Origin Ethiopia",
+        "brand": "Pure Bean Co",
+        "price": 38.99,
+        "originalPrice": 55.99,
+        "rating": 4.9,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Organic Fair Trade Coffee",
+        "brand": "Green Earth",
+        "price": 32.99,
+        "originalPrice": 32.99,
+        "rating": 4.4,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 7,
+        "name": "French Roast Premium",
+        "brand": "Café Deluxe",
+        "price": 29.99,
+        "originalPrice": 29.99,
+        "rating": 4.2,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Breakfast Blend Light Roast",
+        "brand": "Morning Glory",
+        "price": 26.99,
+        "originalPrice": 38.99,
+        "rating": 4.7,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Coffee Gift Box Premium",
+        "brand": "Gift Masters",
+        "price": 59.99,
+        "originalPrice": 85.99,
+        "rating": 4.8,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Eco-Friendly Coffee Bags",
+        "brand": "Green Pack",
+        "price": 12.99,
+        "originalPrice": 18.99,
+        "rating": 4.5,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Vacuum Sealed Packaging",
+        "brand": "Fresh Lock",
+        "price": 15.99,
+        "originalPrice": 22.99,
+        "rating": 4.6,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Premium Gift Tin Set",
+        "brand": "Luxury Coffee",
+        "price": 44.99,
+        "originalPrice": 94.99,
+        "rating": 4.9,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Professional Espresso Machine",
+        "brand": "BrewTech Pro",
+        "price": 299.99,
+        "originalPrice": 528.99,
+        "rating": 4.7,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Manual Coffee Grinder",
+        "brand": "GrindMaster",
+        "price": 49.99,
+        "originalPrice": 91.99,
+        "rating": 4.5,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": 15,
+        "name": "French Press Deluxe",
+        "brand": "Press Perfect",
+        "price": 49.99,
+        "originalPrice": 49.99,
+        "rating": 4.6,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": 16,
+        "name": "Pour Over Coffee Set",
+        "brand": "Artisan Brew",
+        "price": 39.99,
+        "originalPrice": 57.99,
+        "rating": 4.8,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      }
+    ],
+    "ar": [
+      {
+        "id": 1,
+        "name": "قهوة بوستر المحمصة",
+        "brand": "أمير سامانثا",
+        "price": 29.99,
+        "originalPrice": 29.99,
+        "rating": 4.5,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 2,
+        "name": "حبوب أرابيكا الفاخرة",
+        "brand": "كوفي ماستر",
+        "price": 34.99,
+        "originalPrice": 34.99,
+        "rating": 4.8,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 3,
+        "name": "إسبريسو التحميص الداكن",
+        "brand": "بين بارادايس",
+        "price": 27.99,
+        "originalPrice": 39.99,
+        "rating": 4.3,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 4,
+        "name": "تحميص متوسط كولومبيا",
+        "brand": "ماونتن كوفي",
+        "price": 31.99,
+        "originalPrice": 45.99,
+        "rating": 4.6,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          2,
+          5
+        ]
+      },
+      {
+        "id": 5,
+        "name": "إثيوبيا مصدر واحد",
+        "brand": "بيور بين كو",
+        "price": 38.99,
+        "originalPrice": 55.99,
+        "rating": 4.9,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 6,
+        "name": "قهوة عضوية التجارة العادلة",
+        "brand": "جرين إيرث",
+        "price": 32.99,
+        "originalPrice": 32.99,
+        "rating": 4.4,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 7,
+        "name": "فرينش روست الفاخرة",
+        "brand": "كافيه ديلوكس",
+        "price": 29.99,
+        "originalPrice": 29.99,
+        "rating": 4.2,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 8,
+        "name": "تحميص خفيف الإفطار",
+        "brand": "مورنينج جلوري",
+        "price": 26.99,
+        "originalPrice": 38.99,
+        "rating": 4.7,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 9,
+        "name": "صندوق هدايا القهوة الفاخر",
+        "brand": "جفت ماسترز",
+        "price": 59.99,
+        "originalPrice": 85.99,
+        "rating": 4.8,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 10,
+        "name": "أكياس قهوة صديقة للبيئة",
+        "brand": "جرين باك",
+        "price": 12.99,
+        "originalPrice": 18.99,
+        "rating": 4.5,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 11,
+        "name": "تعبئة مفرغة من الهواء",
+        "brand": "فريش لوك",
+        "price": 15.99,
+        "originalPrice": 22.99,
+        "rating": 4.6,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 12,
+        "name": "طقم علبة هدايا فاخر",
+        "brand": "لوكشري كوفي",
+        "price": 44.99,
+        "originalPrice": 94.99,
+        "rating": 4.9,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          4
+        ]
+      },
+      {
+        "id": 13,
+        "name": "آلة إسبريسو احترافية",
+        "brand": "بروتيك برو",
+        "price": 299.99,
+        "originalPrice": 528.99,
+        "rating": 4.7,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": 14,
+        "name": "مطحنة قهوة يدوية",
+        "brand": "جرايند ماستر",
+        "price": 49.99,
+        "originalPrice": 91.99,
+        "rating": 4.5,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": 15,
+        "name": "فرينش بريس ديلوكس",
+        "brand": "بريس بيرفكت",
+        "price": 49.99,
+        "originalPrice": 49.99,
+        "rating": 4.6,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      },
+      {
+        "id": 16,
+        "name": "طقم قهوة بور أوفر",
+        "brand": "أرتيزان برو",
+        "price": 39.99,
+        "originalPrice": 57.99,
+        "rating": 4.8,
+        "image": "/images/image-11.png",
+        "category": [
+          1,
+          6
+        ]
+      }
+    ]
+  },
+  "feature": {
+    "en": {
+      "heading": {
+        "title": "Welcome to Our Shop",
+        "subtitle": "The coffee you want, when you want it"
+      },
+      "features": [
+        {
+          "id": 1,
+          "icon": "/images/1.svg",
+          "title": "Quality",
+          "description": "Top quality coffee beans sourced from the best farms."
+        },
+        {
+          "id": 2,
+          "icon": "/images/2.svg",
+          "title": "Easy",
+          "description": "Simple and quick ordering process for your convenience."
+        },
+        {
+          "id": 3,
+          "icon": "/images/3.png",
+          "title": "Taste",
+          "description": "Rich and authentic flavor with every sip."
+        },
+        {
+          "id": 4,
+          "icon": "/images/4.svg",
+          "title": "Quick",
+          "description": "Fast delivery to your doorstep, fresh and hot."
+        }
+      ]
+    },
+    "ar": {
+      "heading": {
+        "title": "مرحبًا بكم في متجرنا",
+        "subtitle": "القهوة التي تريدها، متى أردت"
+      },
+      "features": [
+        {
+          "id": 1,
+          "icon": "/images/1.svg",
+          "title": "جودة",
+          "description": "أفضل حبوب القهوة المستوردة من أجود المزارع."
+        },
+        {
+          "id": 2,
+          "icon": "/images/2.svg",
+          "title": "سهولة",
+          "description": "عملية طلب سهلة وسريعة من أجل راحتك."
+        },
+        {
+          "id": 3,
+          "icon": "/images/3.png",
+          "title": "طعم",
+          "description": "نكهة غنية وأصيلة في كل رشفة."
+        },
+        {
+          "id": 4,
+          "icon": "/images/4.svg",
+          "title": "سريع",
+          "description": "توصيل سريع إلى باب منزلك، طازج وساخن."
+        }
+      ]
+    }
+  }
 }

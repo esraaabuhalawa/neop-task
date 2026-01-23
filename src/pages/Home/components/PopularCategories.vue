@@ -3,58 +3,75 @@
     <section class="py-5">
         <div class="container">
             <header class="text-center mb-4">
-                <span>Products</span>
-                <h2>Special to Try</h2>
+                <span>{{ $t('products.label') }}</span>
+                <h2>{{ $t('products.title') }}</h2>
             </header>
-
 
             <!-- Filter Tabs -->
             <div class="d-flex gap-3 justify-content-center mb-5 flex-wrap flex-lg-nowrap" id="filterTabs">
-                <button @click="filterCategories(1)" :class="{ active: activeSection === 1 }">All categories</button>
-                <button @click="filterCategories(2)" :class="{ active: activeSection === 2 }">Best coffee</button>
-                <button @click="filterCategories(3)" :class="{ active: activeSection === 3 }">New coffee</button>
-                <button @click="filterCategories(4)" :class="{ active: activeSection === 4 }">Packing</button>
-                <button @click="filterCategories(5)" :class="{ active: activeSection === 5 }">Coffee</button>
-                <button @click="filterCategories(6)" :class="{ active: activeSection === 6 }">Coffee equipment</button>
+                <button v-for="category in currentCategories" :key="category.id" @click="filterCategories(category.id)"
+                    :class="{ active: activeSection === category.id }">
+                    {{ category.name }}
+                </button>
             </div>
 
-            
-            <section v-if="activeSection === 1">
-                <!-- Products Grid -->
-               <div class="row g-4">
-                    <!-- Product 1 -->
-                    <div class="col-md-6 col-lg-3" v-for="i in 4" :key="i">
-                        <ProductCard />
-                    </div>
+            <!-- Products Grid -->
+            <TransitionGroup name="fade-up" tag="div" class="row g-4">
+                <div class="col-md-6 col-lg-3" v-for="product in filteredProducts" :key="product.id">
+                    <ProductCard :product="product" />
                 </div>
-            </section>
-            <section v-else-if="activeSection === 2">
-                <div class="row g-4">
-                    <!-- Product 1 -->
-                    <div class="col-md-6 col-lg-3" v-for="i in 4" :key="i">
-                        <ProductCard />
-                    </div>
-                </div>
-            </section>
-
+            </TransitionGroup>
         </div>
     </section>
     <!----->
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import ProductCard from '../../../shared/components/ProductCard.vue';
+const props = defineProps({
+    categories: {
+        type: Object,
+        required: true
+    },
+    products: {
+        type: Object,
+        required: true
+    },
+    lang: {
+        type: String,
+        required: true
+    }
+})
 
 const activeSection = ref(1)
 
-const filterCategories = (item) => {
-    activeSection.value = item
-}
+const currentCategories = computed(() => {
+    return props.categories[props.lang] || []
+})
+
+const currentProducts = computed(() => {
+    return props.products[props.lang] || []
+})
+
+// Filter products based on active category
+const filteredProducts = computed(() => {
+    if (activeSection.value === 1) {
+        return currentProducts.value; // All products
+    }
+    return currentProducts.value.filter(product =>
+        product.category.includes(activeSection.value)
+    );
+});
+
+const filterCategories = (sectionId) => {
+    activeSection.value = sectionId;
+};
 
 </script>
 <style lang="scss" scoped>
 header {
+
     span,
     h2 {
         color: #3B2F2F;
@@ -105,6 +122,21 @@ header {
             border-bottom: 2px solid #004876;
         }
     }
+}
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+    transition: all 0.4s ease;
+}
+
+.fade-up-enter-from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-up-leave-to {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 

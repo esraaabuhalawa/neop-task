@@ -15,67 +15,19 @@
         <div class="col-lg-7">
           <div class="shop-content">
             <div class="heading">
-              <h2 class="mb-3">Welcome to Our Shop</h2>
-              <p>The coffee you want, when you want it</p>
+              <h2>{{ shop.heading.title }}</h2>
+              <p>{{ shop.heading.subtitle }}</p>
             </div>
             <!----Row Start -->
             <div class="row g-4">
-              <div class="col-md-6 col-lg-6">
+              <div v-for="feature in shop.features" :key="feature.id" class="col-md-6 col-lg-6">
                 <div class="d-flex gap-3 align-items-center shop-col">
                   <div class="feature-icon mb-3">
-                    <img src="/images/1.svg" alt="" />
+                    <img :src="feature.icon" alt="" />
                   </div>
                   <div class="shop-desc">
-                    <h3 class="fw-bold mb-2">quality</h3>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-6">
-                <div class="d-flex gap-3 align-items-center shop-col">
-                  <div class="feature-icon mb-3">
-                    <img src="/images/2.svg" alt="" />
-                  </div>
-                  <div class="shop-desc">
-                    <h3 class="fw-bold mb-2">Easy</h3>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-6">
-                <div class="d-flex gap-3 align-items-center shop-col">
-                  <div class="feature-icon mb-3">
-                    <img src="/images/3.png" alt="" />
-                  </div>
-                  <div class="shop-desc">
-                    <h3 class="fw-bold mb-2">taste</h3>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-6">
-                <div class="d-flex gap-3 align-items-center shop-col">
-                  <div class="feature-icon mb-3">
-                    <img src="/images/4.svg" alt="" />
-                  </div>
-                  <div class="shop-desc">
-                    <h3 class="fw-bold mb-2">quick</h3>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
+                    <h3 class="fw-bold mb-2">{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
                   </div>
                 </div>
               </div>
@@ -93,6 +45,9 @@
     </div>
   </section>
 </template>
+<script setup>
+defineProps({ shop: Object }, { shopHeading: Object })
+</script>
 <style lang="scss" scoped>
 .shop-section::after {
   content: "";
@@ -106,17 +61,20 @@
 }
 
 .shop-section:lang(en)::after {
-    right: 0;
+  right: 0;
 }
+
 .shop-section:lang(ar)::after {
   left: 0;
-   transform: scaleX(-1);
+  transform: scaleX(-1);
 }
-.img-container img{
-    &:lang(ar){
-        transform: scaleX(-1);
-    }
+
+.img-container img {
+  &:lang(ar) {
+    transform: scaleX(-1);
+  }
 }
+
 .shop-content {
   &:lang(en) {
     padding-left: 20px;
@@ -177,8 +135,10 @@
 .feature-icon:hover {
   transform: scale(1.1);
 }
+
 .gif-container {
   margin-top: -40px;
+
   img {
     max-width: 100%;
     height: 193px;

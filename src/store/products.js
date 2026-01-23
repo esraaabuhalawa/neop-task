@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useStore = defineStore("store", {
   state: () => ({
     product: null,
+    loading: false,
     cart: [],
   }),
   actions: {
