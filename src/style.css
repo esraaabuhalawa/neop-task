@@ -52,6 +52,7 @@ body::-webkit-scrollbar {
 [dir="rtl"] h4,
 [dir="rtl"] h5,
 [dir="rtl"] h6,
+[dir="rtl"] p,
 [dir="rtl"] ::placeholder {
   font-family: "Tajawal", sans-serif;
 }
@@ -64,6 +65,7 @@ body::-webkit-scrollbar {
 [dir="ltr"] h4,
 [dir="ltr"] h5,
 [dir="ltr"] h6,
+[dir="ltr"] p,
 [dir="ltr"] ::placeholder {
   font-family: "Quicksand", sans-serif;
 }
