@@ -13,6 +13,8 @@
                     </nav>
 
                     <ProductInfo />
+                    <Clients/>
+                    <reviews-form />
                 </section>
             </main>
         </div>
@@ -27,10 +29,11 @@ import { useRoute } from "vue-router";
 import { useStore } from "../../store/products"; // Pinia store
 import ProductInfo from "./components/productInfo.vue";
 import FooterItem from "../../shared/components/FooterItem.vue";
+import Clients from "./components/Clients.vue";
+import ReviewsForm from "./components/ReviewsForm.vue";
 
 const store = useStore();
 const route = useRoute();
-
 
 // Fetch product from Pinia store
 // const product = computed(() => store.product || {
@@ -47,9 +50,6 @@ const route = useRoute();
 //   subDescription: "",
 //   description: "",
 // });
-
-
-
 
 
 // Load product

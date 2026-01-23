@@ -56,7 +56,7 @@ defineProps({ shop: Object }, { shopHeading: Object })
   height: 100%;
   position: absolute;
   top: 0;
-  z-index: -1;
+  z-index: -2;
   background: url(/images/Blob.png) no-repeat;
 }
 
@@ -70,6 +70,8 @@ defineProps({ shop: Object }, { shopHeading: Object })
 }
 
 .img-container img {
+  position: relative;
+  z-index: -1;
   &:lang(ar) {
     transform: scaleX(-1);
   }

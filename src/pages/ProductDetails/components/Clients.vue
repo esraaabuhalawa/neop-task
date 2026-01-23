@@ -1,7 +1,5 @@
 <template>
     <section>
-        <Heading :headingcontent="heading" />
-
         <div class="mb-5 pb-5">
             <Swiper :loop="true" :key="direction" :modules="[Autoplay]" :spaceBetween="20"
                 :autoplay="{ delay: 3000, disableOnInteraction: false }" :breakpoints="breakpoints" :dir="direction">
@@ -14,19 +12,10 @@
 </template>
 
 <script setup>
-import Heading from '../common/Heading.vue'
-import {ref, onMounted} from 'vue';
-
+import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from 'swiper/modules';
-import ClientCard from './ClientCard.vue';
-
-const heading = ref({
-    title: 'OUR Clients',
-    desc: 'Client satisfaction speaks louder than our words. Hear from them.'
-})
-
-
+import ClientCard from '../../../shared/components/ClientCard.vue';
 
 const breakpoints = {
     // when window width is >= 465px
@@ -41,15 +30,16 @@ const breakpoints = {
     },
     // when window width is >= 1024px
     1024: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 40,
     },
 }
 const direction = ref(localStorage.getItem('direction') || 'ltr')
 
+
 onMounted(() => {
-  window.addEventListener('direction-localstorage-changed', (event) => {
-    direction.value = event.detail.storage
-  })
+    window.addEventListener('direction-localstorage-changed', (event) => {
+        direction.value = event.detail.storage
+    })
 })
 </script>
