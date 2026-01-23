@@ -61,8 +61,7 @@
       <!----->
       <div class="row d-flex justify-content-center">
         <div class="col-lg-7">
-          <section
-            class="d-flex  gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
+          <section class="d-flex flex-wrap gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
             <!--Social Links-->
             <div class="follow-us">
               <div class="mt-2 d-flex gap-3">
