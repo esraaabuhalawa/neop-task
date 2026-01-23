@@ -18,27 +18,36 @@
             <div class="product-desc">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p>{{ product.brand }}</p>
-                <div class="d-flex justify-content-center star">
-                    <rating-component :rating="product.rating" />
+                <div >
+               
+                     <rating-component :rtl="isRTL" :rating="product.rating" />
+            
                 </div>
-                <!-- <div class="price mt-2">
-                    <span class="current-price">${{ product.price }}</span>
-                    <span class="original-price" v-if="product.originalPrice">
-                        ${{ product.originalPrice }}
-                    </span>
-                </div> -->
             </div>
         </div>
     </router-link>
 </template>
 <script setup>
+import { ref ,watch,computed } from 'vue';
 import RatingComponent from '../../shared/components/RatingComponent.vue';
+import { useMainStore } from '../../store/language';
 defineProps({
     product: {
         type: Object,
         required: true
     }
 });
+const isRTL = ref(true);
+const langStore = useMainStore();
+const currentLanguage = computed(() => langStore.currentLanguage);
+
+watch(
+  currentLanguage,
+  (newLang) => {
+    isRTL.value = newLang === 'ar'
+  },
+  { immediate: true }
+)
 </script>
 <style lang="scss" scoped>
 .product-desc {
@@ -82,6 +91,7 @@ defineProps({
 
 .star {
     margin-top: -10px;
+    overflow: hidden !important;
 }
 
 .img-container {

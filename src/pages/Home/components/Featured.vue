@@ -38,7 +38,7 @@
       <!---Shop Section end--->
 
       <!--------Gif section------>
-      <div class="d-flex justify-content-end gif-container">
+      <div class="d-flex justify-content-end gif-container overflow-hidden">
         <img src="/images/beans-animation.gif" class="img-fluid" alt="beans" />
       </div>
       <!---------->
@@ -81,8 +81,12 @@ defineProps({ shop: Object }, { shopHeading: Object })
             transform: scaleX(-1);
   }
 }
-
-@media screen and (min-width:992px ) and (max-width:1300px) {
+@media screen and (max-width:992px){
+  .img-container{
+    overflow: hidden;
+  }
+}
+@media screen and (min-width:992px) and (max-width:1300px) {
     .img-container img {
       width: 625px;
     }
