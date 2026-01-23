@@ -1,55 +1,70 @@
 <template>
-  <div class="rating-component">
-    <star-rating
-      :rating="localRating"
-      :read-only="true"
-      :increment="0.01"
-      :star-size="20"
-      :rtl="isRTL"
-      :show-rating="false"
-      active-color="#F6C144"
-      inactive-color="#D1D5DB"
-    />
+  <div
+    class="rating-component"
+    :dir="isRTL ? 'rtl' : 'ltr'"
+  >
+    <span
+      v-for="star in 5"
+      :key="star"
+      class="star"
+      :class="{ filled: star <= localRating }"
+    >
+      ★
+    </span>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
-import StarRating from 'vue-star-rating'
-import { useMainStore } from '../../store/language';
+import { ref, watch, computed } from 'vue'
+import { useMainStore } from '../../store/language'
 
-// Props - capture the return value
 const props = defineProps({
   rating: {
     type: Number,
     required: true
   }
-});
+})
 
 // Store
-const store = useMainStore();
+const store = useMainStore()
 
-// Reactive local rating - use ref()
-const localRating = ref(props.rating);
+// Local reactive rating
+const localRating = ref(props.rating)
+
+// RTL reactive
+const isRTL = ref(true)
+const currentLanguage = computed(() => store.currentLanguage)
+
+watch(
+  currentLanguage,
+  (newLang) => {
+    isRTL.value = newLang === 'ar'
+  },
+  { immediate: true }
+)
 
 // Watch for prop changes
-watch(() => props.rating, (newVal) => {
-  localRating.value = newVal;
-});
-
-// RTL computed based on current language
-const isRTL = computed(() => store.currentLanguage === 'ar');
+watch(
+  () => props.rating,
+  (newVal) => {
+    localRating.value = newVal
+  }
+)
 </script>
 
-<style>
-.vue-star-rating-star {
-  overflow: hidden !important;
+<style scoped>
+.rating-component {
+  display: inline-flex;
+  gap: 4px;
+  font-size: 20px;
+  user-select: none;
 }
 
-.rating-container {
-  overflow: hidden !important;
-  max-width: 400px !important;
-  direction: rtl;
-  display: flex;
+.star {
+  color: #D1D5DB; /* inactive */
+}
+
+.star.filled {
+  color: #F6C144; /* active */
 }
 </style>

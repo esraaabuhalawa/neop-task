@@ -10,7 +10,7 @@
         <Hero :language="currentLanguage"  :slides="slides"/>
         <Brands :brands="brands" />
         <PopularCategories :categories="categories" :products="allProducts" :lang="currentLanguage" />
-        <Featured :shop="featured"/>
+        <Featured :shop="featured"/> 
       </main>
     </div>
     <FooterItem />
@@ -47,9 +47,6 @@ const getData = async () => {
     categories.value = res.data.categories;
     allProducts.value = res.data.products;
     featuredData.value = res.data.feature;
-
-    console.log(featuredData.value)
-    console.log(slides.value)
   } catch (err) {
     console.error('Error loading hero data', err);
   } finally {

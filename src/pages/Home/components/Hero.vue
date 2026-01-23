@@ -4,7 +4,7 @@
     <Swiper :loop="true" :key="direction" :modules="[Autoplay, Navigation]" :spaceBetween="20"
       :autoplay="{ delay: 3000, disableOnInteraction: false }" @slideChange="onSlideChange" :breakpoints="breakpoints"
       :dir="direction" navigation>
-      <SwiperSlide v-for="slide , index in slides" :key="slide.id">
+      <SwiperSlide v-for="slide, index in slides" :key="slide.id">
         <div class="container pt-5">
           <div class="row align-items-center min-vh-50">
 
@@ -12,7 +12,8 @@
             <div class="col-lg-6">
               <div class="col-container mb-4 mb-lg-0">
                 <h1 class="mb-4 capitalize">
-                  <span :class="{'first-letter': language === 'en' && index === 0 }">{{ slide.title.charAt(0) }}</span>{{ slide.title.slice(1) }}<br />
+                  <span :class="{ 'first-letter': language === 'en' && index === 0 }">{{ slide.title.charAt(0)
+                    }}</span>{{ slide.title.slice(1) }}<br />
                   {{ slide.subtitle }}
                 </h1>
 
@@ -20,7 +21,7 @@
                   {{ slide.description }}
                 </p>
 
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center flex-wrap gap-2">
                   <button class="shop-btn">
                     <span>{{ slide.discountText }}</span>
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -44,7 +45,7 @@
 
             <!-- IMAGE -->
             <div class="col-lg-6">
-              <div class="position-relative d-flex justify-content-end">
+              <div class="position-relative d-flex justify-content-md-end hero-circle-container">
                 <div class="hero-circle d-flex position-relative justify-content-center align-items-center">
                   <img :src="slide.image" alt="coffee" />
                 </div>
@@ -73,9 +74,9 @@ defineProps({
   slides: {
     type: Array,
   },
-    language:{
-      type:String
-    }
+  language: {
+    type: String
+  }
 })
 
 const breakpoints = {
@@ -157,8 +158,8 @@ h1 {
 
 .hero-section:lang(ar)::after {
   -webkit-transform: scaleX(-1);
-      -ms-transform: scaleX(-1);
-          transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .circle:lang(ar)::before {
@@ -170,8 +171,8 @@ h1 {
 
   &:lang(ar) {
     -webkit-transform: scaleX(-1);
-        -ms-transform: scaleX(-1);
-            transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
   }
 }
 
@@ -191,16 +192,17 @@ h1 {
   background: #004876;
   width: 48px;
   height: 48px;
+  flex-shrink: 0;
   border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 
   svg {
     color: white;
@@ -225,7 +227,7 @@ h1 {
   display: inline-block;
   height: 46px;
   width: 205px;
-  padding: 10px 12px;
+  padding: 10px 3px;
   border: 1px solid #6f4336;
   color: #6f4336;
   border-radius: 16px;
@@ -242,8 +244,8 @@ h1 {
   svg {
     &:lang(ar) {
       -webkit-transform: rotate(180deg);
-          -ms-transform: rotate(180deg);
-              transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg);
     }
   }
 
@@ -280,7 +282,7 @@ h1 {
   background: linear-gradient(to right, #004876, #1e71a6 80%);
   border-radius: 50%;
   -webkit-animation: float 3s ease-in-out infinite;
-          animation: float 3s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
 
   img {
     position: relative;
@@ -291,28 +293,30 @@ h1 {
 }
 
 @-webkit-keyframes float {
+
   0%,
   100% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    transform: translateY(0px);
   }
 
   50% {
     -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 }
 
 @keyframes float {
+
   0%,
   100% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    transform: translateY(0px);
   }
 
   50% {
     -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 }
 
@@ -332,8 +336,8 @@ h1 {
   background: #004876;
   color: #fff;
   -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* Prev arrow */
@@ -369,11 +373,11 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   color: #004876;
   background: #fff;
 }
@@ -403,26 +407,60 @@ h1 {
 
 /*****************************/
 @media (max-width: 1300px) {
- :deep(.swiper-button-prev) ,:deep(.swiper-button-next),:deep(.swiper-rtl .swiper-button-prev) ,
- :deep(.swiper-rtl .swiper-button-next) {
+
+  :deep(.swiper-button-prev),
+  :deep(.swiper-button-next),
+  :deep(.swiper-rtl .swiper-button-prev),
+  :deep(.swiper-rtl .swiper-button-next) {
     display: none;
   }
 }
+
+@media (max-width: 500px) {
+  .circle {
+    display: none;
+  }
+
+  .first-letter::before {
+    display: none;
+  }
+
+  .col-container {
+    padding-bottom: 40px;
+
+    &:lang(ar) {
+      padding-right: 0;
+    }
+
+    &:lang(en) {
+      padding-left: 0;
+    }
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+}
+
 @media (max-width: 992px) {
   .hero-circle {
     width: 300px;
     height: 300px;
   }
-  .col-container,
-  .hero-circle-container {
+
+  .col-container {
     margin-top: 50px;
     margin-bottom: 20px;
     padding-bottom: 40px;
   }
 
+  .hero-circle-container {
+    padding-bottom: 120px;
+  }
+
   .hero-section {
-     margin-top: 50px;
-    padding-top: 80px;
+    margin-top: 50px;
+    padding-top: 190px;
     padding-bottom: 120px;
   }
 }
