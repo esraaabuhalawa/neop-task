@@ -24,8 +24,8 @@ import RatingComponent from './RatingComponent.vue';
 </script>
 <style lang="scss" scoped>
 .client {
-    border-radius: 20px;
-    padding: 38px 50px;
+    border-radius: 15px;
+    padding: 28px 24px;
     border-radius: 20px;
     border: 1.2px solid #E9E9E9;
     background: #FFF;
@@ -34,13 +34,16 @@ import RatingComponent from './RatingComponent.vue';
 .image {
     width: 63px;
     height: 63px;
-    flex-shrink: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
 
     img {
-        object-fit: cover;
-        object-position: center;
+        -o-object-fit: cover;
+           object-fit: cover;
+        -o-object-position: center;
+           object-position: center;
         width: 100%;
         height: 100%;
     }

@@ -47,12 +47,15 @@ onUnmounted(() => {
     bottom: 110%;
     right: 15px;
     background-color: #3B2F2F;
-    box-shadow: 2px 2px 3px #333;
+    -webkit-box-shadow: 2px 2px 3px #333;
+            box-shadow: 2px 2px 3px #333;
     z-index: 10000;
     width: 40px;
     text-align: center;
     height: 40px;
     line-height: 40px;
+    -webkit-transition: .9s;
+    -o-transition: .9s;
     transition: .9s;
     border-radius: 50%;
     border: 1px solid #3B2F2F;

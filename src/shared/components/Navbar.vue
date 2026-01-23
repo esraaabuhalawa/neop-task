@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg" id="navbar" ref="navbar" :class="{ 'scrolled': isScrolled }">
+    <nav class="navbar navbar-expand-lg" id="navbar" ref="navbar" :class="{ 'scrolled': isScrolled || SpecialStyle }">
       <div class="container d-flex justify-content-between align-items-center gap-2 flex-nowrap">
         <div class="d-flex justify-content-between  align-items-center gap-md-5  small-nav">
           <router-link to="/" class="navbar-brand mx-2 mx-lg-0">
@@ -88,7 +88,7 @@
 
         <ul class="call-info list-unstyled">
           <li>
-            <h4 class="text-capitalize-en">call Us</h4>
+            <h4 class="text-capitalize-en">{{ $t('nav.contact') }}</h4>
             <p>+258747645345</p>
           </li>
           <li class="text-capitalize-en"> cairo - Egypt </li>
@@ -110,7 +110,11 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useMainStore } from '../../store/language';
 
-
+defineProps({
+  SpecialStyle: {
+    type: Boolean
+  }
+})
 const store = useMainStore();
 
 const isAuthenticated = ref(true);
@@ -214,12 +218,14 @@ onUnmounted(() => {
   width: 100%;
   z-index: 1000;
   background: transparent;
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
 
 .navbar.scrolled {
   background: #004876;
-  padding: 10px 0;
+  padding: 13px 0;
   -webkit-box-shadow: -8px 6px 13px 4px #65656554;
   box-shadow: -8px 6px 13px 4px #65656554;
 
@@ -252,7 +258,8 @@ onUnmounted(() => {
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
 
@@ -314,9 +321,10 @@ onUnmounted(() => {
 }
 
 .offcanvas-header {
-  ul{
+  ul {
     margin-bottom: 8px;
   }
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -343,7 +351,7 @@ onUnmounted(() => {
     margin-bottom: 12px;
     border: none;
 
-    a.nav-link-1{
+    a.nav-link-1 {
       display: block;
       padding: 10px 10px;
       font-weight: 500;
@@ -391,6 +399,7 @@ a.nav-link-2 {
 }
 
 [dir=ltr] {
+
   .nav-link,
   .nav-link-1,
   .nav-link-2 {
@@ -482,9 +491,15 @@ a.nav-link-2 {
   width: 28px;
   height: 28px;
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 
   svg {
     color: white;
@@ -506,11 +521,15 @@ a.nav-link-2 {
 .cart,
 .toggle-btn,
 .languagebtn {
+  -webkit-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 
   &:hover {
     cursor: pointer;
-    transform: translateY(2px);
+    -webkit-transform: translateY(2px);
+        -ms-transform: translateY(2px);
+            transform: translateY(2px);
   }
 }
 

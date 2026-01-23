@@ -41,9 +41,7 @@ watch(() => props.rating, (newVal) => {
 const isRTL = computed(() => store.currentLanguage === 'ar');
 </script>
 
-
 <style>
-/* Optional styling */
 .vue-star-rating-star {
   overflow: hidden !important;
 }
@@ -52,7 +50,6 @@ const isRTL = computed(() => store.currentLanguage === 'ar');
   overflow: hidden !important;
   max-width: 400px !important;
   direction: rtl;
-  /* Explicitly set direction */
   display: flex;
 }
 </style>

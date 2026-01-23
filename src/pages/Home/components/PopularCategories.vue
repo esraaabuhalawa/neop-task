@@ -70,8 +70,8 @@ const filterCategories = (sectionId) => {
 
 </script>
 <style lang="scss" scoped>
-header {
 
+header {
     span,
     h2 {
         color: #3B2F2F;
@@ -111,10 +111,11 @@ header {
         font-weight: 400;
         font-size: 1.25rem;
         line-height: 100%;
-        height: 25px;
         padding: 30px 10px;
         color: #3B2F2F;
-        transform: all .4s ease-in-out;
+        -webkit-transform: all .4s ease-in-out;
+            -ms-transform: all .4s ease-in-out;
+                transform: all .4s ease-in-out;
 
         &.active,
         &:hover {
@@ -126,17 +127,23 @@ header {
 
 .fade-up-enter-active,
 .fade-up-leave-active {
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
 
 .fade-up-enter-from {
     opacity: 0;
-    transform: translateY(20px);
+    -webkit-transform: translateY(20px);
+        -ms-transform: translateY(20px);
+            transform: translateY(20px);
 }
 
 .fade-up-leave-to {
     opacity: 0;
-    transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+            transform: translateY(-20px);
 }
 
 

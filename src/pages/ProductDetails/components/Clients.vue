@@ -1,13 +1,14 @@
 <template>
-    <section>
-        <div class="mb-5 pb-5">
-            <Swiper :loop="true" :key="direction" :modules="[Autoplay]" :spaceBetween="20"
-                :autoplay="{ delay: 3000, disableOnInteraction: false }" :breakpoints="breakpoints" :dir="direction">
-                <SwiperSlide v-for="slide in 9" :key="slide">
-                    <ClientCard />
-                </SwiperSlide>
-            </Swiper>
+    <section class="my-5 pt-3">
+        <div>
+            <h2 class="capitalize mb-2">{{ $t('reviews.title') }}</h2>
         </div>
+        <Swiper :loop="true" :key="direction" :modules="[Autoplay]" :spaceBetween="20"
+            :autoplay="{ delay: 3000, disableOnInteraction: false }" :breakpoints="breakpoints" :dir="direction">
+            <SwiperSlide v-for="slide in 9" :key="slide">
+                <ClientCard />
+            </SwiperSlide>
+        </Swiper>
     </section>
 </template>
 
@@ -43,3 +44,9 @@ onMounted(() => {
     })
 })
 </script>
+<style scoped>
+h2 {
+    font-size: 2rem;
+    color: #3B2F2F;
+}
+</style>
