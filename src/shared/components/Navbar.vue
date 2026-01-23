@@ -551,7 +551,7 @@ a.nav-link-2 {
   }
 
   .offcanvas-1 {
-    width: 360px;
+    width: 250px;
   }
 }
 
