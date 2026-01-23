@@ -1,0 +1,156 @@
+:root {
+  --primary-color: #004876;
+  --secondary-color: #3B2F2F;
+  font-size: 16px; 
+}
+
+@media (max-width: 780px) {
+  :root {
+    font-size: 14px; 
+   }
+}
+
+* {
+  padding: 0;
+  margin: 0
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Tajawal', sans-serif;
+  overflow-x: hidden;
+  // background-color: #F8FAFD;
+
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 5px;
+  }
+
+  /* Style the scrollbar thumb */
+  &::-webkit-scrollbar-thumb {
+    background: #004876;
+    /* Thumb color */
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+  }
+
+  /* Style the scrollbar thumb when hovered */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #7c929b;
+    /* Thumb color when hovered */
+  }
+
+  /* Set the scrollbar width */
+  &::-webkit-scrollbar {
+    width: 9px;
+  }
+}
+
+[dir=rtl] {
+
+  body,
+  .font-family,
+  .Form-heading,
+  h2,
+  h3,
+  h1,
+  h6,
+  h4,
+  h5,
+  ::placeholder {
+    font-family: "Tajawal", sans-serif;
+  }
+}
+
+[dir=ltr] {
+
+  body,
+  .font-family,
+  .Form-heading,
+  h2,
+  h3,
+  h1,
+  h6,
+  h4,
+  h5,
+  ::placeholder {
+    font-family: "Quicksand", sans-serif;
+  }
+}
+
+.mt-60 {
+  padding-top: 60px;
+}
+
+.mt-90 {
+  margin-top: 90px;
+}
+
+.mt-100 {
+  margin-top: 130px;
+}
+
+.Form-heading {
+  color: var(--Black, #1E1E1E);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 42px;
+  margin-bottom: 6px;
+  text-align: center;
+  width: 100%;
+}
+
+.main-button {
+  display: flex;
+  width: 412.071px;
+  padding: 10px 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  background: var(--primary-color);
+  color: #F5F5F5;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 160%;
+  letter-spacing: -0.16px;
+  border: 1px solid var(--primary-color);
+  transition: .3s ease-in-out;
+
+  span {
+    color: #F5F5F5;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: -0.16px;
+  }
+
+  cursor: pointer;
+
+  &:hover {
+    span {
+      color: var(--primary-color);
+    }
+
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+  }
+}
+
+::placeholder {
+  color: var(--black-400, #898990);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: -0.14px;
+}
+
+
+
+// @media screen and (min-width: 992px) {
+//   .main-content{
+//   padding-top: 80px;
+// }
+// }

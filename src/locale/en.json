@@ -1,0 +1,158 @@
+{
+    "terms_of_use": "Terms of Use",
+    "privacy_policy": "Privacy Policy",
+    "studentReviews": "Student Reviews",
+    "buyNow": "Buy Now",
+    "flexibleDeadlines": "Flexible Deadlines",
+    "resetDeadlines": "Reset deadlines according to your schedule.",
+    "shareableCertificate": "Shareable Certificate",
+    "getCertificate": "Get a certificate upon completion",
+    "addToCart": "Add to Cart",
+    "overview": "Overview",
+    "curriculum1": "Curriculum",
+    "reviews1": "Customer Reviews",
+    "schedule": "Schedule",
+    "outOf5": "out of 5",
+    "topRated": "Top Rated",
+    "ChangeNumber": "Change Number",
+    "invalidOtp": "The OTP you entered is invalid. Please enter the correct OTP.",
+    "passwordRecovered": "Password has been recovered successfully",
+    "goToHome": "Go to Home",
+    "numberNotFound": "This number cannot be found, please sign up first!",
+    "goToSignUp": "Go to Sign Up",
+    "rememberMe": "Remember Me",
+    "forgetPassword": "Forgot your password?",
+    "oopsTitle": "Oops! It looks like you're lost.",
+    "oopsDescription": "The page you're looking for isn't available. Try to search again or use the go to",
+    "backToHome": "Back to Home",
+    "nav": {
+        "home": "Home",
+        "courses": "Courses",
+        "resources": "Free Resources",
+        "community": "Our Community",
+        "blogs": "Articles",
+        "about": "About Us",
+        "contact": "Contact Us",
+        "signIn": "Sign In",
+        "signUp": "Create Account",
+        "logout": "Logout"
+    },
+    "community": {
+        "welcome": "Welcome to the <span>PM Tricks</span> Community",
+        "description": "Explore thousands of topics, user questions, and answers in this field.",
+        "addPost": "Add Your Post"
+    },
+    "articles": {
+        "title": "Articles",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Lorem Ipsum is used because it provides a more-or-less normal distribution of letters."
+    },
+    "common": {
+        "categories": "Categories",
+        "tags": "Tags",
+        "popular_articles": "Most Popular Articles"
+    },
+    "tabs": {
+        "about": "About Us",
+        "vision": "Vision",
+        "mission": "Mission",
+        "goal": "Goal"
+    },
+    "contact": {
+        "heading": "We are very happy to hear from you",
+        "infoTitle": "Contact Information",
+        "infoDesc": "Say something to start a live conversation!"
+    },
+    "ceo_message": "CEO Message",
+    "about": {
+        "label": "About Us",
+        "learn_today": "Learn today",
+        "lead": "to lead",
+        "tomorrow": "tomorrow"
+    },
+    "leaveComment": "Leave a Comment",
+    "addComment": "Add Comment",
+    "courseName": "Enter Course Name",
+    "enterData": "Enter all data, then press Sign In",
+    "footer": {
+        "mission": "We take our mission to expand global access to quality education seriously. We connect learners with top universities and institutions from around the world.",
+        "sitemap": "Sitemap",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfService": "Terms of Service",
+        "refundPolicy": "Refund Policy",
+        "copyright": " 2019 - 2023 PM-Tricks. All rights reserved. Powered by",
+        "quickLinks": "Quick Links",
+        "home": "Home",
+        "about": "About Us",
+        "freeExam": "Free Exam",
+        "freeVideo": "Free Video",
+        "exam": "Exam",
+        "downloadApp": "Download the App",
+        "callUs": "Call Us",
+        "reviews": "Reviews",
+        "events": "Events",
+        "faq": "Help & FAQ",
+        "serviceStatus": "Service Status",
+        "technicalRequirements": "Technical Requirements",
+        "follow": "Follow Us"
+    },
+
+    "detailsButtonText": "Details",
+    "certification": "Certification",
+    "yes": "Yes",
+    "no": "No",
+    "no_reviews": "There are no reviews yet",
+    "expires_in": "Expires in ",
+    "months": "months",
+    "find_popular_packages": "Find popular Packages",
+    "featured_packages": "Featured Packages On This Month",
+    "auth": {
+        "noAccountMessage": "If you don’t have an account",
+        "signUpLink": "Sign up"
+    },
+    "sign_up": "Sign Up",
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Have any questions? We're here to help you."
+    },
+    "already_have_account": "If you already have an account",
+    "login_here": "You can ",
+    "login_here1": "Login here!",
+    "valid_number_error": "Please enter a valid number",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "copyright": "Copyright 2024 ",
+    "language": "Language",
+    "course-features": "Course Features",
+    "onlineLabel": "100% Online",
+    "onlineDescription": "Start instantly and learn at your own schedule",
+    "menu": {
+        "home": "Home",
+        "discover": "Discover",
+        "categories": "Categories",
+        "development": "Development",
+        "business": "Business",
+        "about_us": "About Us",
+        "courses": "Courses",
+        "events": "Events",
+        "blogs": "Blogs",
+        "contact_us": "Contact Us",
+        "verify_certificate": "Verify Certificate",
+        "teach_with_us": "Teach with us",
+        "login": "Login",
+        "submenu": {
+            "popular_courses": "Popular Courses",
+            "psr": "Planning Scheduling and Reporting using Primavera and Excel (PSR)",
+            "delay_analysis": "Delay Analysis & EOT Claims",
+            "dashboards": "Interactive Dashboards Using Power BI",
+            "cost_control": "Cost Estimation and Cost Control (CEC)",
+            "risk_management": "Risk Management Using Primavera Risk Analysis"
+        }
+    },
+    "page_not_found": {
+        "title": "Oops....",
+        "subtitle": "Page not found",
+        "description": "This Page doesn’t exist or was removed! We suggest you back to home.",
+        "button_text": "Back to home"
+    }
+   
+}

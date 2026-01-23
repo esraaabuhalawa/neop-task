@@ -1,0 +1,228 @@
+<template>
+    <!---Product details-->
+    <section class="product-page">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Images Section -->
+                <section class="col-12 col-lg-7 ">
+                    <div class="row me-5">
+                        <!-- Thumbnails -->
+                        <div class="col-2 d-flex flex-column gap-2 order-2 order-lg-1">
+                            <div class="thumbnail" v-for="(item, index) in product.subImages" :key="index"
+                                :class="{ selected: item === selectedImage }">
+                                <img :alt="'subimage ' + index" class="img-fluid" :src="item"
+                                    @click="selectedImage = item" />
+                            </div>
+                        </div>
+
+                        <!-- Main Image -->
+                        <div class="col-10 order-1 order-lg-2 position-relative">
+                            <div class="main-image">
+                                <img :src="selectedImage || product.mainImage" :alt="product.title"
+                                    class="img-fluid " />
+                                <span v-if="discountedPrice" class="badge sale-badge">Sale!</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Product Info -->
+                <section class="col-12 col-lg-5 product-info mt-4 mt-lg-0">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="overflow-hidden">
+                            <rating-component :rating="4.3"></rating-component>
+                        </div>
+                        <span>(128 customer reviews)</span>
+                    </div>
+                    <h3>{{ product.title }}</h3>
+                    <div class="price my-2">
+                        <span :class="discountedPrice ? 'text-decoration-line-through text-muted' : ''">
+                            ${{ product.price.toFixed(2) }}
+                        </span>
+                        <span v-if="discountedPrice" class="original">
+                            ${{ discountedPrice.toFixed(2) }}
+                        </span>
+                    </div>
+
+                    <p class="mb-4">{{ product.description }}</p>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex gap-3 justify-content-between align-items-center">
+                            <div>
+                                +
+                            </div>
+                            <div>
+                                <input type="number" v-model.number="quantity" min="1"
+                                    class="form-control text-center border-none" />
+                            </div>
+                            <div>
+                                -
+                            </div>
+                        </div>
+
+                        <button class="btn cart" @click="addToCart">Add to Cart</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Tabs: Description & Reviews -->
+            <section class="mt-5">
+                <nav class="mb-3">
+                    <button :class="{ active: descriptionTab }" @click="setTab('description')">
+                        Description
+                    </button>
+                    <button :class="{ active: reviewTab }" @click="setTab('review')">
+                        Reviews
+                    </button>
+                </nav>
+
+                <div v-if="descriptionTab">
+                    <h4>Description</h4>
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <div v-if="reviewTab" class="reviews p-3 border">
+                    <h4>Be the first to review "{{ product.title }}"</h4>
+                    <form @submit.prevent="submitReview">
+                        <div class="mb-3">
+                            <label class="form-label">Your Review *</label>
+                            <textarea v-model="reviewContent" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name *</label>
+                            <input v-model="reviewName" type="text" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email *</label>
+                            <input v-model="reviewEmail" type="email" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+    </section>
+    <!--End Of Product Details-->
+</template>
+<script setup>
+import ratingComponent from '../../../shared/components/RatingComponent.vue'
+import { ref, computed, onMounted } from "vue";
+// Reactive state
+const selectedImage = ref(null);
+const quantity = ref(1);
+const descriptionTab = ref(true);
+const reviewTab = ref(false);
+const reviewContent = ref("");
+const reviewName = ref("");
+const reviewEmail = ref("");
+
+const product = ref({
+    mainImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuD5kn1mB7ONmjrW28Zbcbre8rVmHhFLFHZToXjjekUVuGIO4ch5Qrjxr1rXIiroX-xU0mm38OFMGlunB6iAXpN8nVwbH5cwM4goMGx8PZC40XiHCRXlhyo6Fge5U-_SF6H9Xwqht8dXkPXM6pqKLvm7UjQ46I5iwL1_x2W1CWu2rWqz8c-x0XYpTFQkk2FtfKyeOf7OCEsZImYMCO30xdSqoVyTUQyMH6EgZ1TjgqzQdHEE44C8cVBXN8zKZ_HxXkVFddEQTZjB90Y",
+    subImages: [
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBfW_YDuR3p0EzOcaMfA6Mtj5aDqdV9Sa9RpMnHv8qmK-eRD7PgM6LTiHddpaKacsBdEI-TBnsaiKQTGO-5obo14nsGKZovrd6gJJh2efFPmxtuVeAykNy5S3r4gBp1Ji2UEGhBjKOUVgVRBn-Fwd05HATli5BQrY8EAr_dac3I5NC2jknRXV3hlwG7N7Hym7w2H750LyscyIh7yFivJ-TMqVfoA3igfwTqe6IbVZtxA1xSPshE8iBmG1rUlrkgw9ecpGj9MZzHVcc",
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAy9288Mit8YAX72TipwrlRnq2n9ca_Ux7XXVVfcqUH8IbL2jSCTfZIona59sSBKCeVXcwole7pLwuo4u_WJ0WHHDyqCGWGXCyblqeSTM0o64xSehlcAdtFU7WkRdcM78nFyb36Tf3jgJzipX1ntI0bstbr5GzF0-u5eDngrxsNglWsRK_RiF0piX57lTTfeDc6coShz8R6ZkNAawdKguiPl4LpkZzmzRJL9yZcV_uKbKzjeLXTzr0FOs5LmiPEk4pSHaXzDedEqa8",
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuB-m2u7pH99u1ZfX296g6FOdxVxtgRwqnUHYxTemm1v8Xw2sdnUj24L2MEbhbbNouSuQo1SQtxgTWgv1xlVBUwmBWZ8Py57hz5btKZLXBhl1VXqv5LL-8u6vkLFOlPd2ZWpeZ8LqL7XFM7asPRTXyDYJcY1Bc1dpopdzHP_0GD7FKdkGgwzOVYblwushVAMkihB2IrBcrjrkD_1WKVDwR8Kzs5zp4w0ihyo_KCvQ33rhTzT7wFmWzvKemdqZMLIj1hFYkzAf0_gx9Q",
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuD5kn1mB7ONmjrW28Zbcbre8rVmHhFLFHZToXjjekUVuGIO4ch5Qrjxr1rXIiroX-xU0mm38OFMGlunB6iAXpN8nVwbH5cwM4goMGx8PZC40XiHCRXlhyo6Fge5U-_SF6H9Xwqht8dXkPXM6pqKLvm7UjQ46I5iwL1_x2W1CWu2rWqz8c-x0XYpTFQkk2FtfKyeOf7OCEsZImYMCO30xdSqoVyTUQyMH6EgZ1TjgqzQdHEE44C8cVBXN8zKZ_HxXkVFddEQTZjB90Y"
+    ],
+    title: "Brazilian Roasted Coffee",
+    price: 35.00,
+    discountPercent: 28.00,
+    subDescription: "",
+    description: "Experience the rich heritage of Brazilian highlands. A medium-dark roast featuring notes of dark chocolate, toasted hazelnut, and a hint of caramel sweetness. Perfectly balanced for both espresso and pour-over enthusiasts.",
+});
+
+// Discounted price
+const discountedPrice = computed(() => {
+    if (product.value.discountPercent && product.value.discountPercent > 0) {
+        return product.value.price * (1 - product.value.discountPercent / 100);
+    }
+    return null;
+});
+
+// Methods
+const addToCart = () => {
+    store.addToCart({
+        product: product.value,
+        quantity: quantity.value,
+    });
+};
+
+const setTab = (tab) => {
+    descriptionTab.value = tab === "description";
+    reviewTab.value = tab === "review";
+};
+const submitReview = () => {
+    alert(
+        `Review submitted by ${reviewName.value}: "${reviewContent.value}" (Email: ${reviewEmail.value})`
+    );
+    reviewContent.value = "";
+    reviewName.value = "";
+    reviewEmail.value = "";
+};
+
+</script>
+<style lang="scss" scoped>
+.thumbnail {
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background: #b8babb3d;
+    padding: 6px;
+
+    img {
+        border-radius: 15px;
+    }
+
+    &.selected {
+        border: 1px solid #004876
+    }
+}
+
+.main-image {
+    border-radius: 20px;
+    padding: 22px 18px;
+    background: #b8babb3d;
+
+    span {
+        position: absolute;
+        left: 40px;
+        top: 30px;
+        background: #004876;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+h3 {
+    font-size: 2.2rem;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #004876
+}
+
+p {
+    color: #292625;
+    font-size: 16px;
+    line-height: 140%;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 21px;
+}
+
+.cart {
+    background: #004876;
+    padding: 8px 20px;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease-in-out;
+
+    &:hover {
+        background: #fff;
+        color: #004876;
+    }
+}
+</style>

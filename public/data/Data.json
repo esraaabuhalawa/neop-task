@@ -1,0 +1,31 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "title": "Coffee",
+      "subtitle": "&Shop",
+      "description": "Get your ordered (better) coffee delivered to you if you want.",
+      "discountText": "SHOP 20% OFF",
+      "image": "/images/CoffeeBeans.png",
+      "link": "/"
+    },
+    {
+      "id": 2,
+      "title": "Fresh",
+      "subtitle": "Beans",
+      "description": "Premium roasted beans delivered fresh every day.",
+      "discountText": "SHOP 15% OFF",
+      "image": "/images/CoffeeBeans.png",
+      "link": "/"
+    },
+    {
+      "id": 3,
+      "title": "Best",
+      "subtitle": "Coffee",
+      "description": "Taste the real coffee experience at home.",
+      "discountText": "SHOP NOW",
+      "image": "/images/CoffeeBeans.png",
+      "link": "/"
+    }
+  ]
+}
