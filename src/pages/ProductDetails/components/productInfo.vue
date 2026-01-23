@@ -27,35 +27,31 @@
                 </section>
 
                 <!-- Product Info -->
-                <section class="col-12 col-lg-5 product-info mt-4 mt-lg-0">
+                <section class="col-12 col-lg-5 product-info product-details mt-4 mt-lg-0">
                     <div class="d-flex gap-3 align-items-center">
                         <div class="overflow-hidden">
                             <rating-component :rating="4.3"></rating-component>
                         </div>
-                        <span>(128 customer reviews)</span>
+                        <div class="reviews">(128 customer reviews)</div>
                     </div>
-                    <h3>{{ product.title }}</h3>
-                    <div class="price my-2">
-                        <span :class="discountedPrice ? 'text-decoration-line-through text-muted' : ''">
-                            ${{ product.price.toFixed(2) }}
-                        </span>
-                        <span v-if="discountedPrice" class="original">
-                            ${{ discountedPrice.toFixed(2) }}
-                        </span>
+                    <h1 class="product-title">{{ product.title }}</h1>
+
+                    <div class="price">
+                        <span class="current-price"> ${{ product.price.toFixed(2) }}</span>
+                        <span class="original-price">${{ discountedPrice.toFixed(2) }}</span>
                     </div>
 
-                    <p class="mb-4">{{ product.description }}</p>
+                    <p class="description mb-4">{{ product.description }}</p>
 
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="d-flex gap-3 justify-content-between align-items-center">
-                            <div>
+                    <div class="d-flex align-items-center gap-3 ">
+                        <div class="d-flex gap-3 justify-content-between align-items-center amount">
+                            <div class="plus">
                                 +
                             </div>
                             <div>
-                                <input type="number" v-model.number="quantity" min="1"
-                                    class="form-control text-center border-none" />
+                                <input type="number" v-model.number="quantity" min="1" class="text-center" />
                             </div>
-                            <div>
+                            <div class="plus">
                                 -
                             </div>
                         </div>
@@ -83,21 +79,7 @@
 
                 <div v-if="reviewTab" class="reviews p-3 border">
                     <h4>Be the first to review "{{ product.title }}"</h4>
-                    <form @submit.prevent="submitReview">
-                        <div class="mb-3">
-                            <label class="form-label">Your Review *</label>
-                            <textarea v-model="reviewContent" class="form-control" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Name *</label>
-                            <input v-model="reviewName" type="text" class="form-control" required />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email *</label>
-                            <input v-model="reviewEmail" type="email" class="form-control" required />
-                        </div>
-                        <button type="submit" class="btn btn-dark">Submit</button>
-                    </form>
+                  
                 </div>
             </section>
         </div>
@@ -111,11 +93,6 @@ import { ref, computed, onMounted } from "vue";
 // Reactive state
 const selectedImage = ref(null);
 const quantity = ref(1);
-const descriptionTab = ref(true);
-const reviewTab = ref(false);
-const reviewContent = ref("");
-const reviewName = ref("");
-const reviewEmail = ref("");
 
 const product = ref({
     mainImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuD5kn1mB7ONmjrW28Zbcbre8rVmHhFLFHZToXjjekUVuGIO4ch5Qrjxr1rXIiroX-xU0mm38OFMGlunB6iAXpN8nVwbH5cwM4goMGx8PZC40XiHCRXlhyo6Fge5U-_SF6H9Xwqht8dXkPXM6pqKLvm7UjQ46I5iwL1_x2W1CWu2rWqz8c-x0XYpTFQkk2FtfKyeOf7OCEsZImYMCO30xdSqoVyTUQyMH6EgZ1TjgqzQdHEE44C8cVBXN8zKZ_HxXkVFddEQTZjB90Y",
@@ -141,25 +118,18 @@ const discountedPrice = computed(() => {
 });
 
 // Methods
-const addToCart = () => {
-    store.addToCart({
-        product: product.value,
-        quantity: quantity.value,
-    });
-};
+// const addToCart = () => {
+//     store.addToCart({
+//         product: product.value,
+//         quantity: quantity.value,
+//     });
+// };
 
-const setTab = (tab) => {
-    descriptionTab.value = tab === "description";
-    reviewTab.value = tab === "review";
-};
-const submitReview = () => {
-    alert(
-        `Review submitted by ${reviewName.value}: "${reviewContent.value}" (Email: ${reviewEmail.value})`
-    );
-    reviewContent.value = "";
-    reviewName.value = "";
-    reviewEmail.value = "";
-};
+// const setTab = (tab) => {
+//     descriptionTab.value = tab === "description";
+//     reviewTab.value = tab === "review";
+// };
+
 
 </script>
 <style lang="scss" scoped>
@@ -194,35 +164,110 @@ const submitReview = () => {
     }
 }
 
-h3 {
+.product-details .reviews {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+.product-details .product-title {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    margin-top: 1.2rem;
+    color: #041621
+}
+
+@media (min-width: 1024px) {
+    .product-details .product-title {
+        font-size: 3rem;
+    }
+}
+
+.product-details .price {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-details .current-price {
     font-size: 2.2rem;
-    margin-top: 10px;
     font-weight: 700;
-    color: #004876
+    color: #004876;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-p {
-    color: #292625;
-    font-size: 16px;
-    line-height: 140%;
-    font-weight: 400;
-    margin-top: 20px;
-    margin-bottom: 21px;
+.product-details .original-price {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    text-decoration: line-through;
 }
 
-.cart {
-    background: #004876;
-    padding: 8px 20px;
-    color: #fff;
+.product-details .description {
+    color: #44667c;
+    font-size: 1.15rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    letter-spacing: .5px;
+
+    &:lang(ar) {
+        font-family: "Tajawal", sans-serif;
+    }
+
+    &:lang(en) {
+        font-family: "Quicksand", sans-serif;
+    }
+
     border-radius: 5px;
+}
+
+.cart,
+.plus {
+    color: #fff;
+    background: #004876;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all .5s ease-in-out;
 
     &:hover {
-        background: #fff;
-        color: #004876;
+        cursor: pointer;
+        background: #6F4336;
+    }
+}
+
+.cart {
+    padding: 8px 20px;
+    flex: 1;
+    &:hover{
+        transform: translateY(2px);
+    }
+}
+
+.amount {
+    height: 42px;
+
+    input {
+        border: none;
+
+        &:focus {
+            border: none;
+        }
+    }
+
+    border: 1px solid #c6ddeb;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    color: #333;
+    overflow: hidden;
+
+    .plus {
+        font-size: 1rem;
+        padding: 0 20px;
+        height: inherit;
     }
 }
 </style>
