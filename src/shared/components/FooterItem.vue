@@ -61,7 +61,8 @@
       <!----->
       <div class="row d-flex justify-content-center">
         <div class="col-lg-7">
-          <section class="d-flex flex-wrap gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
+          <section
+            class="d-flex flex-wrap gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
             <!--Social Links-->
             <div class="follow-us">
               <div class="mt-2 d-flex gap-3">
@@ -96,7 +97,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .first-col {
   gap: 23px;
 }
@@ -115,8 +115,8 @@
 
   &:lang(ar) {
     -webkit-transform: scaleX(-1);
-        -ms-transform: scaleX(-1);
-            transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
     left: 0;
   }
 }
@@ -170,7 +170,7 @@ footer {
 h6,
 p {
   &:lang(ar) {
-    font-family: 'Tajawal', sans-serif;
+    font-family: var(--font-rtl);
   }
 
   &:lang(en) {
@@ -194,11 +194,11 @@ h6 {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     width: 32px;
     height: 32px;
     padding-top: 3px;
@@ -212,7 +212,7 @@ h6 {
     }
 
     &:hover {
-      background: #004876;
+      background: var(--color-primary);
     }
 
     cursor: pointer;
@@ -225,7 +225,7 @@ h6 {
     background: #fff;
 
     i {
-      color: #004876
+      color: var(--color-primary)
     }
   }
 }

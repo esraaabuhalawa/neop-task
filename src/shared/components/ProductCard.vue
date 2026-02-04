@@ -18,19 +18,19 @@
             <div class="product-desc">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p>{{ product.brand }}</p>
-                <div >
-               
-                     <rating-component :rtl="isRTL" :rating="product.rating" />
-            
+                <div>
+
+                    <rating-component :rtl="isRTL" :rating="product.rating" />
+
                 </div>
             </div>
         </div>
     </router-link>
 </template>
 <script setup>
-import { ref ,watch,computed } from 'vue';
+import { ref, watch, computed } from 'vue';
 import RatingComponent from '../../shared/components/RatingComponent.vue';
-import { useMainStore } from '../../store/language';
+import { useMainStore } from '../../store/mainStore';
 defineProps({
     product: {
         type: Object,
@@ -42,18 +42,19 @@ const langStore = useMainStore();
 const currentLanguage = computed(() => langStore.currentLanguage);
 
 watch(
-  currentLanguage,
-  (newLang) => {
-    isRTL.value = newLang === 'ar'
-  },
-  { immediate: true }
+    currentLanguage,
+    (newLang) => {
+        isRTL.value = newLang === 'ar'
+    },
+    { immediate: true }
 )
 </script>
 <style lang="scss" scoped>
 .product-desc {
+
     h5,
     p {
-        color: #3B2F2F;
+        color: var(--color-secondary);
         line-height: 100%;
     }
 
@@ -76,7 +77,7 @@ watch(
     padding: 4px 10px;
     background: #F9EDBD;
     font-size: 12px;
-    color: #3B2F2F;
+    color: var(--color-secondary);
     font-weight: 500;
     z-index: 10;
 
@@ -106,7 +107,7 @@ watch(
         width: 100%;
         height: 100%;
         -o-object-fit: cover;
-           object-fit: cover;
+        object-fit: cover;
     }
 }
 
@@ -115,7 +116,7 @@ watch(
     width: 100%;
     height: 100%;
     top: 0;
-    background: #004876;
+    background: var(--color-primary);
     border-radius: 30px 30px 60px 60px;
     display: block;
     z-index: -1;

@@ -1,14 +1,6 @@
 <template>
-  <div
-    class="rating-component"
-    :dir="isRTL ? 'rtl' : 'ltr'"
-  >
-    <span
-      v-for="star in 5"
-      :key="star"
-      class="star"
-      :class="{ filled: star <= localRating }"
-    >
+  <div class="rating-component" :dir="isRTL ? 'rtl' : 'ltr'">
+    <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= localRating }">
       ★
     </span>
   </div>
@@ -16,7 +8,7 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue'
-import { useMainStore } from '../../store/language'
+import { useMainStore } from '../../store/mainStore'
 
 const props = defineProps({
   rating: {
@@ -61,10 +53,12 @@ watch(
 }
 
 .star {
-  color: #D1D5DB; /* inactive */
+  color: #D1D5DB;
+  /* inactive */
 }
 
 .star.filled {
-  color: #F6C144; /* active */
+  color: #F6C144;
+  /* active */
 }
 </style>

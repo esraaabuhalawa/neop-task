@@ -15,19 +15,19 @@
         <div class="col-lg-7">
           <div class="shop-content">
             <div class="heading">
-              <h2>{{ shop.heading.title }}</h2>
-              <p>{{ shop.heading.subtitle }}</p>
+              <h2>{{ shop?.heading?.title }}</h2>
+              <p>{{ shop?.heading?.subtitle }}</p>
             </div>
             <!----Row Start -->
             <div class="row g-4">
-              <div v-for="feature in shop.features" :key="feature.id" class="col-md-6 col-lg-6">
+              <div v-for="feature in shop?.features" :key="feature?.id" class="col-md-6 col-lg-6">
                 <div class="d-flex gap-3 align-items-center shop-col">
                   <div class="feature-icon mb-3">
-                    <img :src="feature.icon" alt="" />
+                    <img :src="feature?.icon" alt="" />
                   </div>
                   <div class="shop-desc">
-                    <h3 class="fw-bold mb-2">{{ feature.title }}</h3>
-                    <p>{{ feature.description }}</p>
+                    <h3 class="fw-bold mb-2">{{ feature?.title }}</h3>
+                    <p>{{ feature?.description }}</p>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,6 @@
 defineProps({ shop: Object }, { shopHeading: Object })
 </script>
 <style lang="scss" scoped>
-
 .shop-section::after {
   content: "";
   display: block;
@@ -68,29 +67,33 @@ defineProps({ shop: Object }, { shopHeading: Object })
 .shop-section:lang(ar)::after {
   left: 0;
   -webkit-transform: scaleX(-1);
-      -ms-transform: scaleX(-1);
-          transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .img-container img {
   position: relative;
   z-index: -1;
+
   &:lang(ar) {
     -webkit-transform: scaleX(-1);
-        -ms-transform: scaleX(-1);
-            transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
   }
 }
-@media screen and (max-width:992px){
-  .img-container{
+
+@media screen and (max-width:992px) {
+  .img-container {
     overflow: hidden;
   }
 }
+
 @media screen and (min-width:992px) and (max-width:1300px) {
-    .img-container img {
-      width: 625px;
-    }
+  .img-container img {
+    width: 625px;
+  }
 }
+
 .shop-content {
   &:lang(en) {
     padding-left: 20px;
@@ -106,7 +109,7 @@ defineProps({ shop: Object }, { shopHeading: Object })
 
   h2,
   p {
-    color: #3b2f2f;
+    color: var(--color-secondary);
     line-height: 100%;
   }
 
@@ -125,11 +128,11 @@ defineProps({ shop: Object }, { shopHeading: Object })
     h3 {
       font-weight: 700;
       font-size: 1rem;
-      color: #004876;
+      color: var(--color-primary);
     }
 
     p {
-      color: #3b2f2f;
+      color: var(--color-secondary);
       font-weight: 400;
       font-size: 1rem;
     }
@@ -138,7 +141,7 @@ defineProps({ shop: Object }, { shopHeading: Object })
 
 .feature-icon {
   -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-shrink: 0;
   width: 81px;
   height: 81px;
   background: #6f4336;
@@ -147,11 +150,11 @@ defineProps({ shop: Object }, { shopHeading: Object })
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -159,8 +162,8 @@ defineProps({ shop: Object }, { shopHeading: Object })
 
 .feature-icon:hover {
   -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .gif-container {

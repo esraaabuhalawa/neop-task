@@ -70,19 +70,19 @@ const filterCategories = (sectionId) => {
 
 </script>
 <style lang="scss" scoped>
-
 header {
+
     span,
     h2 {
-        color: #3B2F2F;
+        color: var(--color-secondary);
         line-height: 100%;
 
         &:lang(en) {
-            font-family: "Quicksand", sans-serif;
+            font-family: var(--font-ltr);
         }
 
         &:lang(ar) {
-            font-family: 'Tajawal', sans-serif;
+            font-family: var(--font-rtl);
         }
     }
 
@@ -99,7 +99,7 @@ header {
 #filterTabs {
     button {
         &:lang(en) {
-            font-family: "Quicksand", sans-serif;
+            font-family: var(--font-ltr);
         }
 
         &:lang(ar) {
@@ -112,14 +112,14 @@ header {
         font-size: 1.25rem;
         line-height: 100%;
         padding: 30px 10px;
-        color: #3B2F2F;
+        color: var(--color-secondary);
         -webkit-transform: all .4s ease-in-out;
-            -ms-transform: all .4s ease-in-out;
-                transform: all .4s ease-in-out;
+        -ms-transform: all .4s ease-in-out;
+        transform: all .4s ease-in-out;
 
         &.active,
         &:hover {
-            color: #004876;
+            color: var(--color-primary);
             border-bottom: 2px solid #004876;
         }
     }
@@ -135,15 +135,15 @@ header {
 .fade-up-enter-from {
     opacity: 0;
     -webkit-transform: translateY(20px);
-        -ms-transform: translateY(20px);
-            transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
 }
 
 .fade-up-leave-to {
     opacity: 0;
     -webkit-transform: translateY(-20px);
-        -ms-transform: translateY(-20px);
-            transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
 }
 
 

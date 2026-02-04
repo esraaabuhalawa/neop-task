@@ -95,7 +95,7 @@ const discountedPrice = computed(() => {
 });
 const increase = () => quantity.value++;
 const decrease = () => {
-  if (quantity.value > 1) quantity.value--;
+    if (quantity.value > 1) quantity.value--;
 };
 </script>
 <style lang="scss" scoped>
@@ -113,9 +113,11 @@ const decrease = () => {
         border: 1px solid #004876
     }
 }
-.flex-fill{
-    flex:1
+
+.flex-fill {
+    flex: 1
 }
+
 .main-image {
     border-radius: 20px;
     padding: 22px 18px;
@@ -125,7 +127,7 @@ const decrease = () => {
         position: absolute;
         left: 50px;
         top: 30px;
-        background: #004876;
+        background: var(--color-primary);
         color: #fff;
         font-size: 18px;
         font-weight: 500;
@@ -153,23 +155,26 @@ const decrease = () => {
         font-size: 3rem;
     }
 }
+
 @media (min-width: 992px) {
-    .margin-space{
-        &:lang(en){
+    .margin-space {
+        &:lang(en) {
             margin-right: 2.5rem;
         }
-         &:lang(ar){
+
+        &:lang(ar) {
             margin-left: 2.5rem;
         }
     }
 }
+
 .product-details .price {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -177,7 +182,7 @@ const decrease = () => {
 .product-details .current-price {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #004876;
+    color: var(--color-primary);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -195,11 +200,11 @@ const decrease = () => {
     letter-spacing: .5px;
 
     &:lang(ar) {
-        font-family: "Tajawal", sans-serif;
+        font-family: var(--font-rtl);
     }
 
     &:lang(en) {
-        font-family: "Quicksand", sans-serif;
+        font-family: var(--font-ltr);
     }
 
     border-radius: 5px;
@@ -208,16 +213,16 @@ const decrease = () => {
 .cart,
 .plus {
     color: #fff;
-    background: #004876;
+    background: var(--color-primary);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
@@ -231,12 +236,13 @@ const decrease = () => {
 .cart {
     padding: 8px 20px;
     -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    &:hover{
+    -ms-flex: 1;
+    flex: 1;
+
+    &:hover {
         -webkit-transform: translateY(2px);
-            -ms-transform: translateY(2px);
-                transform: translateY(2px);
+        -ms-transform: translateY(2px);
+        transform: translateY(2px);
     }
 }
 

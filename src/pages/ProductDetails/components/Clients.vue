@@ -47,6 +47,6 @@ onMounted(() => {
 <style scoped>
 h2 {
     font-size: 2rem;
-    color: #3B2F2F;
+    color: var(--color-secondary);
 }
 </style>

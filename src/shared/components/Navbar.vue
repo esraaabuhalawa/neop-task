@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg" id="navbar" ref="navbar" :class="{ 'scrolled': isScrolled || SpecialStyle }">
+    <nav class="navbar navbar-expand-lg" id="navbar" ref="navbar" :class="{ 'scrolled': isScrolled || isSpecial }">
       <div class="container d-flex justify-content-between align-items-center gap-2 flex-nowrap">
         <div class="d-flex justify-content-between  align-items-center gap-md-5  small-nav">
           <router-link to="/" class="navbar-brand mx-2 mx-lg-0">
@@ -13,6 +13,9 @@
         </div>
         <!-------start of Language side----------->
         <div>
+          <button @click="themeStore.toggleTheme()">
+            {{ themeStore.theme === 'light' ? '🌙 Dark' : '☀️ Light' }}
+          </button>
           <div class="gap-2 d-flex align-items-center">
             <router-link to="/" class="cart">
               <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -46,7 +49,7 @@
     <div class="offcanvas-1" :class="{ active: isOpen }">
       <div class="offcanvas-header">
         <!--Login and sign up in small screens-->
-        <ul v-if="isAuthenticated" class="d-flex flex-wrap gap-3 auth-sm list-unstyled">
+        <ul class="d-flex flex-wrap gap-3 auth-sm list-unstyled">
           <li class="nav-item-1">
             <router-link :to="{ name: 'Home' }" class="nav-link-2 sign-in-sm">
               <span class="d-inline-block"> {{ $t('login') }}</span>
@@ -106,9 +109,11 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useMainStore } from '../../store/language';
+import { useMainStore } from '../../store/mainStore';
+import { useThemeStore } from '../../store/theme'
+import { useRoute } from 'vue-router';
 
 defineProps({
   SpecialStyle: {
@@ -116,9 +121,7 @@ defineProps({
   }
 })
 const store = useMainStore();
-
-const isAuthenticated = ref(true);
-
+const themeStore = useThemeStore()
 const { locale } = useI18n();
 const isMobile = ref(window.innerWidth < 992);
 
@@ -126,31 +129,41 @@ const handleResize = () => {
   isMobile.value = window.innerWidth < 992;
 };
 
-
 const toggleLanguage = () => {
   const newLang = locale.value === 'en' ? 'ar' : 'en'
-  const newDir = newLang === 'ar' ? 'rtl' : 'ltr'
-
-  //  $parent.language = newLang;
-  //  $parent.$emit("language-changed", newLang);
-
-  locale.value = newLang
-  store.updateLanguage(newLang)
-  store.updateDirection(newDir)
-
-  // // Update HTML and BODY direction
-  document.documentElement.lang = newLang
-  document.body.dir = newDir
-
-  // Optional: Notify others (like layout components)
-  window.dispatchEvent(
-    new CustomEvent('direction-localstorage-changed', {
-      detail: {
-        storage: localStorage.getItem('direction'),
-      },
-    })
-  )
+  store.setLanguage(newLang, locale)
 }
+
+// const toggleLanguage = () => {
+//   const newLang = locale.value === 'en' ? 'ar' : 'en'
+//   const newDir = newLang === 'ar' ? 'rtl' : 'ltr'
+
+//   //  $parent.language = newLang;
+//   //  $parent.$emit("language-changed", newLang);
+
+//   locale.value = newLang
+//   store.updateLanguage(newLang)
+//   store.updateDirection(newDir)
+
+//   // // Update HTML and BODY direction
+//   document.documentElement.lang = newLang
+//   document.body.dir = newDir
+
+//   // Optional: Notify others (like layout components)
+//   window.dispatchEvent(
+//     new CustomEvent('direction-localstorage-changed', {
+//       detail: {
+//         storage: localStorage.getItem('direction'),
+//       },
+//     })
+//   )
+// }
+
+const route = useRoute();
+
+const isSpecial = computed(() =>
+  route.meta.specialNavbar !== false
+)
 
 const isScrolled = ref(false);
 
@@ -176,37 +189,29 @@ const closeMenu = () => {
 }
 
 //Dropdown Code
-const dropdownVisible = ref(false)
-const dropdownRef = ref(null)
+//const dropdownVisible = ref(false)
+// const dropdownRef = ref(null)
 
-const toggleDropdown = () => {
-  dropdownVisible.value = !dropdownVisible.value
-}
+// const toggleDropdown = () => {
+//   dropdownVisible.value = !dropdownVisible.value
+// }
 
-const handleClickOutside = (event) => {
-  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
-    dropdownVisible.value = false
-  }
-}
+// const handleClickOutside = (event) => {
+//   if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+//     dropdownVisible.value = false
+//   }
+// }
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll);
   window.addEventListener('resize', handleResize);
-  // const storedLanguage = localStorage.getItem('language');
-  // const storedDirection = localStorage.getItem('direction');
-
-  // //Get User Data
-
-  // if (storedLanguage && storedDirection) {
-  //   toggleLanguage();
-  // }
-  document.addEventListener('click', handleClickOutside)
+  //document.addEventListener('click', handleClickOutside)
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
   // window.removeEventListener('scroll', onScroll);
-  document.removeEventListener('click', handleClickOutside)
+  //document.removeEventListener('click', handleClickOutside)
 })
 </script>
 
@@ -224,7 +229,7 @@ onUnmounted(() => {
 }
 
 .navbar.scrolled {
-  background: #004876;
+  background: var(--color-primary);
   padding: 13px 0;
   -webkit-box-shadow: -8px 6px 13px 4px #65656554;
   box-shadow: -8px 6px 13px 4px #65656554;
@@ -243,7 +248,7 @@ onUnmounted(() => {
     background: #fff;
 
     svg {
-      color: #004876;
+      color: var(--color-primary);
     }
   }
 }
@@ -259,7 +264,7 @@ onUnmounted(() => {
     width: 100%;
     height: 100%;
     -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 
@@ -357,7 +362,7 @@ onUnmounted(() => {
       font-weight: 500;
       cursor: pointer;
       border-radius: 5px;
-      color: #004876;
+      color: var(--color-primary);
       text-decoration: none;
       -webkit-transition: .3s ease-in-out;
       -o-transition: .3s ease-in-out;
@@ -366,12 +371,12 @@ onUnmounted(() => {
       &.router-link-exact-active,
       &.active {
         font-weight: 600;
-        background: #004876;
+        background: var(--color-primary);
         color: #fff;
       }
 
       &:hover {
-        background: #004876;
+        background: var(--color-primary);
         color: #fff;
       }
     }
@@ -385,7 +390,7 @@ a.nav-link-2 {
   font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
-  color: #004876;
+  color: var(--color-primary);
   text-decoration: none;
   -webkit-transition: .3s ease-in-out;
   -o-transition: .3s ease-in-out;
@@ -395,7 +400,7 @@ a.nav-link-2 {
 .nav-link,
 .nav-link-1,
 .nav-link-2 {
-  font-family: 'Tajawal', sans-serif;
+  font-family: var(--font-rtl);
 }
 
 [dir=ltr] {
@@ -403,7 +408,7 @@ a.nav-link-2 {
   .nav-link,
   .nav-link-1,
   .nav-link-2 {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-ltr);
   }
 }
 
@@ -458,7 +463,7 @@ a.nav-link-2 {
   }
 
   a {
-    color: #004876;
+    color: var(--color-primary);
 
     i {
       font-size: 30px;
@@ -487,7 +492,7 @@ a.nav-link-2 {
 }
 
 .cart {
-  background: #004876;
+  background: var(--color-primary);
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -495,11 +500,11 @@ a.nav-link-2 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 
   svg {
     color: white;
@@ -528,8 +533,8 @@ a.nav-link-2 {
   &:hover {
     cursor: pointer;
     -webkit-transform: translateY(2px);
-        -ms-transform: translateY(2px);
-            transform: translateY(2px);
+    -ms-transform: translateY(2px);
+    transform: translateY(2px);
   }
 }
 

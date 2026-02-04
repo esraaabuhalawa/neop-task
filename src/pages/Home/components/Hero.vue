@@ -1,6 +1,5 @@
 <template>
   <section class="hero-section d-flex justify-content-center align-items-center position-relative py-lg-5">
-    <!-- <div class="container pt-5"> -->
     <Swiper :loop="true" :key="direction" :modules="[Autoplay, Navigation]" :spaceBetween="20"
       :autoplay="{ delay: 3000, disableOnInteraction: false }" @slideChange="onSlideChange" :breakpoints="breakpoints"
       :dir="direction" navigation>
@@ -13,7 +12,7 @@
               <div class="col-container mb-4 mb-lg-0">
                 <h1 class="mb-4 capitalize">
                   <span :class="{ 'first-letter': language === 'en' && index === 0 }">{{ slide.title.charAt(0)
-                    }}</span>{{ slide.title.slice(1) }}<br />
+                  }}</span>{{ slide.title.slice(1) }}<br />
                   {{ slide.subtitle }}
                 </h1>
 
@@ -54,7 +53,6 @@
           </div>
         </div>
       </SwiperSlide>
-
     </Swiper>
 
     <!---circle div-->
@@ -127,7 +125,7 @@ h1 {
   font-size: 6rem;
   line-height: 102%;
   letter-spacing: 8px;
-  color: #004876;
+  color: var(--color-primary);
 }
 
 .first-letter {
@@ -189,7 +187,7 @@ h1 {
 }
 
 .cart {
-  background: #004876;
+  background: var(--color-primary);
   width: 48px;
   height: 48px;
   flex-shrink: 0;
@@ -216,11 +214,11 @@ h1 {
 
 .shop-btn {
   &:lang(en) {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-ltr);
   }
 
   &:lang(ar) {
-    font-family: "Tajawal", sans-serif;
+    font-family: var(--font-rtl);
   }
 
   margin: 0px 13px;
@@ -325,7 +323,7 @@ h1 {
 :deep(.swiper-button-prev),
 :deep(.swiper-button-next) {
   top: 20%;
-  color: #004876;
+  color: var(--color-primary);
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -333,7 +331,7 @@ h1 {
 
 :deep(.swiper-button-next.active::after),
 :deep(.swiper-button-prev.active::after) {
-  background: #004876;
+  background: var(--color-primary);
   color: #fff;
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -378,7 +376,7 @@ h1 {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #004876;
+  color: var(--color-primary);
   background: #fff;
 }
 
@@ -400,7 +398,7 @@ h1 {
 }
 
 :deep(.swiper-button-disabled::after) {
-  background: #004876;
+  background: var(--color-primary);
   color: #fff;
   opacity: 1;
 }

@@ -11,15 +11,15 @@
 import GoTop from './shared/components/GoTop.vue';
 import { onMounted, ref } from 'vue';
 
-function updateHtmlLangAttribute() {
-  const storedLanguage = localStorage.getItem("language");
-  document
-    .querySelector("html")
-    .setAttribute("lang", storedLanguage || "ar");
-}
+// function updateHtmlLangAttribute() {
+//   const storedLanguage = localStorage.getItem("language");
+//   document
+//     .querySelector("html")
+//     .setAttribute("lang", storedLanguage || "ar");
+// }
 
 onMounted(() => {
-  updateHtmlLangAttribute();
+ // updateHtmlLangAttribute();
   // setTimeout(() => {
   //   isLoading.value = false;
   // }, 1000);

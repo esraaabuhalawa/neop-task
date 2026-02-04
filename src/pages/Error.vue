@@ -34,7 +34,7 @@ p {
 }
 
 button {
-  background: #004876;
+  background: var(--color-primary);
   color: white;
   border-radius: 20px;
   width: -webkit-fit-content;

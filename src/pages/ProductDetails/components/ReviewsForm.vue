@@ -85,23 +85,23 @@ const submitReview = () => {
 <style lang="scss" scoped>
 h2 {
     font-size: 2rem;
-    color: #3B2F2F;
+    color: var(--color-secondary);
 }
 
 button {
     color: #fff;
-    background: #004876;
+    background: var(--color-primary);
     width: 9.375rem;
     font-size: 1.2rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
@@ -111,8 +111,8 @@ button {
         background: #6F4336;
         color: #fff;
         -webkit-transform: translateY(2px);
-            -ms-transform: translateY(2px);
-                transform: translateY(2px);
+        -ms-transform: translateY(2px);
+        transform: translateY(2px);
     }
 }
 
