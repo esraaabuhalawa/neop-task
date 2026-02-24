@@ -2,48 +2,59 @@
     <section class="client">
         <div class="d-flex flex-wrap gap-3 align-items-center">
             <div class="image">
-                <img src="/images/user.jpg" alt="">
+                <img :src="review?.userAvatar" @error="onImageError" :alt="review?.userName">
             </div>
             <div>
-                <h4 class="client-name mb-0 pb-0">Rashed Kabir</h4>
-                <span class="client-position">Miami, USA</span>
+                <h4 class="client-name mb-0 pb-0">{{ review?.userName }}</h4>
             </div>
         </div>
         <div class="review">
             <p class="text">
-                “Game-changer! Boosted efficiency, simplified tasks, and Highly recommended!”
+               {{ review?.comment }}
             </p>
             <div class="overflow-hidden mt-1">
-                <rating-component :rating="4"></rating-component>
+                <rating-component :rating="review?.rating"></rating-component>
             </div>
         </div>
     </section>
 </template>
 <script setup>
 import RatingComponent from './RatingComponent.vue';
+const props = defineProps({
+    review:{
+        type: Object
+    }
+})
+const fallbackImage = '/images/user.jpg'
+
+const onImageError = (event) => {
+  event.target.onerror = null   
+  event.target.src = fallbackImage
+}
+
 </script>
 <style lang="scss" scoped>
 .client {
-    border-radius: 15px;
-    padding: 28px 24px;
-    border-radius: 20px;
-    border: 1.2px solid #E9E9E9;
-    background: #FFF;
+    padding: 28px 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    border-bottom: 1px solid #dde3e7;
+    background: var(--bg-color);
 }
 
 .image {
     width: 63px;
     height: 63px;
     -ms-flex-negative: 0;
-        flex-shrink: 0;
+    flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
 
     img {
         -o-object-fit: cover;
-           object-fit: cover;
+        object-fit: cover;
         -o-object-position: center;
-           object-position: center;
+        object-position: center;
         width: 100%;
         height: 100%;
     }
@@ -65,7 +76,7 @@ import RatingComponent from './RatingComponent.vue';
 
 .review {
     .text {
-        margin-top: 40px;
+        margin-top: 20px;
         color: #2e4758;
         font-size: 1.3rem;
         font-weight: 400;

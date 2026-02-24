@@ -1,4 +1,5 @@
 <template>
+ 
     <router-link :to="{ name: 'product-details', params: { id: product.id } }"
         class="h-100 mb-3 product-card text-decoration-none">
         <div class="text-center p-2">
@@ -6,22 +7,21 @@
                 <div class="product-image mb-3 position-relative">
                     <div class="img-container-1">
                         <div class="img-container">
-                            <img :src="product.image" :alt="product.name">
+                            <img :src="product?.image" :alt="product.name">
                         </div>
                     </div>
                 </div>
-                <span class="discount" v-if="product.price < product.originalPrice">
-                    -{{ Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) }}%
+                <span class="discount" v-if="product?.price < product?.originalPrice">
+                    -{{ Math.round(((product?.originalPrice - product?.price) / product?.originalPrice) * 100) }}%
                 </span>
             </div>
 
             <div class="product-desc">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p>{{ product.brand }}</p>
+                <h5 class="card-title">{{ product?.name }}</h5>
+  
+                <p>{{ product?.brand }}</p>
                 <div>
-
                     <rating-component :rtl="isRTL" :rating="product.rating" />
-
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@ watch(
 
 .img-container {
     position: relative;
-    background: #fff;
+    background: var(--bg-color);
     overflow: hidden;
     height: 280px;
     border-radius: 70px 30px 70px 70px;
@@ -129,7 +129,7 @@ watch(
     height: 97%;
     top: 0;
     left: 0;
-    background: #6F4336;
+    background: var(--color-hover);
     border-radius: 70px 40px 70px 70px;
     display: block;
     z-index: 1;

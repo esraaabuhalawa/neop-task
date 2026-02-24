@@ -1,10 +1,11 @@
 :root {
   --color-primary: #004876;
   --color-secondary: #3b2f2f;
-
-  --bg-color: #ffffff;
+  --color-hover: #6f4336;
+  --bg-color:  #fff;
   --text-color: #1f2937;
 
+  --text-main-color: #292625;
   --font-ltr: "Quicksand", sans-serif;
   --font-rtl: "Tajawal", sans-serif;
   --font-base: var(--font-rtl);
@@ -41,9 +42,6 @@ body {
   padding: 0;
   margin: 0;
 }
-
-
-
 
 /* Scrollbar track */
 body::-webkit-scrollbar-track {
@@ -91,5 +89,5 @@ body::-webkit-scrollbar {
 [dir="ltr"] h6,
 [dir="ltr"] p,
 [dir="ltr"] ::placeholder {
- font-family: var(--font-ltr);
+  font-family: var(--font-ltr);
 }

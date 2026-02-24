@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div>
       <go-top />
       <router-view />
-    </div>
   </div>
 </template>
 
 <script setup>
 import GoTop from './shared/components/GoTop.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted,} from 'vue';
 
 // function updateHtmlLangAttribute() {
 //   const storedLanguage = localStorage.getItem("language");

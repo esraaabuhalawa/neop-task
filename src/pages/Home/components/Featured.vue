@@ -144,7 +144,7 @@ defineProps({ shop: Object }, { shopHeading: Object })
   flex-shrink: 0;
   width: 81px;
   height: 81px;
-  background: #6f4336;
+  background: var(--color-hover);
   border-radius: 50%;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;

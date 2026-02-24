@@ -1,29 +1,25 @@
 <template>
-  <div v-if="loading">
-    <PreLoader />
-  </div>
-  <div v-else>
+  <AppLayout :loading="loading" :SpecialStyle="false">
     <Hero :language="currentLanguage" :slides="slides" />
     <Brands :brands="brands" />
-    <PopularCategories :categories="categories" :products="allProducts" :lang="currentLanguage" />
+    <PopularCategories :categories="Categories" :products="Products" :lang="currentLanguage" />
     <Featured :shop="featured" />
-  </div>
+  </AppLayout>
 </template>
 
 <script setup>
-import PreLoader from "../../shared/components/PreLoader.vue";
 import Hero from "./components/Hero.vue";
 import Brands from "./components/Brands.vue";
 import PopularCategories from "./components/PopularCategories.vue";
 import Featured from "./components/Featured.vue";
 
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useMainStore } from "../../store/mainStore";
 import api from '../../Services/apiclient';
-import { useUIStore } from "../../store/uiStore";
+import AppLayout from "../../Layouts/AppLayout.vue";
 
 const allProducts = ref([]);
-const categories = ref([]);
+const allCategories = ref([]);
 const brands = ref([]);
 const featuredData = ref({});
 const loading = ref(true)
@@ -37,7 +33,7 @@ const getData = async () => {
     const res = await api.get('/data/Data.json');
     slidesData.value = res.data.slides;
     brands.value = res.data.brands;
-    categories.value = res.data.categories;
+    allCategories.value = res.data.categories;
     allProducts.value = res.data.products;
     featuredData.value = res.data.feature;
   } catch (err) {
@@ -56,9 +52,17 @@ const featured = computed(() => {
   return featuredData.value[currentLanguage.value] || [];
 });
 
-watch(currentLanguage, () => {
-  getData()
-})
+const Products = computed(() => {
+  return allProducts.value[currentLanguage.value] || [];
+});
+
+const Categories = computed(() => {
+  return allCategories.value[currentLanguage.value] || [];
+});
+
+// watch(currentLanguage, () => {
+//   getData()
+// })
 
 onMounted(async () => {
   await getData();

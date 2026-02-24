@@ -203,12 +203,12 @@ h1 {
   align-items: center;
 
   svg {
-    color: white;
+    color: var(--bg-color);
     width: 22px;
   }
 
   &:hover {
-    background-color: #6f4336;
+    background-color: var(--color-hover);
   }
 }
 
@@ -226,8 +226,8 @@ h1 {
   height: 46px;
   width: 205px;
   padding: 10px 3px;
-  border: 1px solid #6f4336;
-  color: #6f4336;
+  border: 1px solid var(--color-hover);
+  color: var(--color-hover);
   border-radius: 16px;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -248,17 +248,17 @@ h1 {
   }
 
   &:hover {
-    background: #6f4336;
+    background: var(--color-hover);
 
     svg,
     span {
-      color: #fff;
+      color: var(--bg-color);
     }
   }
 }
 
 .description {
-  color: #292625;
+  color: var(text-main-color);
   font-size: 16px;
   line-height: 140%;
   font-weight: 400;
@@ -332,7 +332,7 @@ h1 {
 :deep(.swiper-button-next.active::after),
 :deep(.swiper-button-prev.active::after) {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--bg-color);
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -377,7 +377,7 @@ h1 {
   -ms-flex-align: center;
   align-items: center;
   color: var(--color-primary);
-  background: #fff;
+  background: var(--bg-color);
 }
 
 :deep(.swiper-button-prev) {
@@ -399,7 +399,7 @@ h1 {
 
 :deep(.swiper-button-disabled::after) {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--bg-color);
   opacity: 1;
 }
 

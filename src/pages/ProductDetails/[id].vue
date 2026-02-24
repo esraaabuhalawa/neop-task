@@ -1,37 +1,56 @@
 <template>
-    <section class="container">
-        <nav style="--bs-breadcrumb-divider: '>';margin-top: 8rem;" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item non-active"><router-link to="/">{{ $t('breadcrumb.home')
-                }}</router-link></li>
-                <li class="breadcrumb-item non-active" aria-current="page">{{ $t('breadcrumb.category') }}
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $t('breadcrumb.product') }}</li>
-            </ol>
-        </nav>
+    <AppLayout :SpecialStyle="true">
+        <section class="container">
+                       
+            <nav style="--bs-breadcrumb-divider: '>';margin-top: 8rem;" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item non-active"><router-link to="/">{{ $t('breadcrumb.home')
+                            }}</router-link></li>
+                    <li class="breadcrumb-item non-active" aria-current="page">{{ $t('breadcrumb.category') }}
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $t('breadcrumb.product') }}</li>
+                </ol>
+            </nav>
 
-        <ProductInfo />
-        <Clients />
-        <reviews-form />
-    </section>
+            <ProductInfo />
+            <ProductTabs />
+        </section>
+    </AppLayout>
 </template>
-
-<!-- <template>
-    <div class="d-flex justify-content-between flex-column w-100 min-vh-100 position-relative">
-        <div>
-            <Navbar :SpecialStyle="true" />
-            <main class="main-content">
-         
-            </main>
-        </div>
-        <FooterItem />
-    </div>
-</template> -->
 
 <script setup>
 import ProductInfo from "./components/productInfo.vue";
-import Clients from "./components/Clients.vue";
-import ReviewsForm from "./components/ReviewsForm.vue";
+import ProductTabs from "./components/ProductTabs.vue";
+
+import AppLayout from "../../Layouts/AppLayout.vue";
+import { useProductStore } from "../../store/products";
+import { onMounted, computed, provide } from "vue";
+import { useRoute } from "vue-router";
+import { useMainStore } from "../../store/mainStore";
+
+const productStore= useProductStore();
+const route = useRoute();
+
+const mainStore = useMainStore();
+const currentLang = computed(() => mainStore.currentLanguage)
+const productId = computed(() => Number(route.params.id));
+
+const ProductData = computed(() => {
+  if (!productStore.products) return null
+
+  const productsByLang = productStore.products[currentLang.value]
+  if (!productsByLang) return null
+
+  return productsByLang.find(
+    product => product.id === productId.value
+  )
+})
+
+provide('ProductData', ProductData)
+
+onMounted(() => {
+ productStore.getProductDetails();
+})
 </script>
 
 <style lang="scss" scoped>

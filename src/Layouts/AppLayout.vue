@@ -8,7 +8,7 @@
 
     <!-- Content -->
     <template v-else>
-      <Navbar :SpecialStyle="specialStyle" />
+      <Navbar :SpecialStyle="SpecialStyle" />
 
       <main class="flex-fill">
         <slot />
@@ -30,7 +30,7 @@ defineProps({
     type: Boolean,
     default: false
   },
-  specialStyle: {
+  SpecialStyle: {
     type: Boolean,
     default: true
   }

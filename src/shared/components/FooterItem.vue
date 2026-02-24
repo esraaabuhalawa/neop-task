@@ -156,7 +156,7 @@ footer {
       color: rgba(255, 255, 255, 58.4%);
 
       &:hover {
-        color: #fff;
+        color: var(--bg-color);
         cursor: pointer;
       }
 
@@ -185,7 +185,7 @@ p {
 h6 {
   font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: var(--bg-color);
 }
 
 .follow-us {
@@ -202,13 +202,13 @@ h6 {
     width: 32px;
     height: 32px;
     padding-top: 3px;
-    border: 1px solid #fff;
+    border: 1px solid var(--bg-color);
     border-radius: 50%;
     background: transparent;
 
     i {
       font-size: 14px;
-      color: #fff;
+      color: var(--bg-color);
     }
 
     &:hover {
@@ -222,7 +222,7 @@ h6 {
   }
 
   a:hover {
-    background: #fff;
+    background: var(--bg-color);
 
     i {
       color: var(--color-primary)

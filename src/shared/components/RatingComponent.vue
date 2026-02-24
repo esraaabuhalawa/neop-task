@@ -48,7 +48,7 @@ watch(
 .rating-component {
   display: inline-flex;
   gap: 4px;
-  font-size: 20px;
+  font-size: 26px;
   user-select: none;
 }
 

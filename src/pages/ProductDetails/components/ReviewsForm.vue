@@ -1,6 +1,6 @@
 <template>
     <section class="row">
-        <div>
+        <div class="mb-3">
             <h2>{{ $t('reviews.addReview') }}</h2>
         </div>
         <!------Reviews Form------------>
@@ -89,7 +89,7 @@ h2 {
 }
 
 button {
-    color: #fff;
+    color: var(--bg-color);
     background: var(--color-primary);
     width: 9.375rem;
     font-size: 1.2rem;
@@ -108,8 +108,8 @@ button {
 
     &:hover {
         cursor: pointer;
-        background: #6F4336;
-        color: #fff;
+        background: var(--color-hover);
+        color: var(--bg-color);
         -webkit-transform: translateY(2px);
         -ms-transform: translateY(2px);
         transform: translateY(2px);

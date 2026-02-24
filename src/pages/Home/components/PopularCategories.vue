@@ -9,7 +9,7 @@
 
             <!-- Filter Tabs -->
             <div class="d-flex gap-3 justify-content-center mb-5 flex-wrap flex-lg-nowrap" id="filterTabs">
-                <button v-for="category in currentCategories" :key="category.id" @click="filterCategories(category.id)"
+                <button v-for="category in categories" :key="category.id" @click="filterCategories(category.id)"
                     :class="{ active: activeSection === category.id }">
                     {{ category.name }}
                 </button>
@@ -46,20 +46,12 @@ const props = defineProps({
 
 const activeSection = ref(1)
 
-const currentCategories = computed(() => {
-    return props.categories[props.lang] || []
-})
-
-const currentProducts = computed(() => {
-    return props.products[props.lang] || []
-})
-
 // Filter products based on active category
 const filteredProducts = computed(() => {
     if (activeSection.value === 1) {
-        return currentProducts.value; // All products
+        return props.products; // All products
     }
-    return currentProducts.value.filter(product =>
+    return props.products.filter(product =>
         product.category.includes(activeSection.value)
     );
 });

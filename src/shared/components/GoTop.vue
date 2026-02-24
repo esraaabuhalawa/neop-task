@@ -61,7 +61,7 @@ onUnmounted(() => {
     border: 1px solid #3B2F2F;
 
     &:hover {
-        background: #fff;
+        background: var(--bg-color);
 
         i {
             color: var(--color-secondary);
@@ -70,7 +70,7 @@ onUnmounted(() => {
 
     i {
         position: absolute;
-        color: #fff;
+        color: var(--bg-color);
         top: 44%;
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -92,7 +92,7 @@ onUnmounted(() => {
 
     &:hover,
     &:focus {
-        color: #fff;
+        color: var(--bg-color);
 
         &::before {
             opacity: 1;
