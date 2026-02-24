@@ -10,8 +10,7 @@
                         <div class="col-md-2 mt-3 mt-md-0 d-flex flex-md-column gap-2 order-2 order-lg-1">
                             <div class="thumbnail" v-for="(item, index) in product?.images" :key="index"
                                 :class="{ selected: item === selectedImage }">
-                                <img @error="onImageError" :alt="'subimage ' + index" 
-                                class="img-fluid" :src="item"
+                                <img @error="onImageError" :alt="'subimage ' + index" class="img-fluid" :src="item"
                                     @click="selectedImage = item" />
                             </div>
                         </div>
@@ -19,7 +18,8 @@
                         <!-- Main Image -->
                         <div class="col-md-10 order-1 order-lg-2 position-relative">
                             <div class="main-image d-flex justify-content-center align-items-center text-center">
-                                <img :src="selectedImage || product?.image" @error="onImageError" :alt="product?.name" class="img-fluid " />
+                                <img :src="selectedImage || product?.image" @error="onImageError" :alt="product?.name"
+                                    class="img-fluid " />
                                 <span v-if="product?.originalPrice !== product?.price"
                                     class="badge sale-badge">Sale!</span>
                             </div>
@@ -50,14 +50,15 @@
                                 +
                             </div>
                             <div class="flex-fill">
-                                <input @input="onInputChange" type="number" v-model.number="quantity" min="1" class="text-center" />
+                                <input @input="onInputChange" type="number" v-model.number="quantity" min="1"
+                                    class="text-center" />
                             </div>
                             <div class="plus" @click="decrease">
                                 -
                             </div>
                         </div>
 
-                        <button class="btn cart" @click="addToCart(product,quantity)">{{ $t('addToCart') }}</button>
+                        <button class="btn cart" @click="addToCart(product, quantity)">{{ $t('addToCart') }}</button>
                     </div>
                 </section>
             </div>
@@ -78,39 +79,39 @@ const product = computed(() => injectedProduct?.value);
 const quantity = ref(1);
 // Increase quantity
 const increase = () => {
-  quantity.value++;
+    quantity.value++;
 };
 
 // Decrease quantity (minimum 1)
 const decrease = () => {
-  if (quantity.value > 1) quantity.value--;
+    if (quantity.value > 1) quantity.value--;
 };
 
 // Prevent input below 1
 const onInputChange = () => {
-  if (quantity.value < 1) quantity.value = 1;
+    if (quantity.value < 1) quantity.value = 1;
 };
 
 const fallbackImage = '/images/placeholder-product.jpeg'
 
 const onImageError = (event) => {
-  event.target.onerror = null   
-  event.target.src = fallbackImage
+    event.target.onerror = null
+    event.target.src = fallbackImage
 }
 const productStore = useProductStore();
 
-const addToCart = (product,quantity) => {
-    productStore.addToCart(product,quantity)
+const addToCart = (product, quantity) => {
+    productStore.addToCart(product, quantity)
 }
 
 const selectedImage = ref(null);
 
 onMounted(() => {
-  if (product.value?.images?.length) {
-    selectedImage.value = product.value.images[0];
-  } else {
-    selectedImage.value = product.value?.image || null;
-  }
+    if (product.value?.images?.length) {
+        selectedImage.value = product.value.images[0];
+    } else {
+        selectedImage.value = product.value?.image || null;
+    }
 });
 
 </script>
@@ -118,9 +119,12 @@ onMounted(() => {
 .thumbnail {
     margin-bottom: 10px;
     border-radius: 15px;
-    background: #b8babb3d;
+    background: var(--bg-tertiary);
     padding: 6px;
     height: 90px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
     img {
         border-radius: 15px;
         object-fit: cover;
@@ -129,7 +133,12 @@ onMounted(() => {
     }
 
     &.selected {
-        border: 1px solid #004876
+        border: 2px solid var(--color-primary);
+        box-shadow: 0 0 8px var(--color-primary);
+    }
+
+    &:hover {
+        transform: scale(1.05);
     }
 }
 
@@ -140,20 +149,26 @@ onMounted(() => {
 .main-image {
     border-radius: 20px;
     padding: 22px 18px;
-    background: #b8babb3d;
+    background: var(--bg-tertiary);
     height: 70vh;
     width: 100%;
     overflow: hidden;
+    transition: background-color 0.3s ease;
+
     span {
         position: absolute;
         left: 50px;
         top: 30px;
         background: var(--color-primary);
-        color: var(--bg-color);
+        color: #ffffff;
         font-size: 18px;
         font-weight: 500;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
     }
-    img{
+
+    img {
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -161,7 +176,7 @@ onMounted(() => {
 }
 
 .product-details .reviews {
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
     margin-left: 0.5rem;
@@ -173,7 +188,8 @@ onMounted(() => {
     font-weight: 900;
     margin-bottom: 1rem;
     margin-top: 1.2rem;
-    color: #041621
+    color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
 @media (min-width: 1024px) {
@@ -214,16 +230,17 @@ onMounted(() => {
 
 .product-details .original-price {
     font-size: 1.25rem;
-    color: #94a3b8;
+    color: var(--text-secondary);
     text-decoration: line-through;
 }
 
 .product-details .description {
-    color: #44667c;
+    color: var(--text-color);
     font-size: 1.15rem;
     line-height: 1.75rem;
     font-weight: 500;
     letter-spacing: .5px;
+    transition: color 0.3s ease;
 
     &:lang(ar) {
         font-family: var(--font-rtl);
@@ -277,15 +294,20 @@ onMounted(() => {
 
     input {
         border: none;
+        background-color: var(--input-bg);
+        color: var(--text-color);
+        transition: all 0.3s ease;
 
         &:focus {
             border: none;
+            background-color: var(--input-bg);
+            color: var(--text-color);
         }
     }
 
-    border: 1px solid #c6ddeb;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    color: #333;
+    color: var(--text-color);
     overflow: hidden;
 
     .plus {

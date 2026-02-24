@@ -1,5 +1,5 @@
 <template>
- 
+
     <router-link :to="{ name: 'product-details', params: { id: product.id } }"
         class="h-100 mb-3 product-card text-decoration-none">
         <div class="text-center p-2">
@@ -18,7 +18,7 @@
 
             <div class="product-desc">
                 <h5 class="card-title">{{ product?.name }}</h5>
-  
+
                 <p>{{ product?.brand }}</p>
                 <div>
                     <rating-component :rtl="isRTL" :rating="product.rating" />
@@ -54,8 +54,9 @@ watch(
 
     h5,
     p {
-        color: var(--color-secondary);
+        color: var(--text-color);
         line-height: 100%;
+        transition: color 0.3s ease;
     }
 
     h5 {
@@ -67,6 +68,7 @@ watch(
         font-size: 16px;
         font-weight: 400;
         margin-top: 14px;
+        color: var(--text-secondary);
     }
 }
 
@@ -77,9 +79,10 @@ watch(
     padding: 4px 10px;
     background: #F9EDBD;
     font-size: 12px;
-    color: var(--color-secondary);
+    color: #333;
     font-weight: 500;
     z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     &:lang(en) {
         left: 40px;
@@ -97,11 +100,12 @@ watch(
 
 .img-container {
     position: relative;
-    background: var(--bg-color);
+    background: var(--card-bg);
     overflow: hidden;
     height: 280px;
     border-radius: 70px 30px 70px 70px;
     z-index: 20;
+    transition: background-color 0.3s ease;
 
     img {
         width: 100%;
@@ -120,6 +124,7 @@ watch(
     border-radius: 30px 30px 60px 60px;
     display: block;
     z-index: -1;
+    transition: background-color 0.3s ease;
 }
 
 .product-image::after {
@@ -133,5 +138,6 @@ watch(
     border-radius: 70px 40px 70px 70px;
     display: block;
     z-index: 1;
+    transition: background-color 0.3s ease;
 }
 </style>
