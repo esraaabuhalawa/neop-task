@@ -8,104 +8,105 @@
                     <div class="form-section" ref="shippingSection">
                         <div class="section-header">
                             <div class="step-badge">1</div>
-                            <h3>Shipping Information</h3>
+                            <h3>{{ $t('checkout.shippingInfo') }}</h3>
                         </div>
 
                         <div class="form-group">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="firstName">First Name *</label>
+                                    <label for="firstName">{{ $t('checkout.firstName') }} *</label>
                                     <input id="firstName" v-model="formData.firstName" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('firstName') }" placeholder="John"
+                                        :class="{ 'is-invalid': hasError('firstName') }"
+                                        :placeholder="$t('checkout.firstName')"
                                         @input="handleFieldInput('firstName')" />
                                     <span v-if="hasError('firstName')" class="error-message">{{
                                         getErrorMessage('firstName') }}</span>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="lastName">Last Name *</label>
+                                    <label for="lastName">{{ $t('checkout.lastName') }} *</label>
                                     <input id="lastName" v-model="formData.lastName" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('lastName') }" placeholder="Doe"
-                                        @input="handleFieldInput('lastName')" />
+                                        :class="{ 'is-invalid': hasError('lastName') }"
+                                        :placeholder="$t('checkout.lastName')" @input="handleFieldInput('lastName')" />
                                     <span v-if="hasError('lastName')" class="error-message">{{
                                         getErrorMessage('lastName') }}</span>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="email">Email Address *</label>
+                                    <label for="email">{{ $t('checkout.email') }} *</label>
                                     <input id="email" v-model="formData.email" type="email" class="form-input"
-                                        :class="{ 'is-invalid': hasError('email') }" placeholder="john@example.com"
+                                        :class="{ 'is-invalid': hasError('email') }" :placeholder="$t('checkout.email')"
                                         @input="handleFieldInput('email')" />
                                     <span v-if="hasError('email')" class="error-message">{{ getErrorMessage('email')
                                     }}</span>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="phone">Phone Number</label>
+                                    <label for="phone">{{ $t('checkout.phone') }}</label>
                                     <input id="phone" v-model="formData.phone" type="tel" class="form-input"
-                                        placeholder="+1 (555) 000-0000" />
+                                        :placeholder="$t('checkout.phone')" />
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="address">Street Address *</label>
+                                    <label for="address">{{ $t('checkout.address') }} *</label>
                                     <input id="address" v-model="formData.address" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('address') }" placeholder="123 Main Street"
-                                        @input="handleFieldInput('address')" />
+                                        :class="{ 'is-invalid': hasError('address') }"
+                                        :placeholder="$t('checkout.address')" @input="handleFieldInput('address')" />
                                     <span v-if="hasError('address')" class="error-message">{{ getErrorMessage('address')
                                     }}</span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="city">City *</label>
+                                    <label for="city">{{ $t('checkout.city') }} *</label>
                                     <input id="city" v-model="formData.city" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('city') }" placeholder="New York"
+                                        :class="{ 'is-invalid': hasError('city') }" :placeholder="$t('checkout.city')"
                                         @input="handleFieldInput('city')" />
                                     <span v-if="hasError('city')" class="error-message">{{ getErrorMessage('city')
                                     }}</span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="zipCode">Zip Code *</label>
+                                    <label for="zipCode">{{ $t('checkout.zipCode') }} *</label>
                                     <input id="zipCode" v-model="formData.zipCode" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('zipCode') }" placeholder="10001"
-                                        @input="handleFieldInput('zipCode')" />
+                                        :class="{ 'is-invalid': hasError('zipCode') }"
+                                        :placeholder="$t('checkout.zipCode')" @input="handleFieldInput('zipCode')" />
                                     <span v-if="hasError('zipCode')" class="error-message">{{ getErrorMessage('zipCode')
                                     }}</span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="country">Country</label>
+                                    <label for="country">{{ $t('checkout.country') }}</label>
                                     <input id="country" v-model="formData.country" type="text" class="form-input"
-                                        placeholder="United States" />
+                                        :placeholder="$t('checkout.country')" />
                                 </div>
                             </div>
                         </div>
 
                         <!-- Shipping Method -->
                         <div class="shipping-methods">
-                            <h4>Shipping Method</h4>
+                            <h4>{{ $t('checkout.shippingMethod') }}</h4>
                             <div class="method-options">
                                 <label class="method-option">
                                     <input v-model="formData.shippingMethod" type="radio" value="standard" />
                                     <span class="method-label">
-                                        <span class="method-name">Standard Shipping</span>
-                                        <span class="method-price">FREE - 5-7 business days</span>
+                                        <span class="method-name">{{ $t('checkout.standardShipping') }}</span>
+                                        <span class="method-price">{{ $t('checkout.standardShippingDesc') }}</span>
                                     </span>
                                 </label>
 
                                 <label class="method-option">
                                     <input v-model="formData.shippingMethod" type="radio" value="express" />
                                     <span class="method-label">
-                                        <span class="method-name">Express Shipping</span>
-                                        <span class="method-price">$15 - 2-3 business days</span>
+                                        <span class="method-name">{{ $t('checkout.expressShipping') }}</span>
+                                        <span class="method-price">{{ $t('checkout.expressShippingDesc') }}</span>
                                     </span>
                                 </label>
 
                                 <label class="method-option">
                                     <input v-model="formData.shippingMethod" type="radio" value="overnight" />
                                     <span class="method-label">
-                                        <span class="method-name">Overnight Shipping</span>
-                                        <span class="method-price">$30 - Next business day</span>
+                                        <span class="method-name">{{ $t('checkout.overnightShipping') }}</span>
+                                        <span class="method-price">{{ $t('checkout.overnightShippingDesc') }}</span>
                                     </span>
                                 </label>
                             </div>
@@ -116,38 +117,39 @@
                     <div class="form-section" ref="paymentSection">
                         <div class="section-header">
                             <div class="step-badge">2</div>
-                            <h3>Payment Information</h3>
+                            <h3>{{ $t('checkout.paymentInfo') }}</h3>
                         </div>
 
                         <div class="payment-methods">
                             <label class="payment-method">
                                 <input v-model="paymentType" type="radio" value="card" />
                                 <span class="method-icon">💳</span>
-                                <span>Credit/Debit Card</span>
+                                <span>{{ $t('checkout.creditDebitCard') }}</span>
                             </label>
                             <label class="payment-method">
                                 <input v-model="paymentType" type="radio" value="paypal" />
                                 <span class="method-icon">🅿️</span>
-                                <span>PayPal</span>
+                                <span>{{ $t('checkout.paypal') }}</span>
                             </label>
                         </div>
 
                         <div v-if="paymentType === 'card'" class="card-form">
                             <div class="form-group">
-                                <label for="cardName">Cardholder Name *</label>
+                                <label for="cardName">{{ $t('checkout.cardholderName') }} *</label>
                                 <input id="cardName" v-model="formData.cardName" type="text" class="form-input"
-                                    :class="{ 'is-invalid': hasError('cardName') }" placeholder="John Doe"
+                                    :class="{ 'is-invalid': hasError('cardName') }"
+                                    :placeholder="$t('checkout.cardholderName')"
                                     @input="handleFieldInput('cardName')" />
                                 <span v-if="hasError('cardName')" class="error-message">{{ getErrorMessage('cardName')
                                 }}</span>
                             </div>
 
                             <div class="form-group">
-                                <label for="cardNumber">Card Number *</label>
+                                <label for="cardNumber">{{ $t('checkout.cardNumber') }} *</label>
                                 <div class="card-input-wrapper">
                                     <input id="cardNumber" v-model="formData.cardNumber" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('cardNumber') }"
-                                        placeholder="1234 5678 9012 3456"
+                                        :placeholder="$t('checkout.cardNumberPlaceholder')"
                                         @input="formatCardNumber; handleFieldInput('cardNumber')" />
                                     <span class="card-icon">
                                         <svg v-if="cardType === 'visa'" xmlns="http://www.w3.org/2000/svg" width="32"
@@ -170,18 +172,20 @@
 
                             <div class="row g-3">
                                 <div class="col-6">
-                                    <label for="expiryDate">Expiry Date (MM/YY) *</label>
+                                    <label for="expiryDate">{{ $t('checkout.expiryDate') }} *</label>
                                     <input id="expiryDate" v-model="formData.expiryDate" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('expiryDate') }" placeholder="12/25"
+                                        :class="{ 'is-invalid': hasError('expiryDate') }"
+                                        :placeholder="$t('checkout.expiryDatePlaceholder')"
                                         @input="formatExpiryDate; handleFieldInput('expiryDate')" />
                                     <span v-if="hasError('expiryDate')" class="error-message">{{
                                         getErrorMessage('expiryDate') }}</span>
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="cvv">CVV *</label>
+                                    <label for="cvv">{{ $t('checkout.cvv') }} *</label>
                                     <input id="cvv" v-model="formData.cvv" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('cvv') }" placeholder="123" maxlength="4"
+                                        :class="{ 'is-invalid': hasError('cvv') }"
+                                        :placeholder="$t('checkout.cvvPlaceholder')" maxlength="4"
                                         @input="onCVVInput; handleFieldInput('cvv')" />
                                     <span v-if="hasError('cvv')" class="error-message">{{ getErrorMessage('cvv')
                                     }}</span>
@@ -196,7 +200,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>You will be redirected to PayPal to complete your payment securely.</span>
+                                <span>{{ $t('checkout.paypalInfo') }}</span>
                             </div>
                         </div>
 
@@ -204,17 +208,16 @@
                         <div class="billing-address">
                             <label class="checkbox-label">
                                 <input v-model="sameAsShipping" type="checkbox" />
-                                <span>Billing address same as shipping</span>
+                                <span>{{ $t('checkout.billingAddressSame') }}</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Order Notes -->
                     <div class="form-section">
-                        <h3>Order Notes</h3>
-                        <textarea v-model="formData.notes"
-                            placeholder="Add special instructions for your order (optional)" class="form-textarea"
-                            rows="4"></textarea>
+                        <h3>{{ $t('checkout.orderNotes') }}</h3>
+                        <textarea v-model="formData.notes" :placeholder="$t('checkout.orderNotesPlaceholder')"
+                            class="form-textarea" rows="4"></textarea>
                     </div>
                 </div>
 
@@ -222,7 +225,7 @@
                 <div class="col-lg-4">
                     <div class="order-review" ref="reviewElement">
                         <div class="review-card">
-                            <h2>Order Review</h2>
+                            <h2>{{ $t('checkout.orderReview') }}</h2>
 
                             <!-- Order Items -->
                             <div class="review-items">
@@ -242,7 +245,7 @@
 
                             <!-- Shipping Details -->
                             <div v-if="formData.firstName" class="shipping-details">
-                                <h4>Shipping To</h4>
+                                <h4>{{ $t('checkout.shippingTo') }}</h4>
                                 <p>{{ formData.firstName }} {{ formData.lastName }}</p>
                                 <p>{{ formData.address }}</p>
                                 <p>{{ formData.city }}, {{ formData.zipCode }}</p>
@@ -251,30 +254,31 @@
                             <!-- Price Breakdown -->
                             <div class="price-breakdown">
                                 <div class="breakdown-row">
-                                    <span>Subtotal:</span>
+                                    <span>{{ $t('checkout.subtotal') }}:</span>
                                     <span>${{ subtotal.toFixed(2) }}</span>
                                 </div>
                                 <div class="breakdown-row">
-                                    <span>Tax (10%):</span>
+                                    <span>{{ $t('checkout.tax') }}:</span>
                                     <span>${{ tax.toFixed(2) }}</span>
                                 </div>
                                 <div class="breakdown-row">
-                                    <span>Shipping:</span>
-                                    <span>{{ shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}` }}</span>
+                                    <span>{{ $t('checkout.shipping') }}:</span>
+                                    <span>{{ shippingCost === 0 ? $t('checkout.free') : `$${shippingCost.toFixed(2)}`
+                                        }}</span>
                                 </div>
 
                                 <div class="divider"></div>
 
                                 <div class="breakdown-row total">
-                                    <span>Total:</span>
+                                    <span>{{ $t('checkout.total') }}:</span>
                                     <span>${{ total.toFixed(2) }}</span>
                                 </div>
                             </div>
 
                             <!-- Place Order Button -->
                             <button @click="submitCheckout" class="place-order-btn" :disabled="isProcessing">
-                                <span v-if="!isProcessing">Place Order</span>
-                                <span v-else>Processing...</span>
+                                <span v-if="!isProcessing">{{ $t('checkout.placeOrder') }}</span>
+                                <span v-else>{{ $t('checkout.processing') }}</span>
                                 <svg v-if="!isProcessing" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -289,13 +293,13 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
-                                <span>Secure checkout with encryption</span>
+                                <span>{{ $t('checkout.secureCheckout') }}</span>
                             </div>
 
                             <!-- Trust Badges -->
                             <div class="trust-badges">
-                                <span class="badge">✓ Trusted by 100k+ customers</span>
-                                <span class="badge">✓ 30-day money-back guarantee</span>
+                                <span class="badge">✓ {{ $t('checkout.trustedCustomers') }}</span>
+                                <span class="badge">✓ {{ $t('checkout.moneyBackGuarantee') }}</span>
                             </div>
                         </div>
                     </div>
@@ -307,9 +311,12 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import gsap from 'gsap';
-import useVuelidate from '@vuelidate/core';
-import { required, email, minLength, numeric } from '@vuelidate/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, minLength, numeric, helpers } from '@vuelidate/validators';
+
+const { t } = useI18n();
 
 const props = defineProps({
     cartItems: {
@@ -344,22 +351,46 @@ const formData = ref({
     notes: ''
 });
 
-// Vuelidate rules based on payment type
+// Vuelidate rules with custom messages using helpers.withMessage
 const rules = computed(() => {
     const shippingRules = {
-        firstName: { required },
-        lastName: { required },
-        email: { required, email },
-        address: { required },
-        city: { required },
-        zipCode: { required }
+        firstName: {
+            required: helpers.withMessage(t('checkout.validation.firstNameRequired'), required)
+        },
+        lastName: {
+            required: helpers.withMessage(t('checkout.validation.lastNameRequired'), required)
+        },
+        email: {
+            required: helpers.withMessage(t('checkout.validation.emailRequired'), required),
+            email: helpers.withMessage(t('checkout.validation.emailInvalid'), email)
+        },
+        address: {
+            required: helpers.withMessage(t('checkout.validation.addressRequired'), required)
+        },
+        city: {
+            required: helpers.withMessage(t('checkout.validation.cityRequired'), required)
+        },
+        zipCode: {
+            required: helpers.withMessage(t('checkout.validation.zipCodeRequired'), required)
+        }
     };
 
     const paymentRules = paymentType.value === 'card' ? {
-        cardName: { required },
-        cardNumber: { required, minLength: minLength(16) },
-        expiryDate: { required },
-        cvv: { required, numeric, minLength: minLength(3) }
+        cardName: {
+            required: helpers.withMessage(t('checkout.validation.cardNameRequired'), required)
+        },
+        cardNumber: {
+            required: helpers.withMessage(t('checkout.validation.cardNumberRequired'), required),
+            minLength: helpers.withMessage(t('checkout.validation.cardNumberMinLength'), minLength(16))
+        },
+        expiryDate: {
+            required: helpers.withMessage(t('checkout.validation.expiryDateRequired'), required)
+        },
+        cvv: {
+            required: helpers.withMessage(t('checkout.validation.cvvRequired'), required),
+            numeric: helpers.withMessage(t('checkout.validation.cvvNumeric'), numeric),
+            minLength: helpers.withMessage(t('checkout.validation.cvvMinLength'), minLength(3))
+        }
     } : {};
 
     return { ...shippingRules, ...paymentRules };
@@ -383,21 +414,16 @@ const shippingCost = computed(() => {
 
 const total = computed(() => subtotal.value + tax.value + shippingCost.value);
 
-// Get error message for a field
+// Get error message from Vuelidate
 const getErrorMessage = (field) => {
-    if (!v$.value[field]?.$dirty) return '';
+    const fieldErrors = v$.value[field];
+    if (!fieldErrors?.$dirty) return '';
 
-    if (v$.value[field].required?.$invalid) {
-        return `${field.charAt(0).toUpperCase() + field.slice(1)} is required`;
-    }
-    if (v$.value[field].email?.$invalid) {
-        return 'Please enter a valid email address';
-    }
-    if (v$.value[field].minLength?.$invalid) {
-        return `${field.charAt(0).toUpperCase() + field.slice(1)} is too short`;
-    }
-    if (v$.value[field].numeric?.$invalid) {
-        return `${field.charAt(0).toUpperCase() + field.slice(1)} must be numeric`;
+    // Return the first error message from helpers.withMessage
+    for (const [key, value] of Object.entries(fieldErrors.$errors)) {
+        if (value?.$invalid) {
+            return value.$message;
+        }
     }
 
     return '';
@@ -408,7 +434,7 @@ const hasError = (field) => {
     return v$.value[field]?.$dirty && v$.value[field]?.$invalid;
 };
 
-// Handle input - mark field as touched (dirty)
+// Handle input - mark field as touched (dirty) and validate
 const handleFieldInput = (field) => {
     v$.value[field]?.$touch();
 };
@@ -447,10 +473,11 @@ const onCVVInput = (e) => {
 const submitCheckout = async () => {
     if (isProcessing.value) return;
 
-    // Validate form
-    const isFormValid = await v$.value.$validate();
+    // Touch all fields to trigger validation messages
+    v$.value.$touch();
 
-    if (!isFormValid) {
+    // If form invalid, stop
+    if (v$.value.$invalid) {
         // Scroll to first error
         const firstError = document.querySelector('.is-invalid');
         if (firstError) {
@@ -487,6 +514,9 @@ const submitCheckout = async () => {
             });
 
             isProcessing.value = false;
+
+            // Reset form
+            v$.value.$reset();
         }, 1500);
     }
 };
@@ -837,7 +867,8 @@ onMounted(() => {
 
             .item-price {
                 font-weight: 700;
-                color: var(--color-primary);
+                color: var(--color-primary-1);
+                font-size: 1.2rem;
                 white-space: nowrap;
             }
         }
@@ -885,8 +916,7 @@ onMounted(() => {
         .place-order-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: white;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #0a5a8a 100%);
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -898,6 +928,11 @@ onMounted(() => {
             justify-content: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
+            color: #fff;
+
+            span {
+                color: white !important;
+            }
 
             svg {
                 width: 20px;

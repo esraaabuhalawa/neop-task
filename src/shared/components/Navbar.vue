@@ -262,7 +262,6 @@ onUnmounted(() => {
   .toggle-btn {
     color: #fff;
   }
-
 }
 
 .languagebtn {

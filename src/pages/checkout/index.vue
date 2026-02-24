@@ -4,8 +4,8 @@
             <div ref="checkoutPage">
                 <!-- Header -->
                 <header class="checkout-header text-center mb-5" ref="checkoutHeader">
-                    <h1>Checkout</h1>
-                    <p>Complete your purchase</p>
+                    <h1>{{ $t('checkout.title') }}</h1>
+                    <p>{{ $t('checkout.subtitle') }}</p>
                 </header>
 
                 <!-- Unified Checkout Form -->
@@ -42,7 +42,6 @@ const handleCheckoutComplete = async (checkoutData) => {
             console.log('Order placed:', checkoutData);
 
             router.push('/');
-            // You can add a toast/notification here for order success
         }
     });
 };
