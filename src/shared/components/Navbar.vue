@@ -40,8 +40,8 @@
                     <li v-if="cartItems.length === 0" class="cart-empty">Your cart is empty</li>
                   </ul>
                   <div class="cart-footer">
-                    <router-link to="/cart" class="cart-button">Go to Cart</router-link>
                     <span class="cart-total">Total: ${{ totalPrice }}</span>
+                    <router-link to="/cart" class="cart-button">Go to Cart</router-link>
                   </div>
                 </div>
 
@@ -49,7 +49,8 @@
             </div>
             <!--Theme Switcher-->
             <button class="theme-btn" @click="themeStore.toggleTheme()">
-              {{ themeStore.theme === 'light' ? '🌙' : '☀️' }}
+              <i v-if="themeStore.theme === 'light'" class="fa-regular fa-lightbulb"></i>
+              <i v-else class="fa-solid fa-moon"></i>
             </button>
             <!--Language Switcher-->
             <div class="languagebtn" @click="toggleLanguage">
@@ -112,7 +113,7 @@
 
           <li>
             <router-link to="/about" exact class="nav-link-1" aria-current="page" href="#">{{ $t('nav.about')
-            }}</router-link>
+              }}</router-link>
           </li>
         </ul>
 
@@ -158,6 +159,7 @@ const handleResize = () => {
   isMobile.value = window.innerWidth < 992;
 };
 
+
 const toggleLanguage = () => {
   const newLang = locale.value === 'en' ? 'ar' : 'en'
   store.setLanguage(newLang, locale)
@@ -167,9 +169,6 @@ const productStore = useProductStore();
 const cartItems = computed(() => productStore.cartItems);
 const totalPrice = computed(() => cartItems.value.reduce((sum, item) => sum + (item.quantity * item.product.price), 0))
 
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
 
 let openCart = ref(false)
 const toggleCart = () => {
@@ -232,6 +231,22 @@ onUnmounted(() => {
   transition: all .3s ease-in-out;
 }
 
+.cart,
+.theme-btn {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0a5a8a 100%);
+}
+
+.theme-btn {
+  border-radius: 50%;
+  border: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  color: #fff;
+}
+
 .navbar.scrolled {
   background: var(--color-primary);
   padding: 13px 0;
@@ -244,26 +259,10 @@ onUnmounted(() => {
     }
   }
 
-  .theme-btn {
-    border-radius: 50%;
-    background: #000;
-    border: none;
-    width: 30px;
-    height: 30px;
+  .toggle-btn {
     color: #fff;
   }
 
-  .toggle-btn {
-    color: var(--bg-color);
-  }
-
-  .cart {
-    background: var(--bg-color);
-
-    svg {
-      color: var(--color-primary);
-    }
-  }
 }
 
 .languagebtn {
@@ -415,8 +414,8 @@ a.nav-link-2 {
 }
 
 .toggle-btn {
+  color: var(--text-color);
   margin: 0;
-  color: #000;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -539,7 +538,12 @@ a.nav-link-2 {
 
 .cart-dropdown {
   position: absolute;
-  right: 0;
+  &:lang(en){
+    right: 0;
+  }
+  &:lang(ar){
+    left: 0;
+  }
   margin-top: 0.75rem;
   width: 20rem;
   background-color: var(--card-bg);
@@ -566,7 +570,7 @@ a.nav-link-2 {
 
 .cart-header {
   padding: 1.25rem;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  background: linear-gradient(135deg, #255d94 0%, #1c496e 100%);
   color: #ffffff;
   font-weight: 700;
   font-size: 1.1rem;
@@ -637,7 +641,7 @@ a.nav-link-2 {
     white-space: nowrap;
 
     &:last-child {
-      color: var(--color-primary);
+      color: var(--color-primary-1);
       font-weight: 600;
       background: rgba(77, 163, 217, 0.1);
       padding: 0.35rem 0.65rem;
@@ -698,7 +702,7 @@ a.nav-link-2 {
 .cart-total {
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--color-primary);
+  color: var(--color-primary-1);
   text-align: center;
   background: rgba(77, 163, 217, 0.1);
   padding: 0.75rem;
@@ -706,7 +710,6 @@ a.nav-link-2 {
 }
 
 .cart {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #0a5a8a 100%);
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -718,7 +721,7 @@ a.nav-link-2 {
   position: relative;
 
   svg {
-    color: var(--bg-color);
+    color: #fff;
     width: 24px;
     height: 24px;
     transition: transform 0.3s ease;

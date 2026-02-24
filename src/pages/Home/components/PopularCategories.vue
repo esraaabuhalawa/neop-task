@@ -63,7 +63,6 @@ const filterCategories = (sectionId) => {
 </script>
 <style lang="scss" scoped>
 header {
-
     span,
     h2 {
         color: var(--color-secondary);
@@ -111,7 +110,7 @@ header {
 
         &.active,
         &:hover {
-            color: var(--color-primary);
+            color: var(--color-primary-1);
             border-bottom: 2px solid #004876;
         }
     }

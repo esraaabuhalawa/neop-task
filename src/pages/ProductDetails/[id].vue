@@ -1,11 +1,11 @@
 <template>
     <AppLayout :SpecialStyle="true">
         <section class="container">
-                       
+
             <nav style="--bs-breadcrumb-divider: '>';margin-top: 8rem;" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item non-active"><router-link to="/">{{ $t('breadcrumb.home')
-                            }}</router-link></li>
+                    }}</router-link></li>
                     <li class="breadcrumb-item non-active" aria-current="page">{{ $t('breadcrumb.category') }}
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $t('breadcrumb.product') }}</li>
@@ -28,7 +28,7 @@ import { onMounted, computed, provide } from "vue";
 import { useRoute } from "vue-router";
 import { useMainStore } from "../../store/mainStore";
 
-const productStore= useProductStore();
+const productStore = useProductStore();
 const route = useRoute();
 
 const mainStore = useMainStore();
@@ -36,20 +36,20 @@ const currentLang = computed(() => mainStore.currentLanguage)
 const productId = computed(() => Number(route.params.id));
 
 const ProductData = computed(() => {
-  if (!productStore.products) return null
+    if (!productStore.products) return null
 
-  const productsByLang = productStore.products[currentLang.value]
-  if (!productsByLang) return null
+    const productsByLang = productStore.products[currentLang.value]
+    if (!productsByLang) return null
 
-  return productsByLang.find(
-    product => product.id === productId.value
-  )
+    return productsByLang.find(
+        product => product.id === productId.value
+    )
 })
 
 provide('ProductData', ProductData)
 
 onMounted(() => {
- productStore.getProductDetails();
+    productStore.getProductDetails();
 })
 </script>
 
@@ -65,7 +65,8 @@ onMounted(() => {
     }
 
     .active {
-        color: #1a4464;
+        color: var(--border-color-1);
+        ;
         font-weight: 500;
     }
 

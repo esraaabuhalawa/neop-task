@@ -1,6 +1,6 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from '../pages/Home/index.vue'
+import HomeView from "../pages/Home/index.vue";
 
 const routes = [
   {
@@ -12,6 +12,16 @@ const routes = [
     path: "/products/:id",
     name: "product-details",
     component: () => import("../pages/ProductDetails/[id].vue"),
+  },
+  {
+    path: "/cart",
+    name: "cart",
+    component: () => import("../pages/cart/index.vue"),
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: () => import("../pages/checkout/index.vue"),
   },
 
   // Error page (no layout)

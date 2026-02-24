@@ -1,8 +1,9 @@
 :root {
   --color-primary: #004876;
+  --color-primary-1: #004876;
   --color-primary-light: #1e7ba9;
   --color-secondary: #3b2f2f;
-  --color-hover: #6f4336;
+  --color-hover: #1f5792;
   --bg-color: #fff;
   --bg-secondary: #f9fafb;
   --bg-tertiary: #f3f4f6;
@@ -15,6 +16,7 @@
   --card-bg: #ffffff;
   --input-bg: #ffffff;
   --input-border: #e5e7eb;
+  --form-bg:#edf4f8;
 
   --text-main-color: #292625;
   --font-ltr: "Quicksand", sans-serif;
@@ -32,13 +34,14 @@
 
 /* Dark Mode */
 html.dark {
-  --color-primary: #4da3d9;
+  --color-primary: #0a2540;
+  --color-primary-1: #64a5da;
   --color-primary-light: #7db8e8;
   --bg-color: #0f172a;
   --bg-secondary: #1a2540;
   --bg-tertiary: #243351;
   --text-color: #e5e7eb;
-  --text-secondary: #cbd5e1;
+  --text-secondary: #87929e;
   --text-tertiary: #94a3b8;
   --border-color: #334155;
   --border-light: #1e293b;
@@ -47,6 +50,7 @@ html.dark {
   --input-bg: #0f172a;
   --input-border: #334155;
   --color-secondary: #d1c7c7;
+  --form-bg:#233153;
 }
 
 html {
@@ -142,6 +146,20 @@ select {
   transition: all 0.3s ease;
 }
 
+.btn-main {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+.btn-main:hover {
+  background-color: var(--color-hover);
+  color: #fff;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -234,6 +252,8 @@ tbody tr:hover {
 /* Breadcrumb */
 .breadcrumb {
   background-color: var(--bg-secondary);
+      padding: 8px 10px;
+    border-radius: 5px;
 }
 
 .breadcrumb .breadcrumb-item a {
@@ -292,7 +312,7 @@ html.dark {
 
   p,
   span {
-    color: #cbd5e1;
+    color: var(--text-secondary);
   }
 
   strong,
