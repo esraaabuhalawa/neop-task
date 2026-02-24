@@ -308,11 +308,8 @@ onUnmounted(() => {
   top: 0;
   width: 400px;
   height: 100%;
-  background-color: var(--bg-color);
-  -webkit-box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
-  -webkit-transition: left 0.4s ease;
-  -o-transition: left 0.4s ease;
+  background-color: var(--card-bg);
+  box-shadow: 2px 0 12px var(--shadow-color);
   transition: left 0.4s ease;
   z-index: 999999;
   padding: 20px;
@@ -343,23 +340,17 @@ onUnmounted(() => {
     margin-bottom: 8px;
   }
 
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid #d1d1d1;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  transition: all 0.3s ease;
 }
 
 .offcanvas-menu {
   margin-top: 20px;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   overflow-y: auto;
   max-height: 53vh;
@@ -375,22 +366,20 @@ onUnmounted(() => {
       font-weight: 500;
       cursor: pointer;
       border-radius: 5px;
-      color: var(--color-primary);
+      color: var(--text-color);
       text-decoration: none;
-      -webkit-transition: .3s ease-in-out;
-      -o-transition: .3s ease-in-out;
-      transition: .3s ease-in-out;
+      transition: all 0.3s ease;
 
       &.router-link-exact-active,
       &.active {
         font-weight: 600;
         background: var(--color-primary);
-        color: var(--bg-color);
+        color: #ffffff;
       }
 
       &:hover {
         background: var(--color-primary);
-        color: var(--bg-color);
+        color: #ffffff;
       }
     }
 
@@ -461,18 +450,31 @@ a.nav-link-2 {
   position: sticky;
   bottom: 0;
   right: 0;
-  background: var(--bg-color);
+  background: var(--card-bg);
   padding: 20px 0;
-  border-top: 1px solid #b4b3b5;
+  border-top: 1px solid var(--border-color);
+  transition: all 0.3s ease;
 
   li,
   a {
     font-size: 16px;
+    transition: color 0.3s ease;
   }
 
   li {
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 8px;
+
+    h4 {
+      color: var(--text-color);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
   }
 
   a {
@@ -540,11 +542,11 @@ a.nav-link-2 {
   right: 0;
   margin-top: 0.75rem;
   width: 20rem;
-  background-color: #ffffff;
-  border: 2px solid #e5e7eb;
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
   border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 25px -5px var(--shadow-color),
+    0 10px 10px -5px var(--shadow-color);
   z-index: 50;
   overflow: hidden;
   animation: slideDown 0.3s ease-out;
@@ -564,7 +566,7 @@ a.nav-link-2 {
 
 .cart-header {
   padding: 1.25rem;
-  background: linear-gradient(135deg, #004876 0%, #0a5a8a 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   color: #ffffff;
   font-weight: 700;
   font-size: 1.1rem;
@@ -577,21 +579,22 @@ a.nav-link-2 {
   margin: 0;
   padding: 0;
   list-style: none;
+  background-color: var(--card-bg);
 
   &::-webkit-scrollbar {
     width: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f3f4f6;
+    background: var(--bg-secondary);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: var(--border-color);
     border-radius: 3px;
 
     &:hover {
-      background: #94a3b8;
+      background: var(--text-secondary);
     }
   }
 }
@@ -603,13 +606,14 @@ a.nav-link-2 {
   gap: 0.75rem;
   padding: 1rem 1.25rem;
   cursor: pointer;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--border-light);
   transition: all 0.3s ease;
   flex-wrap: wrap;
+  background-color: var(--card-bg);
 
   .item-name {
     font-weight: 600;
-    color: #1f2937;
+    color: var(--text-color);
     font-size: 0.9rem;
     flex: 1;
     min-width: 120px;
@@ -621,21 +625,21 @@ a.nav-link-2 {
   }
 
   .item-price {
-    color: #004876;
+    color: var(--color-primary);
     font-weight: 700;
     font-size: 0.95rem;
     white-space: nowrap;
   }
 
   span {
-    color: #6b7280;
+    color: var(--text-secondary);
     font-size: 0.8rem;
     white-space: nowrap;
 
     &:last-child {
-      color: #004876;
+      color: var(--color-primary);
       font-weight: 600;
-      background: #e0f4ff;
+      background: rgba(77, 163, 217, 0.1);
       padding: 0.35rem 0.65rem;
       border-radius: 0.4rem;
       display: inline-block;
@@ -645,7 +649,7 @@ a.nav-link-2 {
   }
 
   &:hover {
-    background-color: #f9fafb;
+    background-color: var(--bg-secondary);
     transform: translateX(4px);
   }
 
@@ -657,7 +661,7 @@ a.nav-link-2 {
 .cart-empty {
   text-align: center;
   padding: 2rem 1rem;
-  color: #9ca3af;
+  color: var(--text-tertiary);
   font-size: 0.95rem;
   font-weight: 500;
 }
@@ -667,12 +671,12 @@ a.nav-link-2 {
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.25rem;
-  border-top: 2px solid #e5e7eb;
-  background: #f9fafb;
+  border-top: 2px solid var(--border-color);
+  background: var(--bg-secondary);
 }
 
 .cart-button {
-  background: linear-gradient(135deg, #004876 0%, #0a5a8a 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   color: #ffffff;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
@@ -685,8 +689,8 @@ a.nav-link-2 {
   letter-spacing: 0.5px;
 
   &:hover {
-    background: linear-gradient(135deg, #0a5a8a 0%, #004876 100%);
-    box-shadow: 0 10px 15px -3px rgba(0, 72, 118, 0.3);
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+    box-shadow: 0 10px 15px -3px rgba(77, 163, 217, 0.3);
     transform: translateY(-2px);
   }
 }
@@ -694,9 +698,9 @@ a.nav-link-2 {
 .cart-total {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #004876;
+  color: var(--color-primary);
   text-align: center;
-  background: #e0f4ff;
+  background: rgba(77, 163, 217, 0.1);
   padding: 0.75rem;
   border-radius: 0.5rem;
 }

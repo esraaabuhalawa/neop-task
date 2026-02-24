@@ -1,9 +1,20 @@
 :root {
   --color-primary: #004876;
+  --color-primary-light: #1e7ba9;
   --color-secondary: #3b2f2f;
   --color-hover: #6f4336;
-  --bg-color:  #fff;
+  --bg-color: #fff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
   --text-color: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
 
   --text-main-color: #292625;
   --font-ltr: "Quicksand", sans-serif;
@@ -21,9 +32,20 @@
 
 /* Dark Mode */
 html.dark {
-  --bg-color: #0f172a;
-  --text-color: #e5e7eb;
   --color-primary: #4da3d9;
+  --color-primary-light: #7db8e8;
+  --bg-color: #0f172a;
+  --bg-secondary: #1a2540;
+  --bg-tertiary: #243351;
+  --text-color: #e5e7eb;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #334155;
+  --border-light: #1e293b;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-bg: #1a2540;
+  --input-bg: #0f172a;
+  --input-border: #334155;
   --color-secondary: #d1c7c7;
 }
 
@@ -36,6 +58,9 @@ body {
   background-color: var(--bg-color) !important;
   color: var(--text-color);
   overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 * {
@@ -45,7 +70,7 @@ body {
 
 /* Scrollbar track */
 body::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: var(--bg-secondary);
   border-radius: 5px;
 }
 
@@ -53,12 +78,12 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--color-primary);
   border-radius: 10px;
-  border: 2px solid #f0f0f0;
+  border: 2px solid var(--bg-secondary);
 }
 
 /* Scrollbar thumb hover */
 body::-webkit-scrollbar-thumb:hover {
-  background: #7c929b;
+  background: var(--color-primary-light);
 }
 
 /* Scrollbar width */
@@ -90,4 +115,192 @@ body::-webkit-scrollbar {
 [dir="ltr"] p,
 [dir="ltr"] ::placeholder {
   font-family: var(--font-ltr);
+}
+
+/* Common element styles with dark mode support */
+a {
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  transition: all 0.3s ease;
+}
+
+input,
+textarea,
+select {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Cards and containers */
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Tables */
+table {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+thead {
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+}
+
+tbody tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+/* Badges */
+.badge {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* Alerts */
+.alert {
+  border-color: var(--border-color);
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+}
+
+/* Modals and dropdowns */
+.modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.dropdown-menu {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dropdown-item {
+  color: var(--text-color);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+}
+
+/* Pagination */
+.pagination .page-link {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.pagination .page-link:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  background-color: var(--bg-secondary);
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: var(--color-primary);
+}
+
+/* Lists and text */
+hr {
+  border-color: var(--border-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+  line-height: 1.6;
+}
+
+strong,
+b {
+  color: var(--text-color);
+}
+
+small {
+  color: var(--text-secondary);
+}
+
+/* Enhanced text colors in dark mode */
+html.dark {
+  a {
+    color: #7db8e8;
+  }
+
+  a:hover {
+    color: #9dcbe6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #f1f5f9;
+  }
+
+  p,
+  span {
+    color: #cbd5e1;
+  }
+
+  strong,
+  b {
+    color: #f1f5f9;
+  }
+
+  small {
+    color: #94a3b8;
+  }
 }
