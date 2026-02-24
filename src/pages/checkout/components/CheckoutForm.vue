@@ -16,22 +16,28 @@
                                 <div class="col-md-6">
                                     <label for="firstName">First Name *</label>
                                     <input id="firstName" v-model="formData.firstName" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.firstName }" placeholder="John" />
-                                    <span v-if="errors.firstName" class="error-message">{{ errors.firstName }}</span>
+                                        :class="{ 'is-invalid': hasError('firstName') }" placeholder="John"
+                                        @input="handleFieldInput('firstName')" />
+                                    <span v-if="hasError('firstName')" class="error-message">{{
+                                        getErrorMessage('firstName') }}</span>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="lastName">Last Name *</label>
                                     <input id="lastName" v-model="formData.lastName" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.lastName }" placeholder="Doe" />
-                                    <span v-if="errors.lastName" class="error-message">{{ errors.lastName }}</span>
+                                        :class="{ 'is-invalid': hasError('lastName') }" placeholder="Doe"
+                                        @input="handleFieldInput('lastName')" />
+                                    <span v-if="hasError('lastName')" class="error-message">{{
+                                        getErrorMessage('lastName') }}</span>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="email">Email Address *</label>
                                     <input id="email" v-model="formData.email" type="email" class="form-input"
-                                        :class="{ 'is-invalid': errors.email }" placeholder="john@example.com" />
-                                    <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
+                                        :class="{ 'is-invalid': hasError('email') }" placeholder="john@example.com"
+                                        @input="handleFieldInput('email')" />
+                                    <span v-if="hasError('email')" class="error-message">{{ getErrorMessage('email')
+                                    }}</span>
                                 </div>
 
                                 <div class="col-md-6">
@@ -43,22 +49,28 @@
                                 <div class="col-12">
                                     <label for="address">Street Address *</label>
                                     <input id="address" v-model="formData.address" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.address }" placeholder="123 Main Street" />
-                                    <span v-if="errors.address" class="error-message">{{ errors.address }}</span>
+                                        :class="{ 'is-invalid': hasError('address') }" placeholder="123 Main Street"
+                                        @input="handleFieldInput('address')" />
+                                    <span v-if="hasError('address')" class="error-message">{{ getErrorMessage('address')
+                                    }}</span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="city">City *</label>
                                     <input id="city" v-model="formData.city" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.city }" placeholder="New York" />
-                                    <span v-if="errors.city" class="error-message">{{ errors.city }}</span>
+                                        :class="{ 'is-invalid': hasError('city') }" placeholder="New York"
+                                        @input="handleFieldInput('city')" />
+                                    <span v-if="hasError('city')" class="error-message">{{ getErrorMessage('city')
+                                    }}</span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="zipCode">Zip Code *</label>
                                     <input id="zipCode" v-model="formData.zipCode" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.zipCode }" placeholder="10001" />
-                                    <span v-if="errors.zipCode" class="error-message">{{ errors.zipCode }}</span>
+                                        :class="{ 'is-invalid': hasError('zipCode') }" placeholder="10001"
+                                        @input="handleFieldInput('zipCode')" />
+                                    <span v-if="hasError('zipCode')" class="error-message">{{ getErrorMessage('zipCode')
+                                    }}</span>
                                 </div>
 
                                 <div class="col-md-4">
@@ -124,16 +136,19 @@
                             <div class="form-group">
                                 <label for="cardName">Cardholder Name *</label>
                                 <input id="cardName" v-model="formData.cardName" type="text" class="form-input"
-                                    :class="{ 'is-invalid': errors.cardName }" placeholder="John Doe" />
-                                <span v-if="errors.cardName" class="error-message">{{ errors.cardName }}</span>
+                                    :class="{ 'is-invalid': hasError('cardName') }" placeholder="John Doe"
+                                    @input="handleFieldInput('cardName')" />
+                                <span v-if="hasError('cardName')" class="error-message">{{ getErrorMessage('cardName')
+                                }}</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="cardNumber">Card Number *</label>
                                 <div class="card-input-wrapper">
                                     <input id="cardNumber" v-model="formData.cardNumber" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.cardNumber }" placeholder="1234 5678 9012 3456"
-                                        @input="formatCardNumber" />
+                                        :class="{ 'is-invalid': hasError('cardNumber') }"
+                                        placeholder="1234 5678 9012 3456"
+                                        @input="formatCardNumber; handleFieldInput('cardNumber')" />
                                     <span class="card-icon">
                                         <svg v-if="cardType === 'visa'" xmlns="http://www.w3.org/2000/svg" width="32"
                                             viewBox="0 0 32 32">
@@ -149,25 +164,27 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <span v-if="errors.cardNumber" class="error-message">{{ errors.cardNumber }}</span>
+                                <span v-if="hasError('cardNumber')" class="error-message">{{
+                                    getErrorMessage('cardNumber') }}</span>
                             </div>
 
                             <div class="row g-3">
                                 <div class="col-6">
                                     <label for="expiryDate">Expiry Date (MM/YY) *</label>
                                     <input id="expiryDate" v-model="formData.expiryDate" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.expiryDate }" placeholder="12/25"
-                                        @input="formatExpiryDate" />
-                                    <span v-if="errors.expiryDate" class="error-message">{{
-                                        errors.expiryDate }}</span>
+                                        :class="{ 'is-invalid': hasError('expiryDate') }" placeholder="12/25"
+                                        @input="formatExpiryDate; handleFieldInput('expiryDate')" />
+                                    <span v-if="hasError('expiryDate')" class="error-message">{{
+                                        getErrorMessage('expiryDate') }}</span>
                                 </div>
 
                                 <div class="col-6">
                                     <label for="cvv">CVV *</label>
                                     <input id="cvv" v-model="formData.cvv" type="text" class="form-input"
-                                        :class="{ 'is-invalid': errors.cvv }" placeholder="123" maxlength="4"
-                                        @input="onCVVInput" />
-                                    <span v-if="errors.cvv" class="error-message">{{ errors.cvv }}</span>
+                                        :class="{ 'is-invalid': hasError('cvv') }" placeholder="123" maxlength="4"
+                                        @input="onCVVInput; handleFieldInput('cvv')" />
+                                    <span v-if="hasError('cvv')" class="error-message">{{ getErrorMessage('cvv')
+                                    }}</span>
                                 </div>
                             </div>
                         </div>
@@ -291,6 +308,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import gsap from 'gsap';
+import useVuelidate from '@vuelidate/core';
+import { required, email, minLength, numeric } from '@vuelidate/validators';
 
 const props = defineProps({
     cartItems: {
@@ -302,9 +321,11 @@ const props = defineProps({
 const emit = defineEmits(['checkout-complete']);
 
 const checkoutForm = ref(null);
-const shippingSection = ref(null);
-const paymentSection = ref(null);
 const reviewElement = ref(null);
+const paymentType = ref('card');
+const sameAsShipping = ref(true);
+const cardType = ref('');
+const isProcessing = ref(false);
 
 const formData = ref({
     firstName: '',
@@ -323,11 +344,28 @@ const formData = ref({
     notes: ''
 });
 
-const errors = ref({});
-const paymentType = ref('card');
-const sameAsShipping = ref(true);
-const cardType = ref('');
-const isProcessing = ref(false);
+// Vuelidate rules based on payment type
+const rules = computed(() => {
+    const shippingRules = {
+        firstName: { required },
+        lastName: { required },
+        email: { required, email },
+        address: { required },
+        city: { required },
+        zipCode: { required }
+    };
+
+    const paymentRules = paymentType.value === 'card' ? {
+        cardName: { required },
+        cardNumber: { required, minLength: minLength(16) },
+        expiryDate: { required },
+        cvv: { required, numeric, minLength: minLength(3) }
+    } : {};
+
+    return { ...shippingRules, ...paymentRules };
+});
+
+const v$ = useVuelidate(rules, formData);
 
 // Computing totals
 const subtotal = computed(() => {
@@ -345,25 +383,34 @@ const shippingCost = computed(() => {
 
 const total = computed(() => subtotal.value + tax.value + shippingCost.value);
 
-// Form validation
-const validateForm = () => {
-    errors.value = {};
+// Get error message for a field
+const getErrorMessage = (field) => {
+    if (!v$.value[field]?.$dirty) return '';
 
-    if (!formData.value.firstName.trim()) errors.value.firstName = 'First name is required';
-    if (!formData.value.lastName.trim()) errors.value.lastName = 'Last name is required';
-    if (!formData.value.email.trim()) errors.value.email = 'Email is required';
-    if (!formData.value.address.trim()) errors.value.address = 'Address is required';
-    if (!formData.value.city.trim()) errors.value.city = 'City is required';
-    if (!formData.value.zipCode.trim()) errors.value.zipCode = 'Zip code is required';
-
-    if (paymentType.value === 'card') {
-        if (!formData.value.cardName.trim()) errors.value.cardName = 'Card name is required';
-        if (!formData.value.cardNumber.trim()) errors.value.cardNumber = 'Card number is required';
-        if (!formData.value.expiryDate.trim()) errors.value.expiryDate = 'Expiry date is required';
-        if (!formData.value.cvv.trim()) errors.value.cvv = 'CVV is required';
+    if (v$.value[field].required?.$invalid) {
+        return `${field.charAt(0).toUpperCase() + field.slice(1)} is required`;
+    }
+    if (v$.value[field].email?.$invalid) {
+        return 'Please enter a valid email address';
+    }
+    if (v$.value[field].minLength?.$invalid) {
+        return `${field.charAt(0).toUpperCase() + field.slice(1)} is too short`;
+    }
+    if (v$.value[field].numeric?.$invalid) {
+        return `${field.charAt(0).toUpperCase() + field.slice(1)} must be numeric`;
     }
 
-    return Object.keys(errors.value).length === 0;
+    return '';
+};
+
+// Check if field has error
+const hasError = (field) => {
+    return v$.value[field]?.$dirty && v$.value[field]?.$invalid;
+};
+
+// Handle input - mark field as touched (dirty)
+const handleFieldInput = (field) => {
+    v$.value[field]?.$touch();
 };
 
 // Payment formatting functions
@@ -400,7 +447,10 @@ const onCVVInput = (e) => {
 const submitCheckout = async () => {
     if (isProcessing.value) return;
 
-    if (!validateForm()) {
+    // Validate form
+    const isFormValid = await v$.value.$validate();
+
+    if (!isFormValid) {
         // Scroll to first error
         const firstError = document.querySelector('.is-invalid');
         if (firstError) {
@@ -412,27 +462,35 @@ const submitCheckout = async () => {
     isProcessing.value = true;
 
     // Animate button
-    const btn = reviewElement.value.querySelector('.place-order-btn');
-    gsap.to(btn, {
-        scale: 0.95,
-        duration: 0.2
-    });
+    if (reviewElement.value) {
+        const btn = reviewElement.value.querySelector('.place-order-btn');
+        if (btn) {
+            gsap.to(btn, {
+                scale: 0.95,
+                duration: 0.2
+            });
+        }
 
-    // Simulate processing
-    setTimeout(async () => {
-        gsap.to(btn, { scale: 1, duration: 0.2 });
+        // Simulate processing
+        setTimeout(async () => {
+            const btn = reviewElement.value?.querySelector('.place-order-btn');
+            if (btn) {
+                gsap.to(btn, { scale: 1, duration: 0.2 });
+            }
 
-        // Emit complete event with all form data
-        emit('checkout-complete', {
-            ...formData.value,
-            paymentMethod: paymentType.value,
-            total: total.value,
-            items: props.cartItems
-        });
+            // Emit complete event with all form data
+            emit('checkout-complete', {
+                ...formData.value,
+                paymentMethod: paymentType.value,
+                total: total.value,
+                items: props.cartItems
+            });
 
-        isProcessing.value = false;
-    }, 1500);
+            isProcessing.value = false;
+        }, 1500);
+    }
 };
+
 
 // Animations on mount
 onMounted(() => {
