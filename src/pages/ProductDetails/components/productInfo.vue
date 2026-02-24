@@ -46,19 +46,19 @@
 
                     <div class="d-flex align-items-center gap-3 flex-wrap">
                         <div class="d-flex gap-3 justify-content-between align-items-center amount">
-                            <div class="plus" @click="increase">
-                                +
+                            <div class="btn-main" @click="increase">
+                                <i class="fa-solid fa-plus"></i>
                             </div>
                             <div class="flex-fill">
                                 <input @input="onInputChange" type="number" v-model.number="quantity" min="1"
                                     class="text-center" />
                             </div>
-                            <div class="plus" @click="decrease">
-                                -
+                            <div class="btn-main" @click="decrease">
+                                <i class="fa-solid fa-minus"></i>
                             </div>
                         </div>
 
-                        <button class="btn cart" @click="addToCart(product, quantity)">{{ $t('addToCart') }}</button>
+                        <button class="btn btn-main flex-fill" @click="addToCart(product, quantity)">{{ $t('addToCart') }}</button>
                     </div>
                 </section>
             </div>
@@ -224,7 +224,7 @@ onMounted(() => {
 .product-details .current-price {
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-primary-1);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -253,49 +253,18 @@ onMounted(() => {
     border-radius: 5px;
 }
 
-.cart,
-.plus {
-    color: var(--bg-color);
-    background: var(--color-primary);
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
-
-    &:hover {
-        cursor: pointer;
-        background: var(--color-hover);
-    }
-}
-
-.cart {
-    padding: 8px 20px;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-
-    &:hover {
-        -webkit-transform: translateY(2px);
-        -ms-transform: translateY(2px);
-        transform: translateY(2px);
-    }
-}
-
 .amount {
     height: 42px;
+    i{
+        font-size: .9rem;
+        color: #fff;
+    }
 
     input {
         border: none;
         background-color: var(--input-bg);
         color: var(--text-color);
+        font-weight: 500;
         transition: all 0.3s ease;
 
         &:focus {

@@ -23,7 +23,7 @@
   <div class="tabs-content">
     <!-- Description Tab -->
     <div v-if="activeTab === 'description'"  class="description tab-panel">
-      <p class="text-muted">
+      <p>
         {{ product?.description }}
       </p>
     </div>
@@ -62,12 +62,19 @@ const product = computed(() => injectedProduct?.value);
 .description{
     width: 80%;
     margin-bottom: 6rem;
+    p{
+        color: var(--text-color);
+        line-height: 1.8;
+    }
+     @media (max-width: 768px) {
+        width: 100%;
+    }
 }
 .no-review{
     border: 1px solid #efeded;
     border-radius: 15px;
     font-size: 1.56rem;
-    color: #777;
+    color: var(--text-secondary);
     padding: 60px 20px;
     margin-bottom: 30px;
     font-weight: 500;
@@ -77,12 +84,12 @@ const product = computed(() => injectedProduct?.value);
   border: none;
   padding: 10px 0;
   font-weight: 500;
-  color: #777;
+  color: var(--color-secondary);
   position: relative;
 }
 
 .tab-btn.active {
-  color: #000;
+  color: var(--color-primary-1); 
 }
 
 .tab-btn.active::after {
@@ -92,7 +99,7 @@ const product = computed(() => injectedProduct?.value);
   left: 0;
   width: 100%;
   height: 2px;
-  background: #000;
+  background: var(--color-primary-1);
 }
 
 .tab-panel {

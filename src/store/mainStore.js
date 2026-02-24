@@ -26,6 +26,14 @@ export const useMainStore = defineStore('main', {
       document.documentElement.dir = this.direction
       document.body.dir = this.direction
       
+       window.dispatchEvent(
+        new CustomEvent('direction-localstorage-changed', {
+          detail: {
+            storage: localStorage.getItem('direction'),
+          },
+        })
+      )
+
       // Update i18n if provided
       if (i18nLocale) {
         i18nLocale.value = newLanguage

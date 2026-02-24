@@ -51,7 +51,6 @@ watch(
 </script>
 <style lang="scss" scoped>
 .product-desc {
-
     h5,
     p {
         color: var(--text-color);
@@ -100,9 +99,9 @@ watch(
 
 .img-container {
     position: relative;
-    background: var(--card-bg);
+    background: #fff;
     overflow: hidden;
-    height: 280px;
+    height: 324px;
     border-radius: 70px 30px 70px 70px;
     z-index: 20;
     transition: background-color 0.3s ease;

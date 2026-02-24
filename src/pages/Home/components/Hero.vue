@@ -203,7 +203,7 @@ h1 {
   align-items: center;
 
   svg {
-    color: var(--bg-color);
+     color: #fff;
     width: 22px;
   }
 
@@ -258,7 +258,7 @@ h1 {
 }
 
 .description {
-  color: var(text-main-color);
+  color: var(--text-color);
   font-size: 16px;
   line-height: 140%;
   font-weight: 400;
@@ -323,7 +323,7 @@ h1 {
 :deep(.swiper-button-prev),
 :deep(.swiper-button-next) {
   top: 20%;
-  color: var(--color-primary);
+  color: var(--text-color);
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -331,8 +331,8 @@ h1 {
 
 :deep(.swiper-button-next.active::after),
 :deep(.swiper-button-prev.active::after) {
-  background: var(--color-primary);
-  color: var(--bg-color);
+ color: #fff;
+  background: var(--color-primary-light);
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -376,8 +376,8 @@ h1 {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: var(--color-primary);
-  background: var(--bg-color);
+  color: var(--text-color);
+  background: var(--bg-primary-1);
 }
 
 :deep(.swiper-button-prev) {
@@ -398,14 +398,13 @@ h1 {
 }
 
 :deep(.swiper-button-disabled::after) {
-  background: var(--color-primary);
-  color: var(--bg-color);
+ color: var(--text-color);
+  background: var(--bg-primary-1);
   opacity: 1;
 }
 
 /*****************************/
 @media (max-width: 1300px) {
-
   :deep(.swiper-button-prev),
   :deep(.swiper-button-next),
   :deep(.swiper-rtl .swiper-button-prev),

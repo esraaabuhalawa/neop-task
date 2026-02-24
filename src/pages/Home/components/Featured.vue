@@ -128,7 +128,7 @@ defineProps({ shop: Object }, { shopHeading: Object })
     h3 {
       font-weight: 700;
       font-size: 1rem;
-      color: var(--color-primary);
+      color: var(--color-primary-1);
     }
 
     p {

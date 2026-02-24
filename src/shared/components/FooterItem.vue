@@ -17,9 +17,6 @@
               <router-link to="/" class="text-capitalize">{{ $t('menu.blogs') }}</router-link>
             </li>
             <li>
-              <router-link to="/" class="text-capitalize">{{ $t('nav.reviews') }}</router-link>
-            </li>
-            <li>
               <router-link to="/" class="text-capitalize">{{ $t('nav.contact') }}</router-link>
             </li>
             <li>
@@ -123,13 +120,12 @@ footer {
   margin-top: 6rem;
   padding-top: 57px;
   padding-bottom: 20px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1e71a6 100%);
+  background: var(--color-primary);
   transition: all 0.3s ease;
   color: rgba(255, 255, 255, 0.95);
   position: relative;
-  // overflow: hidden;
 
-  a {
+  ul li  a ,.letter-2{
     color: rgba(255, 255, 255, 0.72);
     font-size: 14px;
     font-weight: 500;
@@ -240,20 +236,6 @@ h6 {
       transition: all 0.3s ease;
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid #ffffff;
-      border-radius: 50%;
-      transform: scale(0.8);
-      opacity: 0;
-      transition: all 0.4s ease;
-    }
-
     &:hover {
       background: #ffffff;
       transform: scale(1.15);
@@ -262,11 +244,6 @@ h6 {
       i {
         color: var(--color-primary);
         transform: scale(1.1);
-      }
-
-      &::before {
-        transform: scale(1.2);
-        opacity: 0;
       }
     }
 
@@ -287,58 +264,6 @@ h6 {
   }
 }
 
-/* Dark mode specific enhancements */
-html.dark footer {
-  background: linear-gradient(135deg, #1a3a52 0%, #0a2540 100%);
-  border-top: 1px solid rgba(77, 163, 217, 0.2);
-
-  a {
-    color: rgba(125, 184, 232, 0.8);
-
-    &::after {
-      background-color: rgba(125, 184, 232, 0.6);
-    }
-
-    &:hover {
-      color: #7db8e8;
-
-      &::after {
-        width: 100%;
-      }
-    }
-  }
-
-  h6 {
-    color: #e0f2fe;
-  }
-
-  p {
-    color: rgba(207, 217, 233, 0.8);
-  }
-
-  .follow-us a {
-    border-color: rgba(125, 184, 232, 0.5);
-
-    i {
-      color: #7db8e8;
-    }
-
-    &:hover {
-      background: rgba(77, 163, 217, 0.2);
-      border-color: #7db8e8;
-      box-shadow: 0 8px 16px rgba(77, 163, 217, 0.25);
-
-      i {
-        color: #7db8e8;
-      }
-    }
-  }
-
-  .copyright {
-    border-color: rgba(77, 163, 217, 0.2);
-  }
-}
-
 @media screen and (max-width: 1220px) {
   .footer-img {
     display: none;
@@ -354,10 +279,6 @@ html.dark footer {
   h6 {
     font-size: 16px;
     margin-bottom: 12px;
-  }
-
-  p {
-    font-size: 13px;
   }
 
   .follow-us {

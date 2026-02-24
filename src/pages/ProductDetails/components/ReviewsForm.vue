@@ -89,8 +89,8 @@ h2 {
 }
 
 button {
-    color: var(--bg-color);
-    background: var(--color-primary);
+    color: #fff;
+    background: var(--color-primary-1);
     width: 9.375rem;
     font-size: 1.2rem;
     display: -webkit-box;
@@ -117,7 +117,7 @@ button {
 }
 
 form {
-    background: #edf4f8;
+    background: var(--form-bg);
     padding: 20px;
     border-radius: 5px;
 }
