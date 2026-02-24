@@ -70,6 +70,7 @@
 import ratingComponent from '../../../shared/components/RatingComponent.vue'
 import { ref, computed, inject, onMounted, } from "vue";
 import { useProductStore } from '../../../store/products';
+import { toast } from "vue3-toastify";
 
 const injectedProduct = inject('ProductData');
 
@@ -100,7 +101,12 @@ const onImageError = (event) => {
 }
 const productStore = useProductStore();
 
+
 const addToCart = (product, quantity) => {
+    // Success: show toast
+    toast.success(`Product added to your cart`, {
+        theme: "colored",
+    });
     productStore.addToCart(product, quantity)
 }
 

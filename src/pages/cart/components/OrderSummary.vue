@@ -1,35 +1,36 @@
 <template>
     <div class="order-summary" ref="summaryElement">
         <div class="summary-card">
-            <h2>Order Summary</h2>
+            <h2>{{ $t('cart.orderSummary') }}</h2>
 
             <div class="summary-section">
                 <div class="summary-row">
-                    <span>Subtotal:</span>
+                    <span>{{ $t('cart.subtotal') }}:</span>
                     <span class="price">${{ subtotal.toFixed(2) }}</span>
                 </div>
                 <div class="summary-row">
-                    <span>Tax (10%):</span>
+                    <span>{{ $t('cart.tax') }}:</span>
                     <span class="price">${{ tax.toFixed(2) }}</span>
                 </div>
                 <div class="summary-row">
-                    <span>Shipping:</span>
+                    <span>{{ $t('cart.shipping') }}:</span>
                     <span class="price" :class="{ 'free': shipping === 0 }">
-                        {{ shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}` }}
+                        {{ shipping === 0 ? $t('cart.free') : `$${shipping.toFixed(2)}` }}
                     </span>
                 </div>
 
                 <div class="divider"></div>
 
                 <div class="summary-row total">
-                    <span>Total:</span>
+                    <span>{{ $t('cart.total') }}:</span>
                     <span class="price total-price">${{ total.toFixed(2) }}</span>
                 </div>
             </div>
 
             <div class="promo-code">
-                <input v-model="promoCode" type="text" placeholder="Enter promo code" class="promo-input" />
-                <button @click="applyPromo" class="btn-main">Apply</button>
+                <input v-model="promoCode" type="text" :placeholder="$t('cart.promoCodePlaceholder')"
+                    class="promo-input" />
+                <button @click="applyPromo" class="btn-main">{{ $t('cart.applyPromo') }}</button>
             </div>
 
             <div v-if="discount > 0" class="discount-info">
@@ -37,11 +38,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Discount applied: -${{ discount.toFixed(2) }}</span>
+                <span>{{ $t('cart.discountApplied') }}: -${{ discount.toFixed(2) }}</span>
             </div>
 
             <button @click="proceedCheckout" class="btn-main checkout-btn">
-                Proceed to Checkout
+                {{ $t('cart.proceedCheckout') }}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -49,7 +50,7 @@
             </button>
 
             <button @click="continueShopping" class="continue-btn">
-                Continue Shopping
+                {{ $t('cart.continueShopping') }}
             </button>
 
             <div class="security-info">
@@ -57,7 +58,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <span>Your payment is secure</span>
+                <span>{{ $t('cart.paymentSecure') }}</span>
             </div>
         </div>
     </div>
@@ -65,6 +66,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import gsap from 'gsap';
 import { useRouter } from 'vue-router';
 
@@ -78,6 +80,7 @@ const props = defineProps({
 const emit = defineEmits(['checkout']);
 
 const router = useRouter();
+const { t } = useI18n();
 const promoCode = ref('');
 const discount = ref(0);
 const summaryElement = ref(null);
