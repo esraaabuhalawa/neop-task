@@ -9,6 +9,7 @@
     <button class="btn px-4" @click="goHome">
       {{ $t('backToHome') }}
     </button>
+
   </div>
 </template>
 
@@ -34,8 +35,8 @@ p {
 }
 
 button {
-  background: #004876;
-  color: white;
+  background: var(--color-primary);
+  color: var(--bg-color);
   border-radius: 20px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -53,8 +54,8 @@ button {
 
   &:hover {
     cursor: pointer;
-    color: #fff;
-    background-color: #6f4336;
+    color: var(--bg-color);
+    background-color: var(--color-hover);
   }
 }
 </style>

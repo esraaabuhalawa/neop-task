@@ -24,19 +24,19 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const isTop = ref(false)
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const handleScroll = () => {
-  isTop.value = window.scrollY >= 100
+    isTop.value = window.scrollY >= 100
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -46,9 +46,9 @@ onUnmounted(() => {
     cursor: pointer;
     bottom: 110%;
     right: 15px;
-    background-color: #3B2F2F;
+    background-color: var(--color-secondary);
     -webkit-box-shadow: 2px 2px 3px #333;
-            box-shadow: 2px 2px 3px #333;
+    box-shadow: 2px 2px 3px #333;
     z-index: 10000;
     width: 40px;
     text-align: center;
@@ -61,16 +61,16 @@ onUnmounted(() => {
     border: 1px solid #3B2F2F;
 
     &:hover {
-        background: #fff;
+        background: var(--bg-color);
 
         i {
-            color: #3B2F2F;
+            color: var(--color-secondary);
         }
     }
 
     i {
         position: absolute;
-        color: #fff;
+        color: var(--bg-color);
         top: 44%;
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -92,7 +92,8 @@ onUnmounted(() => {
 
     &:hover,
     &:focus {
-        color: #fff;
+        color: var(--bg-color);
+
         &::before {
             opacity: 1;
             visibility: visible;

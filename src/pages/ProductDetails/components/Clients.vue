@@ -3,10 +3,10 @@
         <div>
             <h2 class="capitalize mb-2">{{ $t('reviews.title') }}</h2>
         </div>
-        <Swiper :loop="true" :key="direction" :modules="[Autoplay]" :spaceBetween="20"
+        <Swiper :loop="true" :key="direction" :modules="[Autoplay]" :spaceBetween="25"
             :autoplay="{ delay: 3000, disableOnInteraction: false }" :breakpoints="breakpoints" :dir="direction">
-            <SwiperSlide v-for="slide in 9" :key="slide">
-                <ClientCard />
+            <SwiperSlide v-for="slide in reviews" :key="slide">
+                <ClientCard :review="slide" />
             </SwiperSlide>
         </Swiper>
     </section>
@@ -18,6 +18,11 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from 'swiper/modules';
 import ClientCard from '../../../shared/components/ClientCard.vue';
 
+const props = defineProps({
+    reviews:{
+        type: Array
+    }
+})
 const breakpoints = {
     // when window width is >= 465px
     465: {
@@ -35,8 +40,8 @@ const breakpoints = {
         spaceBetween: 40,
     },
 }
-const direction = ref(localStorage.getItem('direction') || 'ltr')
 
+const direction = ref(localStorage.getItem('direction') || 'ltr')
 
 onMounted(() => {
     window.addEventListener('direction-localstorage-changed', (event) => {
@@ -47,6 +52,6 @@ onMounted(() => {
 <style scoped>
 h2 {
     font-size: 2rem;
-    color: #3B2F2F;
+    color: var(--color-secondary);
 }
 </style>

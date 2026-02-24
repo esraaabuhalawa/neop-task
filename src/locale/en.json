@@ -45,6 +45,8 @@
     "oopsTitle": "Oops! It looks like you're lost.",
     "oopsDescription": "The page you're looking for isn't available. Try to search again or use the go to",
     "backToHome": "Back to Home",
+    "Description":"Description",
+    "noreviews": "There is no comments right now , Be the First.",
     "nav": {
         "home": "Home",
         "courses": "Courses",

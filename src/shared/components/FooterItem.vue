@@ -61,7 +61,8 @@
       <!----->
       <div class="row d-flex justify-content-center">
         <div class="col-lg-7">
-          <section class="d-flex flex-wrap gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
+          <section
+            class="d-flex flex-wrap gap-3 align-items-center justify-content-between border-top pt-4 pb-5 copyright">
             <!--Social Links-->
             <div class="follow-us">
               <div class="mt-2 d-flex gap-3">
@@ -96,7 +97,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .first-col {
   gap: 23px;
 }
@@ -115,8 +115,8 @@
 
   &:lang(ar) {
     -webkit-transform: scaleX(-1);
-        -ms-transform: scaleX(-1);
-            transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
     left: 0;
   }
 }
@@ -156,7 +156,7 @@ footer {
       color: rgba(255, 255, 255, 58.4%);
 
       &:hover {
-        color: #fff;
+        color: var(--bg-color);
         cursor: pointer;
       }
 
@@ -170,7 +170,7 @@ footer {
 h6,
 p {
   &:lang(ar) {
-    font-family: 'Tajawal', sans-serif;
+    font-family: var(--font-rtl);
   }
 
   &:lang(en) {
@@ -185,7 +185,7 @@ p {
 h6 {
   font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: var(--bg-color);
 }
 
 .follow-us {
@@ -194,25 +194,25 @@ h6 {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     width: 32px;
     height: 32px;
     padding-top: 3px;
-    border: 1px solid #fff;
+    border: 1px solid var(--bg-color);
     border-radius: 50%;
     background: transparent;
 
     i {
       font-size: 14px;
-      color: #fff;
+      color: var(--bg-color);
     }
 
     &:hover {
-      background: #004876;
+      background: var(--color-primary);
     }
 
     cursor: pointer;
@@ -222,10 +222,10 @@ h6 {
   }
 
   a:hover {
-    background: #fff;
+    background: var(--bg-color);
 
     i {
-      color: #004876
+      color: var(--color-primary)
     }
   }
 }

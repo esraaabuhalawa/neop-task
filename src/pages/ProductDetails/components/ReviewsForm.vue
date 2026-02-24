@@ -1,6 +1,6 @@
 <template>
     <section class="row">
-        <div>
+        <div class="mb-3">
             <h2>{{ $t('reviews.addReview') }}</h2>
         </div>
         <!------Reviews Form------------>
@@ -85,34 +85,34 @@ const submitReview = () => {
 <style lang="scss" scoped>
 h2 {
     font-size: 2rem;
-    color: #3B2F2F;
+    color: var(--color-secondary);
 }
 
 button {
-    color: #fff;
-    background: #004876;
+    color: var(--bg-color);
+    background: var(--color-primary);
     width: 9.375rem;
     font-size: 1.2rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 
     &:hover {
         cursor: pointer;
-        background: #6F4336;
-        color: #fff;
+        background: var(--color-hover);
+        color: var(--bg-color);
         -webkit-transform: translateY(2px);
-            -ms-transform: translateY(2px);
-                transform: translateY(2px);
+        -ms-transform: translateY(2px);
+        transform: translateY(2px);
     }
 }
 

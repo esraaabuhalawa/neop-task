@@ -14,13 +14,43 @@
         <!-------start of Language side----------->
         <div>
           <div class="gap-2 d-flex align-items-center">
-            <router-link to="/" class="cart">
-              <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
-                  d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z" />
-              </svg>
-            </router-link>
+            <div class="relative" ref="cartContainer">
+              <!-- Cart Icon -->
+              <span class="cart position-relative " @click="toggleCart">
+                <svg class="w-6 h-6 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                  height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
+                    d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z" />
+                </svg>
+
+                <!-- Cart count badge -->
+                <span class="cart-badge">{{ cartItems.length }}</span>
+              </span>
+
+              <!-- Dropdown menu -->
+              <transition name="fade">
+                <div v-if="openCart" class="cart-dropdown">
+                  <div class="cart-header">Your Cart</div>
+                  <ul class="cart-items">
+                    <li v-for="(item, index) in cartItems" :key="index" class="cart-item">
+                      <span class="item-name">{{ item.product.name }}</span>
+                      <span class="item-price">${{ item.product.price }}</span>
+                      <span> qty :{{ item.quantity }}</span>
+                    </li>
+                    <li v-if="cartItems.length === 0" class="cart-empty">Your cart is empty</li>
+                  </ul>
+                  <div class="cart-footer">
+                    <router-link to="/cart" class="cart-button">Go to Cart</router-link>
+                    <span class="cart-total">Total: ${{ totalPrice }}</span>
+                  </div>
+                </div>
+
+              </transition>
+            </div>
+            <!--Theme Switcher-->
+            <button class="theme-btn" @click="themeStore.toggleTheme()">
+              {{ themeStore.theme === 'light' ? '🌙' : '☀️' }}
+            </button>
             <!--Language Switcher-->
             <div class="languagebtn" @click="toggleLanguage">
               <img v-if="$i18n.locale === 'ar'" class="img-fluid object-cover" src="https://flagcdn.com/w320/us.png"
@@ -46,7 +76,7 @@
     <div class="offcanvas-1" :class="{ active: isOpen }">
       <div class="offcanvas-header">
         <!--Login and sign up in small screens-->
-        <ul v-if="isAuthenticated" class="d-flex flex-wrap gap-3 auth-sm list-unstyled">
+        <ul class="d-flex flex-wrap gap-3 auth-sm list-unstyled">
           <li class="nav-item-1">
             <router-link :to="{ name: 'Home' }" class="nav-link-2 sign-in-sm">
               <span class="d-inline-block"> {{ $t('login') }}</span>
@@ -106,50 +136,44 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useMainStore } from '../../store/language';
+import { useMainStore } from '../../store/mainStore';
+import { useProductStore } from '../../store/products';
+import { useThemeStore } from '../../store/theme'
 
 defineProps({
   SpecialStyle: {
-    type: Boolean
+    type: Boolean,
+    default: false
   }
 })
 const store = useMainStore();
-
-const isAuthenticated = ref(true);
-
+const themeStore = useThemeStore()
 const { locale } = useI18n();
 const isMobile = ref(window.innerWidth < 992);
+const cartContainer = ref(null);
 
 const handleResize = () => {
   isMobile.value = window.innerWidth < 992;
 };
 
-
 const toggleLanguage = () => {
   const newLang = locale.value === 'en' ? 'ar' : 'en'
-  const newDir = newLang === 'ar' ? 'rtl' : 'ltr'
+  store.setLanguage(newLang, locale)
+}
 
-  //  $parent.language = newLang;
-  //  $parent.$emit("language-changed", newLang);
+const productStore = useProductStore();
+const cartItems = computed(() => productStore.cartItems);
+const totalPrice = computed(() => cartItems.value.reduce((sum, item) => sum + (item.quantity * item.product.price), 0))
 
-  locale.value = newLang
-  store.updateLanguage(newLang)
-  store.updateDirection(newDir)
+const toggleDropdown = () => {
+  isOpen.value = !isOpen.value
+}
 
-  // // Update HTML and BODY direction
-  document.documentElement.lang = newLang
-  document.body.dir = newDir
-
-  // Optional: Notify others (like layout components)
-  window.dispatchEvent(
-    new CustomEvent('direction-localstorage-changed', {
-      detail: {
-        storage: localStorage.getItem('direction'),
-      },
-    })
-  )
+let openCart = ref(false)
+const toggleCart = () => {
+  openCart.value = !openCart.value;
 }
 
 const isScrolled = ref(false);
@@ -175,37 +199,22 @@ const closeMenu = () => {
   hideButton.value = true
 }
 
-//Dropdown Code
-const dropdownVisible = ref(false)
-const dropdownRef = ref(null)
-
-const toggleDropdown = () => {
-  dropdownVisible.value = !dropdownVisible.value
-}
-
 const handleClickOutside = (event) => {
-  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
-    dropdownVisible.value = false
+  if (cartContainer.value && !cartContainer.value.contains(event.target)) {
+    openCart.value = false;
   }
 }
+
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll);
   window.addEventListener('resize', handleResize);
-  // const storedLanguage = localStorage.getItem('language');
-  // const storedDirection = localStorage.getItem('direction');
-
-  // //Get User Data
-
-  // if (storedLanguage && storedDirection) {
-  //   toggleLanguage();
-  // }
   document.addEventListener('click', handleClickOutside)
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
-  // window.removeEventListener('scroll', onScroll);
+  window.removeEventListener('scroll', onScroll);
   document.removeEventListener('click', handleClickOutside)
 })
 </script>
@@ -224,26 +233,35 @@ onUnmounted(() => {
 }
 
 .navbar.scrolled {
-  background: #004876;
+  background: var(--color-primary);
   padding: 13px 0;
   -webkit-box-shadow: -8px 6px 13px 4px #65656554;
   box-shadow: -8px 6px 13px 4px #65656554;
 
   .navbar-brand {
     svg path {
-      fill: #fff;
+      fill: var(--bg-color);
     }
   }
 
-  .toggle-btn {
+  .theme-btn {
+    border-radius: 50%;
+    background: #000;
+    border: none;
+    width: 30px;
+    height: 30px;
     color: #fff;
   }
 
+  .toggle-btn {
+    color: var(--bg-color);
+  }
+
   .cart {
-    background: #fff;
+    background: var(--bg-color);
 
     svg {
-      color: #004876;
+      color: var(--color-primary);
     }
   }
 }
@@ -259,7 +277,7 @@ onUnmounted(() => {
     width: 100%;
     height: 100%;
     -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 
@@ -290,7 +308,7 @@ onUnmounted(() => {
   top: 0;
   width: 400px;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--bg-color);
   -webkit-box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
   -webkit-transition: left 0.4s ease;
@@ -357,7 +375,7 @@ onUnmounted(() => {
       font-weight: 500;
       cursor: pointer;
       border-radius: 5px;
-      color: #004876;
+      color: var(--color-primary);
       text-decoration: none;
       -webkit-transition: .3s ease-in-out;
       -o-transition: .3s ease-in-out;
@@ -366,13 +384,13 @@ onUnmounted(() => {
       &.router-link-exact-active,
       &.active {
         font-weight: 600;
-        background: #004876;
-        color: #fff;
+        background: var(--color-primary);
+        color: var(--bg-color);
       }
 
       &:hover {
-        background: #004876;
-        color: #fff;
+        background: var(--color-primary);
+        color: var(--bg-color);
       }
     }
 
@@ -385,7 +403,7 @@ a.nav-link-2 {
   font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
-  color: #004876;
+  color: var(--color-primary);
   text-decoration: none;
   -webkit-transition: .3s ease-in-out;
   -o-transition: .3s ease-in-out;
@@ -395,7 +413,7 @@ a.nav-link-2 {
 .nav-link,
 .nav-link-1,
 .nav-link-2 {
-  font-family: 'Tajawal', sans-serif;
+  font-family: var(--font-rtl);
 }
 
 [dir=ltr] {
@@ -403,7 +421,7 @@ a.nav-link-2 {
   .nav-link,
   .nav-link-1,
   .nav-link-2 {
-    font-family: "Quicksand", sans-serif;
+    font-family: var(--font-ltr);
   }
 }
 
@@ -427,7 +445,7 @@ a.nav-link-2 {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #fff;
+  background: var(--bg-color);
   border: none;
   font-size: 45px;
   cursor: pointer;
@@ -443,7 +461,7 @@ a.nav-link-2 {
   position: sticky;
   bottom: 0;
   right: 0;
-  background: #fff;
+  background: var(--bg-color);
   padding: 20px 0;
   border-top: 1px solid #b4b3b5;
 
@@ -458,7 +476,7 @@ a.nav-link-2 {
   }
 
   a {
-    color: #004876;
+    color: var(--color-primary);
 
     i {
       font-size: 30px;
@@ -486,35 +504,241 @@ a.nav-link-2 {
   }
 }
 
-.cart {
-  background: #004876;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+///Cart Styling
+.cart-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  font-size: 0.8rem;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 
-  svg {
-    color: white;
-    width: 22px;
+@keyframes pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+  }
+}
+
+.cart-dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 0.75rem;
+  width: 20rem;
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-header {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #004876 0%, #0a5a8a 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.cart-items {
+  max-height: 18rem;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f3f4f6;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+
+    &:hover {
+      background: #94a3b8;
+    }
+  }
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+
+  .item-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 120px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .item-price {
+    color: #004876;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  span {
+    color: #6b7280;
+    font-size: 0.8rem;
+    white-space: nowrap;
+
+    &:last-child {
+      color: #004876;
+      font-weight: 600;
+      background: #e0f4ff;
+      padding: 0.35rem 0.65rem;
+      border-radius: 0.4rem;
+      display: inline-block;
+      width: fit-content;
+      font-size: 0.75rem;
+    }
   }
 
   &:hover {
-    background-color: #6F4336;
+    background-color: #f9fafb;
+    transform: translateX(4px);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-top: 2px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.cart-button {
+  background: linear-gradient(135deg, #004876 0%, #0a5a8a 100%);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: linear-gradient(135deg, #0a5a8a 0%, #004876 100%);
+    box-shadow: 0 10px 15px -3px rgba(0, 72, 118, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.cart-total {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #004876;
+  text-align: center;
+  background: #e0f4ff;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.cart {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0a5a8a 100%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 72, 118, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+
+  svg {
+    color: var(--bg-color);
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #0a5a8a 0%, var(--color-primary) 100%);
+    box-shadow: 0 8px 20px rgba(0, 72, 118, 0.3);
+    transform: scale(1.1) translateY(-2px);
+
+    svg {
+      transform: scale(1.15);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
 .toggle-btn {
   &:hover {
-    background-color: #6F4336;
-    color: #fff;
+    background-color: var(--color-hover);
+    color: var(--bg-color);
   }
 }
 
@@ -528,8 +752,8 @@ a.nav-link-2 {
   &:hover {
     cursor: pointer;
     -webkit-transform: translateY(2px);
-        -ms-transform: translateY(2px);
-            transform: translateY(2px);
+    -ms-transform: translateY(2px);
+    transform: translateY(2px);
   }
 }
 
@@ -580,5 +804,21 @@ a.nav-link-2 {
   .navbar-nav {
     gap: 35px;
   }
+}
+
+/* Fade transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
 }
 </style>

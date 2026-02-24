@@ -9,7 +9,7 @@
 
             <!-- Filter Tabs -->
             <div class="d-flex gap-3 justify-content-center mb-5 flex-wrap flex-lg-nowrap" id="filterTabs">
-                <button v-for="category in currentCategories" :key="category.id" @click="filterCategories(category.id)"
+                <button v-for="category in categories" :key="category.id" @click="filterCategories(category.id)"
                     :class="{ active: activeSection === category.id }">
                     {{ category.name }}
                 </button>
@@ -46,20 +46,12 @@ const props = defineProps({
 
 const activeSection = ref(1)
 
-const currentCategories = computed(() => {
-    return props.categories[props.lang] || []
-})
-
-const currentProducts = computed(() => {
-    return props.products[props.lang] || []
-})
-
 // Filter products based on active category
 const filteredProducts = computed(() => {
     if (activeSection.value === 1) {
-        return currentProducts.value; // All products
+        return props.products; // All products
     }
-    return currentProducts.value.filter(product =>
+    return props.products.filter(product =>
         product.category.includes(activeSection.value)
     );
 });
@@ -70,19 +62,19 @@ const filterCategories = (sectionId) => {
 
 </script>
 <style lang="scss" scoped>
-
 header {
+
     span,
     h2 {
-        color: #3B2F2F;
+        color: var(--color-secondary);
         line-height: 100%;
 
         &:lang(en) {
-            font-family: "Quicksand", sans-serif;
+            font-family: var(--font-ltr);
         }
 
         &:lang(ar) {
-            font-family: 'Tajawal', sans-serif;
+            font-family: var(--font-rtl);
         }
     }
 
@@ -99,7 +91,7 @@ header {
 #filterTabs {
     button {
         &:lang(en) {
-            font-family: "Quicksand", sans-serif;
+            font-family: var(--font-ltr);
         }
 
         &:lang(ar) {
@@ -112,14 +104,14 @@ header {
         font-size: 1.25rem;
         line-height: 100%;
         padding: 30px 10px;
-        color: #3B2F2F;
+        color: var(--color-secondary);
         -webkit-transform: all .4s ease-in-out;
-            -ms-transform: all .4s ease-in-out;
-                transform: all .4s ease-in-out;
+        -ms-transform: all .4s ease-in-out;
+        transform: all .4s ease-in-out;
 
         &.active,
         &:hover {
-            color: #004876;
+            color: var(--color-primary);
             border-bottom: 2px solid #004876;
         }
     }
@@ -135,15 +127,15 @@ header {
 .fade-up-enter-from {
     opacity: 0;
     -webkit-transform: translateY(20px);
-        -ms-transform: translateY(20px);
-            transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
 }
 
 .fade-up-leave-to {
     opacity: 0;
     -webkit-transform: translateY(-20px);
-        -ms-transform: translateY(-20px);
-            transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
 }
 
 

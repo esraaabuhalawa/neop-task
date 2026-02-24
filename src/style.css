@@ -1,6 +1,15 @@
 :root {
-  --primary-color: #004876;
-  --secondary-color: #3B2F2F;
+  --color-primary: #004876;
+  --color-secondary: #3b2f2f;
+  --color-hover: #6f4336;
+  --bg-color:  #fff;
+  --text-color: #1f2937;
+
+  --text-main-color: #292625;
+  --font-ltr: "Quicksand", sans-serif;
+  --font-rtl: "Tajawal", sans-serif;
+  --font-base: var(--font-rtl);
+
   font-size: 16px;
 }
 
@@ -10,15 +19,28 @@
   }
 }
 
-* {
-  padding: 0;
-  margin: 0;
+/* Dark Mode */
+html.dark {
+  --bg-color: #0f172a;
+  --text-color: #e5e7eb;
+  --color-primary: #4da3d9;
+  --color-secondary: #d1c7c7;
+}
+
+html {
+  font-family: var(--font-base);
 }
 
 body {
   min-height: 100vh;
-  font-family: 'Tajawal', sans-serif;
-  overflow-x: hidden!important;
+  background-color: var(--bg-color) !important;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+* {
+  padding: 0;
+  margin: 0;
 }
 
 /* Scrollbar track */
@@ -29,7 +51,7 @@ body::-webkit-scrollbar-track {
 
 /* Scrollbar thumb */
 body::-webkit-scrollbar-thumb {
-  background: #004876;
+  background: var(--color-primary);
   border-radius: 10px;
   border: 2px solid #f0f0f0;
 }
@@ -54,7 +76,7 @@ body::-webkit-scrollbar {
 [dir="rtl"] h6,
 [dir="rtl"] p,
 [dir="rtl"] ::placeholder {
-  font-family: "Tajawal", sans-serif;
+  font-family: var(--font-rtl);
 }
 
 /* LTR */
@@ -67,5 +89,5 @@ body::-webkit-scrollbar {
 [dir="ltr"] h6,
 [dir="ltr"] p,
 [dir="ltr"] ::placeholder {
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-ltr);
 }
