@@ -58,7 +58,8 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-main flex-fill" @click="addToCart(product, quantity)">{{ $t('addToCart') }}</button>
+                        <button class="btn btn-main flex-fill" @click="addToCart(product, quantity)">{{ $t('addToCart')
+                        }}</button>
                     </div>
                 </section>
             </div>
@@ -68,6 +69,7 @@
 </template>
 <script setup>
 import ratingComponent from '../../../shared/components/RatingComponent.vue'
+import gsap from 'gsap';
 import { ref, computed, inject, onMounted, } from "vue";
 import { useProductStore } from '../../../store/products';
 import { toast } from "vue3-toastify";
@@ -117,6 +119,113 @@ onMounted(() => {
         selectedImage.value = product.value.images[0];
     } else {
         selectedImage.value = product.value?.image || null;
+    }
+
+    // GSAP animations for product details
+    const mainImage = document.querySelector('.main-image');
+    const productInfo = document.querySelector('.product-details');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const ratingSection = document.querySelector('.d-flex.gap-3.align-items-center');
+
+    const tl = gsap.timeline();
+
+    if (mainImage) {
+        tl.fromTo(
+            mainImage,
+            { opacity: 0, scale: 0.9 },
+            { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" },
+            0
+        );
+    }
+
+    if (ratingSection) {
+        tl.fromTo(
+            ratingSection,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+            0.1
+        );
+    }
+
+    const productTitle = document.querySelector('.product-title');
+    if (productTitle) {
+        tl.fromTo(
+            productTitle,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+            0.25
+        );
+    }
+
+    const priceSection = document.querySelector('.price');
+    if (priceSection) {
+        tl.fromTo(
+            priceSection,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+            0.35
+        );
+    }
+
+    const descriptionText = document.querySelector('.product-details .description');
+    if (descriptionText) {
+        tl.fromTo(
+            descriptionText,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+            0.45
+        );
+    }
+
+    const amountSection = document.querySelector('.amount');
+    const cartButton = document.querySelector('.btn-main.flex-fill');
+    if (amountSection || cartButton) {
+        tl.fromTo(
+            [amountSection, cartButton],
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+            0.55
+        );
+    }
+
+    // Thumbnail hover animations
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('mouseenter', () => {
+            gsap.to(thumbnail, {
+                scale: 1.08,
+                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+
+        thumbnail.addEventListener('mouseleave', () => {
+            gsap.to(thumbnail, {
+                scale: 1,
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    });
+
+    // Main image hover zoom effect
+    if (mainImage) {
+        mainImage.addEventListener('mouseenter', () => {
+            gsap.to(mainImage.querySelector('img'), {
+                scale: 1.05,
+                duration: 0.4,
+                ease: 'power2.out'
+            });
+        });
+
+        mainImage.addEventListener('mouseleave', () => {
+            gsap.to(mainImage.querySelector('img'), {
+                scale: 1,
+                duration: 0.4,
+                ease: 'power2.out'
+            });
+        });
     }
 });
 
@@ -261,7 +370,8 @@ onMounted(() => {
 
 .amount {
     height: 42px;
-    i{
+
+    i {
         font-size: .9rem;
         color: #fff;
     }

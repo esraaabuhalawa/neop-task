@@ -64,7 +64,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
-
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
@@ -203,7 +202,7 @@ h1 {
   align-items: center;
 
   svg {
-     color: #fff;
+    color: #fff;
     width: 22px;
   }
 
@@ -331,7 +330,7 @@ h1 {
 
 :deep(.swiper-button-next.active::after),
 :deep(.swiper-button-prev.active::after) {
- color: #fff;
+  color: #fff;
   background: var(--color-primary-light);
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -398,13 +397,14 @@ h1 {
 }
 
 :deep(.swiper-button-disabled::after) {
- color: var(--text-color);
+  color: var(--text-color);
   background: var(--bg-primary-1);
   opacity: 1;
 }
 
 /*****************************/
 @media (max-width: 1300px) {
+
   :deep(.swiper-button-prev),
   :deep(.swiper-button-next),
   :deep(.swiper-rtl .swiper-button-prev),
