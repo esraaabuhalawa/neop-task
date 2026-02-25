@@ -124,7 +124,7 @@ onMounted(() => {
     gsap.fromTo(
         summaryElement.value,
         { opacity: 0, x: 30 },
-        { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }
+        { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }
     );
 
     // Add hover effect

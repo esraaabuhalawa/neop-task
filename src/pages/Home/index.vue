@@ -60,9 +60,6 @@ const Categories = computed(() => {
   return allCategories.value[currentLanguage.value] || [];
 });
 
-// watch(currentLanguage, () => {
-//   getData()
-// })
 
 onMounted(async () => {
   await getData();
