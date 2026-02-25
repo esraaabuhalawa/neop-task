@@ -30,18 +30,18 @@
               <!-- Dropdown menu -->
               <transition name="fade">
                 <div v-if="openCart" class="cart-dropdown">
-                  <div class="cart-header">Your Cart</div>
+                  <div class="cart-header">{{ $t('navbar.cartDropdown') }}</div>
                   <ul class="cart-items">
                     <li v-for="(item, index) in cartItems" :key="index" class="cart-item">
                       <span class="item-name">{{ item.product.name }}</span>
                       <span class="item-price">${{ item.product.price }}</span>
-                      <span> qty :{{ item.quantity }}</span>
+                      <span> {{ $t('navbar.qty') }}: {{ item.quantity }}</span>
                     </li>
-                    <li v-if="cartItems.length === 0" class="cart-empty">Your cart is empty</li>
+                    <li v-if="cartItems.length === 0" class="cart-empty">{{ $t('navbar.cartIsEmpty') }}</li>
                   </ul>
                   <div class="cart-footer">
-                    <span class="cart-total">Total: ${{ totalPrice }}</span>
-                    <router-link to="/cart" class="cart-button">Go to Cart</router-link>
+                    <span class="cart-total">{{ $t('navbar.cartTotal') }}: ${{ totalPrice }}</span>
+                    <router-link to="/cart" class="cart-button">{{ $t('navbar.goToCart') }}</router-link>
                   </div>
                 </div>
 
@@ -85,7 +85,7 @@
           </li>
           <li class="nav-item-1">
             <router-link :to="{ name: 'Home' }" class="nav-link-2 sign-in-sm">
-              <span class="d-inline-block">{{ $t('signup') }}</span>
+              <span class="d-inline-block">{{ $t('navbar.signup') }}</span>
             </router-link>
           </li>
         </ul>
@@ -113,17 +113,17 @@
 
           <li>
             <router-link to="/about" exact class="nav-link-1" aria-current="page" href="#">{{ $t('nav.about')
-              }}</router-link>
+            }}</router-link>
           </li>
         </ul>
 
         <ul class="call-info list-unstyled">
           <li>
-            <h4 class="text-capitalize-en">{{ $t('nav.contact') }}</h4>
+            <h4 class="text-capitalize-en">{{ $t('navbar.contact') }}</h4>
             <p>+258747645345</p>
           </li>
-          <li class="text-capitalize-en"> cairo - Egypt </li>
-          <li> test@gmail.com </li>
+          <li class="text-capitalize-en"> {{ $t('navbar.location') }} </li>
+          <li> {{ $t('navbar.email') }}: test@gmail.com </li>
           <li class="d-flex gap-2 mt-3 mb-3">
             <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
             <a href="#"><i class="fa-brands fa-linkedin"></i></a>
@@ -537,19 +537,22 @@ a.nav-link-2 {
 
 .cart-dropdown {
   position: absolute;
-  &:lang(en){
+
+  &:lang(en) {
     right: 0;
   }
-  &:lang(ar){
+
+  &:lang(ar) {
     left: 0;
   }
+
   margin-top: 0.75rem;
   width: 20rem;
   background-color: var(--card-bg);
   border: 2px solid var(--border-color);
   border-radius: 1rem;
   box-shadow: 0 20px 25px -5px var(--shadow-color),
-    0 10px 10px -5px var(--shadow-color);
+  0 10px 10px -5px var(--shadow-color);
   z-index: 50;
   overflow: hidden;
   animation: slideDown 0.3s ease-out;

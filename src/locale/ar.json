@@ -16,7 +16,16 @@
     "email": "البريد الإلكتروني",
     "yourReview": "تقييمك",
     "required": "*",
-    "submit": "إرسال"
+    "submit": "إرسال",
+    "validation": {
+      "nameRequired": "الاسم مطلوب",
+      "nameMaxLength": "لا يمكن أن يتجاوز الاسم 50 حرف",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يجب أن يكون البريد الإلكتروني صحيح",
+      "reviewRequired": "التقييم مطلوب",
+      "reviewMaxLength": "لا يمكن أن يتجاوز التقييم 500 حرف"
+    },
+    "successMessage": "تم إرسال التقييم بنجاح"
   },
   "terms_of_use": "شروط الاستخدام",
   "studentReviews": "تقييمات الطلاب",
@@ -168,5 +177,19 @@
     "discountApplied": "تم تطبيق الخصم",
     "proceedCheckout": "انتقل إلى الدفع",
     "paymentSecure": "دفعك آمن"
+  },
+  "navbar": {
+    "signup": "حساب جديد",
+    "cartDropdown": "سلة التسوق الخاصة بك",
+    "cartIsEmpty": "سلتك فارغة",
+    "goToCart": "اذهب إلى السلة",
+    "itemName": "العنصر",
+    "itemPrice": "السعر",
+    "qty": "الكمية",
+    "cartTotal": "الإجمالي",
+    "contact": "تواصل معنا",
+    "phone": "الهاتف",
+    "location": "القاهرة - مصر",
+    "email": "البريد الإلكتروني"
   }
 }
