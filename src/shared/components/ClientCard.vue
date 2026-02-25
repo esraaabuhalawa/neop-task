@@ -6,6 +6,7 @@
             </div>
             <div>
                 <h4 class="client-name mb-0 pb-0">{{ review?.userName }}</h4>
+                <p class="mb-0 pb-0">20 mins ago</p>
             </div>
         </div>
         <div class="review">
@@ -61,7 +62,7 @@ const onImageError = (event) => {
 }
 
 .client-name {
-    color: #1B1B1B;
+    color: var(--dark-text);
     font-size: 22px;
     font-weight: 500;
     line-height: 28px;
@@ -77,7 +78,7 @@ const onImageError = (event) => {
 .review {
     .text {
         margin-top: 20px;
-        color: #2e4758;
+        color: var(--text-secondary);
         font-size: 1.3rem;
         font-weight: 400;
         line-height: 1.5;

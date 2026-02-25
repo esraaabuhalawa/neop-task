@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="firstName">{{ $t('checkout.firstName') }} *</label>
+                                    <label for="firstName">{{ $t('checkout.firstName') }} <span class="text-danger">*</span></label>
                                     <input id="firstName" v-model="formData.firstName" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('firstName') }"
                                         :placeholder="$t('checkout.firstName')"
@@ -24,7 +24,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="lastName">{{ $t('checkout.lastName') }} *</label>
+                                    <label for="lastName">{{ $t('checkout.lastName') }} <span class="text-danger">*</span></label>
                                     <input id="lastName" v-model="formData.lastName" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('lastName') }"
                                         :placeholder="$t('checkout.lastName')" @input="handleFieldInput('lastName')" />
@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="email">{{ $t('checkout.email') }} *</label>
+                                    <label for="email">{{ $t('checkout.email') }} <span class="text-danger">*</span></label>
                                     <input id="email" v-model="formData.email" type="email" class="form-input"
                                         :class="{ 'is-invalid': hasError('email') }" :placeholder="$t('checkout.email')"
                                         @input="handleFieldInput('email')" />
@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="address">{{ $t('checkout.address') }} *</label>
+                                    <label for="address">{{ $t('checkout.address') }} <span class="text-danger">*</span></label>
                                     <input id="address" v-model="formData.address" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('address') }"
                                         :placeholder="$t('checkout.address')" @input="handleFieldInput('address')" />
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="city">{{ $t('checkout.city') }} *</label>
+                                    <label for="city">{{ $t('checkout.city') }} <span class="text-danger">*</span></label>
                                     <input id="city" v-model="formData.city" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('city') }" :placeholder="$t('checkout.city')"
                                         @input="handleFieldInput('city')" />
@@ -66,7 +66,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="zipCode">{{ $t('checkout.zipCode') }} *</label>
+                                    <label for="zipCode">{{ $t('checkout.zipCode') }} <span class="text-danger">*</span></label>
                                     <input id="zipCode" v-model="formData.zipCode" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('zipCode') }"
                                         :placeholder="$t('checkout.zipCode')" @input="handleFieldInput('zipCode')" />
@@ -135,7 +135,7 @@
 
                         <div v-if="paymentType === 'card'" class="card-form">
                             <div class="form-group">
-                                <label for="cardName">{{ $t('checkout.cardholderName') }} *</label>
+                                <label for="cardName">{{ $t('checkout.cardholderName') }} <span class="text-danger">*</span></label>
                                 <input id="cardName" v-model="formData.cardName" type="text" class="form-input"
                                     :class="{ 'is-invalid': hasError('cardName') }"
                                     :placeholder="$t('checkout.cardholderName')"
@@ -145,7 +145,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="cardNumber">{{ $t('checkout.cardNumber') }} *</label>
+                                <label for="cardNumber">{{ $t('checkout.cardNumber') }} <span class="text-danger">*</span></label>
                                 <div class="card-input-wrapper">
                                     <input id="cardNumber" v-model="formData.cardNumber" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('cardNumber') }"
@@ -172,7 +172,7 @@
 
                             <div class="row g-3">
                                 <div class="col-6">
-                                    <label for="expiryDate">{{ $t('checkout.expiryDate') }} *</label>
+                                    <label for="expiryDate">{{ $t('checkout.expiryDate') }} <span class="text-danger">*</span></label>
                                     <input id="expiryDate" v-model="formData.expiryDate" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('expiryDate') }"
                                         :placeholder="$t('checkout.expiryDatePlaceholder')"
@@ -182,7 +182,7 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="cvv">{{ $t('checkout.cvv') }} *</label>
+                                    <label for="cvv">{{ $t('checkout.cvv') }} <span class="text-danger">*</span></label>
                                     <input id="cvv" v-model="formData.cvv" type="text" class="form-input"
                                         :class="{ 'is-invalid': hasError('cvv') }"
                                         :placeholder="$t('checkout.cvvPlaceholder')" maxlength="4"
@@ -655,15 +655,7 @@ onMounted(() => {
     label {
         display: block;
         margin-bottom: 0.5rem;
-        font-weight: 600;
         color: var(--text-color);
-    }
-
-    .error-message {
-        color: #dc3545;
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-        display: block;
     }
 
     .shipping-methods {

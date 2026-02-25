@@ -6,23 +6,27 @@
         <!------Reviews Form------------>
         <form class="col-lg-8" @submit.prevent="submitReview" novalidate>
             <div class="mb-3">
-                <label class="form-label"> {{ $t('reviews.name') }}<span class="text-danger">*</span> </label>
-                <input v-model="userName" type="text" class="form-control" />
-                <span class="alert alert-danger py-1 d-block mt-2" v-if="v$.userName.$error">
+                <label class="form-label"> {{ $t('reviews.name') }}
+                    <span class="text-danger">*</span> </label>
+                <input :class="{ 'is-invalid': v$.userName.$error }" v-model="userName" type="text"
+                    class="form-control" />
+                <span class="error-message mt-2" v-if="v$.userName.$error">
                     {{ v$.userName.$errors[0].$message }}
                 </span>
             </div>
             <div class="mb-3">
                 <label class="form-label">{{ $t('reviews.email') }}<span class="text-danger">*</span> </label>
-                <input v-model="emailField" type="email" class="form-control" />
-                <span class="alert alert-danger py-1 d-block mt-2" v-if="v$.emailField?.$error">
-                    {{ v$.emailField?.$errors[0].$message }}
+                <input :class="{ 'is-invalid': v$.emailField.$error }" v-model="emailField" type="email"
+                    class="form-control" />
+                <span class="error-message mt-2" v-if="v$.emailField.$error">
+                    {{ v$.emailField.$errors[0].$message }}
                 </span>
             </div>
             <div class="mb-3">
                 <label class="form-label"> {{ $t('reviews.yourReview') }}<span class="text-danger">*</span></label>
-                <textarea v-model="reviewContent" class="form-control" rows="3"></textarea>
-                <span class="alert alert-danger py-1 d-block mt-2" v-if="v$.reviewContent.$error">
+                <textarea :class="{ 'is-invalid': v$.reviewContent.$error }" v-model="reviewContent"
+                    class="form-control" rows="3"></textarea>
+                <span class="error-message mt-2" v-if="v$.reviewContent.$error">
                     {{ v$.reviewContent.$errors[0].$message }}
                 </span>
             </div>
@@ -33,9 +37,12 @@
 </template>
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useVuelidate } from "@vuelidate/core";
 import { required, maxLength, email, helpers } from "@vuelidate/validators";
 import { toast } from "vue3-toastify";
+
+const { t } = useI18n();
 
 // Form fields
 const userName = ref("");
@@ -45,16 +52,16 @@ const reviewContent = ref("");
 // Validation rules
 const rules = computed(() => ({
     userName: {
-        required: helpers.withMessage("Name is required", required),
-        maxLength: helpers.withMessage("Name cannot exceed 50 characters", maxLength(50))
+        required: helpers.withMessage(t('reviews.validation.nameRequired'), required),
+        maxLength: helpers.withMessage(t('reviews.validation.nameMaxLength'), maxLength(50))
     },
     emailField: {
-        required: helpers.withMessage("Email is required", required),
-        email: helpers.withMessage("Email must be valid", email)
+        required: helpers.withMessage(t('reviews.validation.emailRequired'), required),
+        email: helpers.withMessage(t('reviews.validation.emailInvalid'), email)
     },
     reviewContent: {
-        required: helpers.withMessage("Review is required", required),
-        maxLength: helpers.withMessage("Review cannot exceed 500 characters", maxLength(500))
+        required: helpers.withMessage(t('reviews.validation.reviewRequired'), required),
+        maxLength: helpers.withMessage(t('reviews.validation.reviewMaxLength'), maxLength(500))
     }
 }));
 
@@ -70,7 +77,7 @@ const submitReview = () => {
     if (v$.value.$invalid) return;
 
     // Success: show toast
-    toast.success("Review submitted successfully 🎉", {
+    toast.success(`${t('reviews.successMessage')} 🎉`, {
         theme: "colored",
     });
 
@@ -90,7 +97,7 @@ h2 {
 
 button {
     color: #fff;
-    background: var(--color-primary-1);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #0a5a8a 100%);
     width: 9.375rem;
     font-size: 1.2rem;
     display: -webkit-box;
@@ -108,8 +115,6 @@ button {
 
     &:hover {
         cursor: pointer;
-        background: var(--color-hover);
-        color: var(--bg-color);
         -webkit-transform: translateY(2px);
         -ms-transform: translateY(2px);
         transform: translateY(2px);
@@ -117,8 +122,8 @@ button {
 }
 
 form {
-    background: var(--form-bg);
     padding: 20px;
-    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
 }
 </style>
