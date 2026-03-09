@@ -15,15 +15,8 @@
 </template>
 
 <script>
-// import AOS from "aos";
 export default {
   name: "Preloader",
-  //   mounted() {
-  //     AOS.init({
-  //       duration: 1000, // Animation duration
-  //       once: true, // Whether animation should happen only once
-  //     });
-  //   },
 };
 </script>
 <style lang="scss" scoped>

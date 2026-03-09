@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import ClientCard from '../../../shared/components/Ui/ClientCard.vue'
+import ClientCard from '../../../shared/components/General/ClientCard.vue'
 import ReviewsForm from './ReviewsForm.vue';
 import gsap from 'gsap';
 import { ref, computed, inject, onMounted } from 'vue';

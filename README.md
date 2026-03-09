@@ -81,16 +81,22 @@ src/
 │   ├── ProductDetails/
 │   │   ├── [id].vue
 │   │   └── components/
-│   │       ├── productInfo.vue
+│   │       ├── ProductInfo.vue
 │   │       ├── ProductTabs.vue
 │   │       └── ReviewsForm.vue
 │   └── Error.vue
 ├── shared/
 │   └── components/
-│       ├── Navbar.vue
-│       ├── ProductCard.vue
-│       ├── RatingComponent.vue
-│       └── ...
+│       ├── layout/
+│       │   ├── Navbar.vue
+│       │   ├── FooterItem.vue
+│       │   └── GoTop.vue
+│       ├── ui/
+│       │   └── RatingComponent.vue
+│       └── general/
+│           ├── ProductCard.vue
+│           ├── ClientCard.vue
+│           └── PreLoader.vue
 ├── store/
 │   ├── mainStore.js
 │   ├── products.js
@@ -101,7 +107,6 @@ src/
 ├── Services/
 │   └── apiclient.js
 └── assets/
-    ├── images/
     └── style/
 ```
 
