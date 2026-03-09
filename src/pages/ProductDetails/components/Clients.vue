@@ -16,7 +16,7 @@
 import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from 'swiper/modules';
-import ClientCard from '../../../shared/components/ClientCard.vue';
+import ClientCard from '../../../shared/components/Ui/ClientCard.vue';
 
 const props = defineProps({
     reviews:{

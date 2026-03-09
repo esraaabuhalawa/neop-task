@@ -165,7 +165,7 @@ onMounted(() => {
     background: var(--bg-color);
     border: 1px solid rgba(0, 72, 118, 0.1);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 2rem 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 
     h2 {
@@ -280,7 +280,6 @@ onMounted(() => {
 .checkout-btn {
     width: 100%;
     padding: 1rem;
-    color: white;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -306,6 +305,11 @@ onMounted(() => {
 
     &:active {
         transform: translateY(0);
+    }
+    &:lang(ar) {
+        svg{
+            transform: scaleX(-1);
+        }
     }
 }
 

@@ -8,7 +8,7 @@
                     }}</router-link></li>
                     <li class="breadcrumb-item non-active" aria-current="page">{{ $t('breadcrumb.category') }}
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ $t('breadcrumb.product') }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ ProductData?.name }}</li>
                 </ol>
             </nav>
 

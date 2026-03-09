@@ -6,21 +6,11 @@
 </template>
 
 <script setup>
-import GoTop from './shared/components/GoTop.vue';
+import goTop from './shared/components/Layout/GoTop.vue';
 import { onMounted,} from 'vue';
 
-// function updateHtmlLangAttribute() {
-//   const storedLanguage = localStorage.getItem("language");
-//   document
-//     .querySelector("html")
-//     .setAttribute("lang", storedLanguage || "ar");
-// }
-
 onMounted(() => {
- // updateHtmlLangAttribute();
-  // setTimeout(() => {
-  //   isLoading.value = false;
-  // }, 1000);
+ 
 })
 </script>
 

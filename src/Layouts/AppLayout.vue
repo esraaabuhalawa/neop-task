@@ -21,9 +21,9 @@
 </template>
 
 <script setup>
-import Navbar from "../shared/components/Navbar.vue"
-import FooterItem from "../shared/components/FooterItem.vue"
-import PreLoader from "../shared/components/PreLoader.vue"
+import Navbar from "../shared/components/Layout/Navbar.vue"
+import FooterItem from "../shared/components/Layout/FooterItem.vue"
+import PreLoader from "../shared/components/Layout/PreLoader.vue"
 
 defineProps({
   loading: {

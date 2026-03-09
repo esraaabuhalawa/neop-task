@@ -29,8 +29,8 @@
 </template>
 <script setup>
 import { ref, watch, computed } from 'vue';
-import RatingComponent from '../../shared/components/RatingComponent.vue';
-import { useMainStore } from '../../store/mainStore';
+import RatingComponent from '../../../shared/components/Ui/RatingComponent.vue';
+import { useMainStore } from '../../../store/mainStore';
 defineProps({
     product: {
         type: Object,
@@ -51,6 +51,7 @@ watch(
 </script>
 <style lang="scss" scoped>
 .product-desc {
+
     h5,
     p {
         color: var(--text-color);
