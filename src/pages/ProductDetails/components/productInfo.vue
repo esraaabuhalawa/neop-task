@@ -59,7 +59,7 @@
                         </div>
 
                         <button class="btn btn-main flex-fill" @click="addToCart(product, quantity)">{{ $t('addToCart')
-                        }}</button>
+                            }}</button>
                     </div>
                 </section>
             </div>
@@ -68,7 +68,7 @@
     <!--End Of Product Details-->
 </template>
 <script setup>
-import ratingComponent from '../../../shared/components/RatingComponent.vue'
+import ratingComponent from '../../../shared/components/Ui/RatingComponent.vue'
 import gsap from 'gsap';
 import { ref, computed, inject, onMounted, } from "vue";
 import { useProductStore } from '../../../store/products';
@@ -103,7 +103,6 @@ const onImageError = (event) => {
 }
 const productStore = useProductStore();
 
-
 const addToCart = (product, quantity) => {
     // Success: show toast
     toast.success(`Product added to your cart`, {
@@ -123,7 +122,6 @@ onMounted(() => {
 
     // GSAP animations for product details
     const mainImage = document.querySelector('.main-image');
-    const productInfo = document.querySelector('.product-details');
     const thumbnails = document.querySelectorAll('.thumbnail');
     const ratingSection = document.querySelector('.d-flex.gap-3.align-items-center');
 
@@ -369,7 +367,6 @@ onMounted(() => {
 }
 
 .amount {
-    height: 42px;
 
     i {
         font-size: .9rem;
@@ -377,7 +374,7 @@ onMounted(() => {
     }
 
     input {
-        border: none;
+        border: none !important;
         background-color: var(--input-bg);
         color: var(--text-color);
         font-weight: 500;

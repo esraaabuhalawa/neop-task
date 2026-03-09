@@ -2,7 +2,10 @@
 import { defineStore } from "pinia";
 import api from "../Services/apiclient";
 
+import { useMainStore } from "./mainStore";
+
 export const useProductStore = defineStore("products", {
+
   state: () => ({
     allProducts: null,
     cart: [],
@@ -10,11 +13,30 @@ export const useProductStore = defineStore("products", {
 
   getters: {
     products(state) {
+      if (!state.allProducts) return [];
       return state.allProducts;
     },
+
     cartItems(state) {
-      return state.cart;
-    },
+      const mainStore = useMainStore();
+
+      if (!state.allProducts) return [];
+
+      const products = state.allProducts[mainStore.currentLanguage] || [];
+      //console.log("Cart Items:", state.cart); // Debugging log
+      return state.cart
+        .map(item => {
+          const product = products.find(p => p.id === item.id);
+
+          if (!product) return null;
+
+          return {
+            product: { ...product },
+            quantity: item.quantity
+          };
+        })
+        .filter(Boolean);
+    }
   },
 
   actions: {
@@ -29,15 +51,15 @@ export const useProductStore = defineStore("products", {
 
     addToCart(product, qty) {
       const existingItem = this.cart.find(
-        (item) => item.product.id === product.id,
+        (item) => item.id === product.id
       );
 
       if (existingItem) {
         existingItem.quantity = qty;
       } else {
         this.cart.push({
-          product,
-          quantity: qty,
+          id: product.id,
+          quantity: qty
         });
       }
     },

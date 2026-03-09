@@ -139,9 +139,9 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useMainStore } from '../../store/mainStore';
-import { useProductStore } from '../../store/products';
-import { useThemeStore } from '../../store/theme'
+import { useMainStore } from '../../../store/mainStore';
+import { useProductStore } from '../../../store/products';
+import { useThemeStore } from '../../../store/theme'
 
 defineProps({
   SpecialStyle: {
@@ -168,7 +168,6 @@ const toggleLanguage = () => {
 const productStore = useProductStore();
 const cartItems = computed(() => productStore.cartItems);
 const totalPrice = computed(() => cartItems.value.reduce((sum, item) => sum + (item.quantity * item.product.price), 0))
-
 
 let openCart = ref(false)
 const toggleCart = () => {
@@ -255,7 +254,7 @@ onUnmounted(() => {
 
   .navbar-brand {
     svg path {
-      fill: var(--bg-color);
+    fill: var(--bg-color);
     }
   }
 
@@ -264,6 +263,12 @@ onUnmounted(() => {
   }
 }
 
+html.dark .navbar-brand ,html.dark .navbar.scrolled  .navbar-brand{
+    svg path {
+    fill: #fff;
+    }
+  }
+  
 .languagebtn {
   width: 1.8rem;
   height: 1.8rem;
@@ -631,7 +636,7 @@ a.nav-link-2 {
   }
 
   .item-price {
-    color: var(--color-primary);
+    color: var(--color-primary-1);
     font-weight: 700;
     font-size: 0.95rem;
     white-space: nowrap;

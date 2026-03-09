@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import ProductCard from '../../../shared/components/ProductCard.vue';
+import ProductCard from '../../../shared/components/Ui/ProductCard.vue';
 const props = defineProps({
     categories: {
         type: Object,

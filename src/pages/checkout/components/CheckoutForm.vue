@@ -13,72 +13,119 @@
 
                         <div class="form-group">
                             <div class="row g-3">
+
+                                <!-- First Name -->
                                 <div class="col-md-6">
-                                    <label for="firstName">{{ $t('checkout.firstName') }} <span class="text-danger">*</span></label>
+                                    <label for="firstName">
+                                        {{ $t('checkout.firstName') }} <span class="text-danger">*</span>
+                                    </label>
+
                                     <input id="firstName" v-model="formData.firstName" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('firstName') }"
-                                        :placeholder="$t('checkout.firstName')"
-                                        @input="handleFieldInput('firstName')" />
-                                    <span v-if="hasError('firstName')" class="error-message">{{
-                                        getErrorMessage('firstName') }}</span>
+                                        :class="{ 'is-invalid': v$.firstName.$error }"
+                                        :placeholder="$t('checkout.firstName')" />
+
+                                    <span class="error-message mt-2" v-if="v$.firstName.$error">
+                                        {{ v$.firstName.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+
+                                <!-- Last Name -->
                                 <div class="col-md-6">
-                                    <label for="lastName">{{ $t('checkout.lastName') }} <span class="text-danger">*</span></label>
+                                    <label for="lastName">
+                                        {{ $t('checkout.lastName') }} <span class="text-danger">*</span>
+                                    </label>
+
                                     <input id="lastName" v-model="formData.lastName" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('lastName') }"
-                                        :placeholder="$t('checkout.lastName')" @input="handleFieldInput('lastName')" />
-                                    <span v-if="hasError('lastName')" class="error-message">{{
-                                        getErrorMessage('lastName') }}</span>
+                                        :class="{ 'is-invalid': v$.lastName.$error }"
+                                        :placeholder="$t('checkout.lastName')" />
+
+                                    <span class="error-message mt-2" v-if="v$.lastName.$error">
+                                        {{ v$.lastName.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+
+                                <!-- Email -->
                                 <div class="col-md-6">
-                                    <label for="email">{{ $t('checkout.email') }} <span class="text-danger">*</span></label>
+                                    <label for="email">
+                                        {{ $t('checkout.email') }} <span class="text-danger">*</span>
+                                    </label>
+
                                     <input id="email" v-model="formData.email" type="email" class="form-input"
-                                        :class="{ 'is-invalid': hasError('email') }" :placeholder="$t('checkout.email')"
-                                        @input="handleFieldInput('email')" />
-                                    <span v-if="hasError('email')" class="error-message">{{ getErrorMessage('email')
-                                    }}</span>
+                                        :class="{ 'is-invalid': v$.email.$error }"
+                                        :placeholder="$t('checkout.email')" />
+
+                                    <span class="error-message mt-2" v-if="v$.email.$error">
+                                        {{ v$.email.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+
+                                <!-- Phone -->
                                 <div class="col-md-6">
                                     <label for="phone">{{ $t('checkout.phone') }}</label>
+
                                     <input id="phone" v-model="formData.phone" type="tel" class="form-input"
                                         :placeholder="$t('checkout.phone')" />
                                 </div>
 
+
+                                <!-- Address -->
                                 <div class="col-12">
-                                    <label for="address">{{ $t('checkout.address') }} <span class="text-danger">*</span></label>
+                                    <label for="address">
+                                        {{ $t('checkout.address') }} <span class="text-danger">*</span>
+                                    </label>
+
                                     <input id="address" v-model="formData.address" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('address') }"
-                                        :placeholder="$t('checkout.address')" @input="handleFieldInput('address')" />
-                                    <span v-if="hasError('address')" class="error-message">{{ getErrorMessage('address')
-                                    }}</span>
+                                        :class="{ 'is-invalid': v$.address.$error }"
+                                        :placeholder="$t('checkout.address')" />
+
+                                    <span class="error-message mt-2" v-if="v$.address.$error">
+                                        {{ v$.address.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+
+                                <!-- City -->
                                 <div class="col-md-4">
-                                    <label for="city">{{ $t('checkout.city') }} <span class="text-danger">*</span></label>
+                                    <label for="city">
+                                        {{ $t('checkout.city') }} <span class="text-danger">*</span>
+                                    </label>
+
                                     <input id="city" v-model="formData.city" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('city') }" :placeholder="$t('checkout.city')"
-                                        @input="handleFieldInput('city')" />
-                                    <span v-if="hasError('city')" class="error-message">{{ getErrorMessage('city')
-                                    }}</span>
+                                        :class="{ 'is-invalid': v$.city.$error }" :placeholder="$t('checkout.city')" />
+
+                                    <span class="error-message mt-2" v-if="v$.city.$error">
+                                        {{ v$.city.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+
+                                <!-- Zip Code -->
                                 <div class="col-md-4">
-                                    <label for="zipCode">{{ $t('checkout.zipCode') }} <span class="text-danger">*</span></label>
+                                    <label for="zipCode">
+                                        {{ $t('checkout.zipCode') }} <span class="text-danger">*</span>
+                                    </label>
+
                                     <input id="zipCode" v-model="formData.zipCode" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('zipCode') }"
-                                        :placeholder="$t('checkout.zipCode')" @input="handleFieldInput('zipCode')" />
-                                    <span v-if="hasError('zipCode')" class="error-message">{{ getErrorMessage('zipCode')
-                                    }}</span>
+                                        :class="{ 'is-invalid': v$.zipCode.$error }"
+                                        :placeholder="$t('checkout.zipCode')" />
+
+                                    <span class="error-message mt-2" v-if="v$.zipCode.$error">
+                                        {{ v$.zipCode.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+
+                                <!-- Country -->
                                 <div class="col-md-4">
                                     <label for="country">{{ $t('checkout.country') }}</label>
+
                                     <input id="country" v-model="formData.country" type="text" class="form-input"
                                         :placeholder="$t('checkout.country')" />
                                 </div>
+
                             </div>
                         </div>
 
@@ -134,30 +181,42 @@
                         </div>
 
                         <div v-if="paymentType === 'card'" class="card-form">
+
+                            <!-- Cardholder Name -->
                             <div class="form-group">
-                                <label for="cardName">{{ $t('checkout.cardholderName') }} <span class="text-danger">*</span></label>
+                                <label for="cardName">
+                                    {{ $t('checkout.cardholderName') }} <span class="text-danger">*</span>
+                                </label>
                                 <input id="cardName" v-model="formData.cardName" type="text" class="form-input"
-                                    :class="{ 'is-invalid': hasError('cardName') }"
-                                    :placeholder="$t('checkout.cardholderName')"
-                                    @input="handleFieldInput('cardName')" />
-                                <span v-if="hasError('cardName')" class="error-message">{{ getErrorMessage('cardName')
-                                }}</span>
+                                    :class="{ 'is-invalid': v$.cardName.$error }"
+                                    :placeholder="$t('checkout.cardholderName')" />
+                                <span class="error-message mt-2" v-if="v$.cardName.$error">
+                                    {{ v$.cardName.$errors[0].$message }}
+                                </span>
                             </div>
 
+                            <!-- Card Number -->
                             <div class="form-group">
-                                <label for="cardNumber">{{ $t('checkout.cardNumber') }} <span class="text-danger">*</span></label>
+                                <label for="cardNumber">
+                                    {{ $t('checkout.cardNumber') }} <span class="text-danger">*</span>
+                                </label>
+
                                 <div class="card-input-wrapper">
                                     <input id="cardNumber" v-model="formData.cardNumber" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('cardNumber') }"
-                                        :placeholder="$t('checkout.cardNumberPlaceholder')"
-                                        @input="formatCardNumber; handleFieldInput('cardNumber')" />
+                                        :class="{ 'is-invalid': v$.cardNumber.$error }"
+                                        :placeholder="$t('checkout.cardNumberPlaceholder')" @input="formatCardNumber" />
+
+                                    <!-- Card Icon -->
                                     <span class="card-icon">
                                         <svg v-if="cardType === 'visa'" xmlns="http://www.w3.org/2000/svg" width="32"
                                             viewBox="0 0 32 32">
                                             <rect width="32" height="32" rx="6" fill="#1434CB" />
                                             <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white"
-                                                font-size="12" font-weight="bold">VISA</text>
+                                                font-size="12" font-weight="bold">
+                                                VISA
+                                            </text>
                                         </svg>
+
                                         <svg v-else-if="cardType === 'mastercard'" xmlns="http://www.w3.org/2000/svg"
                                             width="32" viewBox="0 0 32 32">
                                             <rect width="32" height="32" rx="6" fill="#FF5F00" />
@@ -166,30 +225,42 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <span v-if="hasError('cardNumber')" class="error-message">{{
-                                    getErrorMessage('cardNumber') }}</span>
+
+                                <span class="error-message mt-2" v-if="v$.cardNumber.$error">
+                                    {{ v$.cardNumber.$errors[0].$message }}
+                                </span>
                             </div>
 
+                            <!-- Expiry Date & CVV -->
                             <div class="row g-3">
+
+                                <!-- Expiry Date -->
                                 <div class="col-6">
-                                    <label for="expiryDate">{{ $t('checkout.expiryDate') }} <span class="text-danger">*</span></label>
+                                    <label for="expiryDate">
+                                        {{ $t('checkout.expiryDate') }} <span class="text-danger">*</span>
+                                    </label>
                                     <input id="expiryDate" v-model="formData.expiryDate" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('expiryDate') }"
-                                        :placeholder="$t('checkout.expiryDatePlaceholder')"
-                                        @input="formatExpiryDate; handleFieldInput('expiryDate')" />
-                                    <span v-if="hasError('expiryDate')" class="error-message">{{
-                                        getErrorMessage('expiryDate') }}</span>
+                                        :class="{ 'is-invalid': v$.expiryDate.$error }"
+                                        :placeholder="$t('checkout.expiryDatePlaceholder')" @input="formatExpiryDate" />
+                                    <span class="error-message mt-2" v-if="v$.expiryDate.$error">
+                                        {{ v$.expiryDate.$errors[0].$message }}
+                                    </span>
                                 </div>
 
+                                <!-- CVV -->
                                 <div class="col-6">
-                                    <label for="cvv">{{ $t('checkout.cvv') }} <span class="text-danger">*</span></label>
+                                    <label for="cvv">
+                                        {{ $t('checkout.cvv') }} <span class="text-danger">*</span>
+                                    </label>
                                     <input id="cvv" v-model="formData.cvv" type="text" class="form-input"
-                                        :class="{ 'is-invalid': hasError('cvv') }"
+                                        :class="{ 'is-invalid': v$.cvv.$error }"
                                         :placeholder="$t('checkout.cvvPlaceholder')" maxlength="4"
-                                        @input="onCVVInput; handleFieldInput('cvv')" />
-                                    <span v-if="hasError('cvv')" class="error-message">{{ getErrorMessage('cvv')
-                                    }}</span>
+                                        @input="onCVVInput" />
+                                    <span class="error-message mt-2" v-if="v$.cvv.$error">
+                                        {{ v$.cvv.$errors[0].$message }}
+                                    </span>
                                 </div>
+
                             </div>
                         </div>
 
@@ -236,7 +307,7 @@
                                         <p>Qty: {{ item.quantity }}</p>
                                     </div>
                                     <span class="item-price">${{ (item.product.price * item.quantity).toFixed(2)
-                                    }}</span>
+                                        }}</span>
                                 </div>
                             </div>
 
@@ -264,7 +335,7 @@
                                 <div class="breakdown-row">
                                     <span>{{ $t('checkout.shipping') }}:</span>
                                     <span>{{ shippingCost === 0 ? $t('checkout.free') : `$${shippingCost.toFixed(2)}`
-                                        }}</span>
+                                    }}</span>
                                 </div>
 
                                 <div class="divider"></div>
@@ -558,7 +629,6 @@ onMounted(() => {
         border: 1px solid rgba(0, 72, 118, 0.1);
         border-radius: 12px;
         padding: 2rem;
-        margin-bottom: 1.5rem;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
         h3 {
@@ -707,6 +777,7 @@ onMounted(() => {
 
     .payment-methods {
         display: flex;
+        flex-wrap: wrap;
         gap: 1.5rem;
         margin-bottom: 2rem;
 
@@ -738,7 +809,6 @@ onMounted(() => {
 
     .card-form {
         background: rgba(0, 72, 118, 0.02);
-        padding: 1.5rem;
         border-radius: 8px;
     }
 

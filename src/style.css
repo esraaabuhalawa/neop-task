@@ -5,6 +5,7 @@
   --color-secondary: #3b2f2f;
   --color-hover: #1f5792;
   --bg-color: #fff;
+  --logo-color:#0f172a;
   --bg-secondary: #f9fafb;
   --bg-tertiary: #f3f4f6;
   --text-color: #1f2937;
@@ -37,6 +38,7 @@ html.dark {
   --color-primary-1: #64a5da;
   --color-primary-light: #7db8e8;
   --bg-color: #0f172a;
+  --logo-color: #fff;
   --bg-secondary: #1a2540;
   --bg-tertiary: #243351;
   --text-color: #e5e7eb;
@@ -147,8 +149,8 @@ select {
 }
 
 .btn-main {
-  background-color: var(--color-primary);
-  color: #fff;
+  background-color: var(--color-hover);
+  color: #fff !important;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -156,7 +158,7 @@ select {
   transition: background-color 0.3s ease;
 }
 .btn-main:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-primary-light);
   color: #fff;
 }
 
@@ -209,27 +211,6 @@ tbody tr:hover {
   color: var(--text-color);
 }
 
-/* Modals and dropdowns
-.modal-content {
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  border-color: var(--border-color);
-}
-
-.dropdown-menu {
-  background-color: var(--card-bg);
-  border-color: var(--border-color);
-}
-
-.dropdown-item {
-  color: var(--text-color);
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: var(--bg-secondary);
-  color: var(--text-color);
-}
 
 /* Pagination */
 .pagination .page-link {
@@ -248,7 +229,7 @@ tbody tr:hover {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
-*/
+
 
 /* Breadcrumb */
 .breadcrumb {
@@ -260,7 +241,9 @@ tbody tr:hover {
 .breadcrumb .breadcrumb-item a {
   color: var(--color-primary);
 }
-
+.breadcrumb-item + .breadcrumb-item::before{
+  margin: 2px .5rem !important
+}
 /* Lists and text */
 hr {
   border-color: var(--border-color);
@@ -291,7 +274,9 @@ b {
 small {
   color: var(--text-secondary);
 }
-
+.cart-container{
+  overflow: hidden ;
+}
 /* Enhanced text colors in dark mode */
 html.dark {
   a {
