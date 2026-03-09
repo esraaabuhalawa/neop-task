@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import ProductCard from '../../../shared/components/Ui/ProductCard.vue';
+import ProductCard from '../../../shared/components/General/ProductCard.vue';
 const props = defineProps({
     categories: {
         type: Object,
@@ -63,6 +63,7 @@ const filterCategories = (sectionId) => {
 </script>
 <style lang="scss" scoped>
 header {
+
     span,
     h2 {
         color: var(--color-secondary);
