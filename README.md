@@ -91,7 +91,7 @@ src/
 │       │   ├── Navbar.vue
 │       │   ├── FooterItem.vue
 │       │   └── GoTop.vue
-│       ├── ui/
+│       ├── Ui/
 │       │   └── RatingComponent.vue
 │       └── general/
 │           ├── ProductCard.vue

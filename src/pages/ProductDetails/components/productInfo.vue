@@ -59,7 +59,7 @@
                         </div>
 
                         <button class="btn btn-main flex-fill" @click="addToCart(product, quantity)">{{ $t('addToCart')
-                        }}</button>
+                            }}</button>
                     </div>
                 </section>
             </div>
@@ -68,7 +68,7 @@
     <!--End Of Product Details-->
 </template>
 <script setup>
-import ratingComponent from '../../../shared/components/ui/RatingComponent.vue';
+import ratingComponent from '../../../shared/components/Ui/RatingComponent.vue';
 import gsap from 'gsap';
 import { ref, computed, inject, onMounted, } from "vue";
 import { useProductStore } from '../../../store/products';

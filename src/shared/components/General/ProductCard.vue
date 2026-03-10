@@ -29,7 +29,7 @@
 </template>
 <script setup>
 import { ref, watch, computed } from 'vue';
-import RatingComponent from '../../../shared/components/ui/RatingComponent.vue';
+import RatingComponent from '../../../shared/components/Ui/RatingComponent.vue';
 import { useMainStore } from '../../../store/mainStore';
 defineProps({
     product: {
