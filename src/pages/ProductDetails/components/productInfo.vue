@@ -68,7 +68,7 @@
     <!--End Of Product Details-->
 </template>
 <script setup>
-import ratingComponent from '../../../shared/components/General/RatingComponent.vue'
+import ratingComponent from '../../../shared/components/ui/RatingComponent.vue'
 import gsap from 'gsap';
 import { ref, computed, inject, onMounted, } from "vue";
 import { useProductStore } from '../../../store/products';

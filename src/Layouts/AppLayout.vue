@@ -23,7 +23,7 @@
 <script setup>
 import Navbar from "../shared/components/Layout/Navbar.vue"
 import FooterItem from "../shared/components/Layout/FooterItem.vue"
-import PreLoader from "../shared/components/Layout/PreLoader.vue"
+import PreLoader from "../shared/components/General/PreLoader.vue"
 
 defineProps({
   loading: {

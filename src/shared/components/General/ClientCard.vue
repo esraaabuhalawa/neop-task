@@ -20,7 +20,7 @@
     </section>
 </template>
 <script setup>
-import RatingComponent from './RatingComponent.vue';
+import RatingComponent from '../ui/RatingComponent.vue';
 const props = defineProps({
     review:{
         type: Object
