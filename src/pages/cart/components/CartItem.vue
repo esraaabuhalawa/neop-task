@@ -41,7 +41,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 import gsap from 'gsap';
-import RatingComponent from '../../../shared/components/ui/RatingComponent.vue';
+import RatingComponent from '../../../shared/components/Ui/RatingComponent.vue';
 import { useMainStore } from '../../../store/mainStore';
 
 const props = defineProps({

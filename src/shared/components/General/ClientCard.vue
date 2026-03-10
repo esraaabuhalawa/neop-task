@@ -11,7 +11,7 @@
         </div>
         <div class="review">
             <p class="text">
-               {{ review?.comment }}
+                {{ review?.comment }}
             </p>
             <div class="overflow-hidden mt-1">
                 <rating-component :rating="review?.rating"></rating-component>
@@ -20,17 +20,17 @@
     </section>
 </template>
 <script setup>
-import RatingComponent from '../ui/RatingComponent.vue';
+import RatingComponent from '../Ui/RatingComponent.vue';
 const props = defineProps({
-    review:{
+    review: {
         type: Object
     }
 })
 const fallbackImage = '/images/user.jpg'
 
 const onImageError = (event) => {
-  event.target.onerror = null   
-  event.target.src = fallbackImage
+    event.target.onerror = null
+    event.target.src = fallbackImage
 }
 
 </script>
