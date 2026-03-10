@@ -13,6 +13,7 @@ import { useMainStore } from '../../../store/mainStore'
 const props = defineProps({
   rating: {
     type: Number,
+    default: 0,
     required: true
   }
 })
